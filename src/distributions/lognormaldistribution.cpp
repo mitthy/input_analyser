@@ -16,17 +16,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "betadistribution.h"
+#include "distributions/lognormaldistribution.h"
 
-BetaDistribution::BetaDistribution(float alfa, float beta) {
+LogNormalDistribution::LogNormalDistribution(float avg, float standard_deviation) {
     //TODO
 }
 
-float BetaDistribution::generate_value() const {
+float LogNormalDistribution::generate_value() const {
     //TODO
     return 0;
 }
-
 
 
 

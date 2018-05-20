@@ -16,14 +16,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "triangulardistribution.h"
+#include "distributions/betadistribution.h"
 
-TriangularDistribution::TriangularDistribution(float min, float max, float mode) {
+BetaDistribution::BetaDistribution(float alfa, float beta) {
     //TODO
 }
 
-float TriangularDistribution::generate_value() const {
+float BetaDistribution::generate_value() const {
     //TODO
     return 0;
 }
+
+
+
 

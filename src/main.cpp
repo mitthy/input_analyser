@@ -21,7 +21,7 @@
 #include "dataholder.h"
 #include "montecarlo.h"
 #include <string>
-#include "distribution.h"
+#include "distributions/distribution.h"
 #include <set>
 
 #ifndef EXIT_FAILURE

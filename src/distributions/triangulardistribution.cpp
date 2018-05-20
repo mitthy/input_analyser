@@ -16,15 +16,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "normaldistribution.h"
+#include "distributions/triangulardistribution.h"
 
-NormalDistribution::NormalDistribution(float avg, float standard_deviation) {
+TriangularDistribution::TriangularDistribution(float min, float max, float mode) {
     //TODO
 }
 
-float NormalDistribution::generate_value() const {
+float TriangularDistribution::generate_value() const {
     //TODO
     return 0;
 }
-
 

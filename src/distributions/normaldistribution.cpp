@@ -16,11 +16,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "distribution.h"
+#include "distributions/normaldistribution.h"
 
-using namespace std;
-
-unique_ptr<Distribution> create_distribution(const MonteCarlo& monte_carlo_histogram, const set<DistributionType>& desired_type) {
+NormalDistribution::NormalDistribution(float avg, float standard_deviation) {
     //TODO
-    return nullptr;
 }
+
+float NormalDistribution::generate_value() const {
+    //TODO
+    return 0;
+}
+
+

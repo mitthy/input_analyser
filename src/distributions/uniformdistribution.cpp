@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "uniformdistribution.h"
+#include "distributions/uniformdistribution.h"
 
 UniformDistribution::UniformDistribution(float min, float max) {
     //TODO

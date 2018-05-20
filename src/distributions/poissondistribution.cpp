@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "poissondistribution.h"
+#include "distributions/poissondistribution.h"
 
 PoissonDistribution::PoissonDistribution(float avg_occur) {
     //TODO

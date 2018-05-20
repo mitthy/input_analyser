@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "exponentialdistribution.h"
+#include "distributions/exponentialdistribution.h"
 
 ExponentialDistribution::ExponentialDistribution(float mean) {
     //TODO
