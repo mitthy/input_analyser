@@ -25,9 +25,19 @@
  */
 class UniformDistribution: public Distribution {
 public:
-    UniformDistribution(float min, float max);
+    UniformDistribution(float min, float max): _min(min), _max(max) {}
     virtual ~UniformDistribution() = default;
     virtual float generate_value() const;
+    virtual float frequency_for(float value) const;
+    virtual std::string get_distribution_name() const {
+        return "uniform";
+    }
+    virtual std::string get_parameters_str() const {
+        return "a = " + std::to_string(_min) + "; b = " + std::to_string(_max);
+    }
+private:
+    float _min;
+    float _max;
 };
 
 #endif // UNIFORMDISTRIBUTION_H

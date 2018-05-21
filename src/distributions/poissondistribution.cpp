@@ -27,5 +27,10 @@ float PoissonDistribution::generate_value() const {
     return 0;
 }
 
+float PoissonDistribution::frequency_for(float value) const {
+    return 0;
+}
+
+
 
 

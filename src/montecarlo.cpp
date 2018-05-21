@@ -66,6 +66,9 @@ float MonteCarlo::histogram_variance() const {
     if(_organized_data.empty()) {
         return numeric_limits<float>::quiet_NaN();
     }
+    if(_data_count == 1) {
+        return 0;
+    }
     float mean = histogram_mean();
     float sum = 0;
     for(int i = 0; i < _organized_data.size(); ++i) {

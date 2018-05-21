@@ -28,6 +28,7 @@ public:
     TriangularDistribution(float min, float max, float mode);
     virtual ~TriangularDistribution() = default;
     virtual float generate_value() const;
+    virtual float frequency_for(float value) const;
 };
 
 #endif // TRIANGULARDISTRIBUTION_H

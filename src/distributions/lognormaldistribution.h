@@ -28,6 +28,7 @@ public:
     LogNormalDistribution(float avg, float standard_deviation);
     virtual ~LogNormalDistribution() = default;
     virtual float generate_value() const;
+    virtual float frequency_for(float value) const;
 };
 
 #endif // LOGNORMALDISTRIBUTION_H

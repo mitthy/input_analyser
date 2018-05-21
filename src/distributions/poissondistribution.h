@@ -28,6 +28,7 @@ public:
     PoissonDistribution(float avg_occur);
     virtual ~PoissonDistribution() = default;
     virtual float generate_value() const;
+    virtual float frequency_for(float value) const;
 };
 
 #endif // POISSONDISTRIBUTION_H

@@ -28,6 +28,7 @@ public:
     BetaDistribution(float alfa, float beta);
     virtual ~BetaDistribution() = default;
     virtual float generate_value() const;
+    virtual float frequency_for(float value) const;
 };
 
 #endif // BETADISTRIBUTION_H

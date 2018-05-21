@@ -27,6 +27,11 @@ float BetaDistribution::generate_value() const {
     return 0;
 }
 
+float BetaDistribution::frequency_for(float value) const {
+    return 0;
+}
+
+
 
 
 

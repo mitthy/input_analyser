@@ -48,10 +48,12 @@ int main(int argc, char **argv) {
     bool print_min = false;
     bool print_max = false;
     bool print_classes = false;
+    bool print_chi_square_result = false;
     for(int i = 1; i < argc; ++i) {
         string cur_arg(argv[i]);
         if(cur_arg == "--help" || cur_arg == "-h") {
             print_help();
+            return EXIT_SUCCESS;
         }
         else if(cur_arg == "--file" || cur_arg == "-f") {
             if((++i) == argc) {
@@ -66,7 +68,7 @@ int main(int argc, char **argv) {
             }
             stream_ptr = &file;
         }
-        else if(cur_arg == "--print_var" || cur_arg == "-pvr") {
+        else if(cur_arg == "--print_var" || cur_arg == "-pvr" || cur_arg == "--print_variance") {
             print_var = true;
         }
         else if(cur_arg == "--print_std_deviation" || cur_arg == "-pstdev") {
@@ -86,6 +88,9 @@ int main(int argc, char **argv) {
         }
         else if(cur_arg == "--print_classes" || cur_arg == "-pclasses") {
             print_classes = true;
+        }
+        else if(cur_arg == "--print_chi_square" || cur_arg == "-pcs") {
+            print_chi_square_result = true;
         }
         else if(cur_arg == "--normal" || cur_arg == "-nrm") {
             desired_distributions.insert(DistributionType::NORMAL);
@@ -122,6 +127,9 @@ int main(int argc, char **argv) {
         return EXIT_FAILURE;
     }
     MonteCarlo monte_carlo(h.begin(), h.end());
+    unique_ptr<Distribution> distr_ptr;
+    float chi_result;
+    tie(distr_ptr, chi_result) = create_distribution(monte_carlo, desired_distributions);
     if(print_classes) {
         cout << monte_carlo.print_classes() << endl;
     }
@@ -143,6 +151,11 @@ int main(int argc, char **argv) {
     if(print_max) {
         cout << "Monte Carlo calculated histogram max value: " << monte_carlo.histogram_max_value() << "." << endl;
     }
+    if(print_chi_square_result) {
+        cout << "Chi square test result for distribution " << distr_ptr->get_distribution_name() << ": " << chi_result << "." << endl;
+    }
+    cout << "Best distribution found: " << distr_ptr->get_distribution_name() << " with parameters:" << endl;
+    cout << distr_ptr->get_parameters_str() << "." << endl;
     return EXIT_SUCCESS;
 }
 
@@ -158,16 +171,18 @@ void print_help() {
     cout << "histogram to be printed." << endl;
     cout << "--print_mean or -pmn if the user wants the mean calculated on the histogram to" << endl;
     cout << "be printed." << endl;
-    cout << "--print_var or -pvr if the user wants the variance calculated on the histogram"<< endl;
-    cout << "to be printed." << endl;
+    cout << "--print_variance or --print_var or -pvr if the user wants the variance calculated"<< endl;
+    cout << "on the histogram to be printed." << endl;
     cout << "--print_std_deviation or -pstdev if the user wants the standard deviation" << endl;
     cout << "calculated on the histogram to be printed." << endl;
     cout << "--print_mode or -pmd if the user wants the mode calculated on the histogram to" << endl;
     cout << "be printed." << endl;
     cout << "--print_min or -pmin if the user wants the minimum value on the histogram to" << endl; 
     cout << "be printed." << endl;
-    cout << "--print_max or -pmax if the ser wants the maximum value on the histogram to be" << endl; 
+    cout << "--print_max or -pmax if the user wants the maximum value on the histogram to be" << endl; 
     cout <<" printed." << endl;
+    cout << "--print_chi_square_result or -pcs to print best fit distribution chi squared" << endl;
+    cout << "test result." << endl;
     cout << "================================================================================" << endl;
     cout << "The user can supply a list of distributions that he wants to use. The program" << endl;
     cout << "will then select the one which best fits the data. If no option is supplied, the" << endl; 

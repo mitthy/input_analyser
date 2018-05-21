@@ -21,6 +21,8 @@
 #include <memory>
 #include "montecarlo.h"
 #include <set>
+#include <utility>
+#include <string>
 
 enum class DistributionType {
     TRIANGULAR,
@@ -35,10 +37,20 @@ enum class DistributionType {
 //Abstract class that represents a probability distribution.
 class Distribution {
 public:
-    virtual float generate_value() const = 0;
+    Distribution() = default;
     virtual ~Distribution() = default;
+    virtual float generate_value() const = 0;
+    virtual float frequency_for(float value) const = 0;
+    virtual std::string get_distribution_name() const {
+        return "undefined";
+    }
+    virtual std::string get_parameters_str() const {
+        return "undefined";
+    }
 };
 
-std::unique_ptr<Distribution> create_distribution(const MonteCarlo& monte_carlo_histogram, const std::set<DistributionType>& desired_type);
+float chi_squared_test(const MonteCarlo& hist, const Distribution& dist);
+
+std::pair<std::unique_ptr<Distribution>, float> create_distribution(const MonteCarlo& hist, std::set<DistributionType>& dsr_types);
 
 #endif

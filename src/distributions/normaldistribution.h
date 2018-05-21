@@ -25,9 +25,19 @@
  */
 class NormalDistribution: public Distribution {
 public:
-    NormalDistribution(float avg, float standard_deviation);
+    NormalDistribution(float mean, float standard_deviation): _mean(mean), _standard_deviation(standard_deviation) {}
     virtual ~NormalDistribution() = default;
     virtual float generate_value() const;
+    virtual float frequency_for(float value) const;
+    virtual std::string get_distribution_name() const {
+        return "normal";
+    }
+    virtual std::string get_parameters_str() const {
+        return "mean = " + std::to_string(_mean) + "; standard deviation = " + std::to_string(_standard_deviation);
+    }
+private:
+    float _mean;
+    float _standard_deviation;
 };
 
 #endif // NORMALDISTRIBUTION_H

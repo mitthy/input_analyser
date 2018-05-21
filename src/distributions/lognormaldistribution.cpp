@@ -27,5 +27,10 @@ float LogNormalDistribution::generate_value() const {
     return 0;
 }
 
+float LogNormalDistribution::frequency_for(float value) const {
+    return 0;
+}
+
+
 
 

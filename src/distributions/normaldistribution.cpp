@@ -17,14 +17,22 @@
  */
 
 #include "distributions/normaldistribution.h"
+#include <cmath>
 
-NormalDistribution::NormalDistribution(float avg, float standard_deviation) {
-    //TODO
-}
+
+using namespace std;
 
 float NormalDistribution::generate_value() const {
     //TODO
     return 0;
 }
+
+float NormalDistribution::frequency_for(float value) const {
+    float expo = -1 * pow((value - _mean), 2) /  (2 * pow(_standard_deviation, 2));
+    float pot = pow(M_E, expo);
+    const float sqr_2pi = 2.50662827463;
+    return 1 / (_standard_deviation * sqr_2pi) * pot;
+}
+
 
 

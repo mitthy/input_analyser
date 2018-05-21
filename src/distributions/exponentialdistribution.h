@@ -28,6 +28,7 @@ public:
     ExponentialDistribution(float mean);
     virtual ~ExponentialDistribution() = default;
     virtual float generate_value() const;
+    virtual float frequency_for(float value) const;
 };
 
 #endif // EXPONENTIALDISTRIBUTION_H

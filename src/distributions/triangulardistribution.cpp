@@ -27,3 +27,8 @@ float TriangularDistribution::generate_value() const {
     return 0;
 }
 
+float TriangularDistribution::frequency_for(float value) const {
+    return 0;
+}
+
+
