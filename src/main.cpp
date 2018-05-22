@@ -23,6 +23,7 @@
 #include <string>
 #include "distributions/distribution.h"
 #include <set>
+#include "mathutils.h"
 
 #ifndef EXIT_FAILURE
 #define EXIT_FAILURE 1
@@ -202,17 +203,15 @@ int main(int argc, char **argv) {
     }
     if(print_frequency_difference) {
         output << "Frequency differences between chosen distribution and supplied data:" << endl;
-        float step = 0;
         for(auto it1 = monte_carlo.begin(), it2 = ++monte_carlo.begin(); it1 != monte_carlo.end(); ++it1, ++it2) {
-            if(it1 == monte_carlo.begin()) {
-                step = it2 != monte_carlo.end() ? it2->value - it1->value : 0;
-            }
-            float min = it1->value - step, max = it1->value + step;
             float klass_freq = it2 != monte_carlo.end() ? it2->acum_probability - it1->acum_probability : 1 - it1->acum_probability;
-            float chosen_distr_klass_freq = distr_ptr->frequency_for(it1->value);
-            cout << "[" << min << " - " << max << "] - ";
-            cout << "Data: " << klass_freq << " ";
-            cout << "Dist: " << chosen_distr_klass_freq << "." << endl;
+            auto fx = [&distr_ptr](float x) {
+                return distr_ptr->frequency_for(x);
+            };
+            float chosen_distr_klass_freq = integral(it1->lower_bound, it1->upper_bound, fx);
+            output << "[" << it1->lower_bound << " - " << it2->lower_bound << "] - ";
+            output << "Data: " << klass_freq << "; ";
+            output << "Dist: " << chosen_distr_klass_freq << "." << endl;
         }
     }
     if(print_distribution) {
