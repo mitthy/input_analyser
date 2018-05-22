@@ -207,30 +207,10 @@ int main(int argc, char **argv) {
         return EXIT_FAILURE;
     }
     auto amount_of_data = std::distance(h.begin(), h.end());
-    while(class_count > amount_of_data) {
-        cerr << "Invalid amount of classes. Should be <= amount of data = " << amount_of_data << "." << endl;
-        cerr << "Please type in a new class value or quit to quit." << endl;
-        string option;
-        cin >> option;
-        if(option == "quit") {
-            return EXIT_FAILURE;
-        }
-        std::size_t next_position;
-        try {
-            auto tmp = stoi(option, &next_position);
-            if(next_position != option.size()) {
-                cerr << option << " is not a number." << endl;
-            }
-            else {
-                class_count = tmp;
-            }
-        }
-        catch(invalid_argument& e) {
-            cerr << option << " is not a number." << endl;
-        }
-        catch(out_of_range& e) {
-            cerr << option << " is too big." << endl;
-        }
+    if(class_count > amount_of_data) {
+        cerr << "Too many classes for amount of data. Classes: " << class_count << " Data: " << amount_of_data << endl;
+        cerr << "Falling back to default." << endl;
+        class_count = 0;
     }
     MonteCarlo monte_carlo(h.begin(), h.end(), class_count);
     unique_ptr<Distribution> distr_ptr;
@@ -292,8 +272,8 @@ void print_help() {
     cout << "--help or -h to print help." << endl;
     cout << "--input_file or -if filename: opens filename for processing, which should" << endl;
     cout << "contain a list of float values. If not supplied, the user can enter numbers by" << endl;
-    cout << "hand when the software starts. Please supply 2 different files for input and" << endl;
-    cout << "output." << endl;
+    cout << "hand when the software starts. When done typing numbers, just press ^D or enter" << endl;
+    cout << "an invalid value. Please supply 2 different files for input and output." << endl;
     cout << "--output_file or -of filename: opens filename to output results. Please supply" << endl;
     cout << "2 different files for input and output." << endl;
     cout << "--generate_random or -gr number: generates number random values using the" << endl;
