@@ -1,6 +1,6 @@
 /*
  * Input analyser for statistical data processing
- * Copyright (C) 2018  Lucas Finger Roman lfrfinger@gmail.com
+ * Copyright (C) 2018  Lucas Finger Roman <lfrfinger@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -52,6 +52,7 @@ int main(int argc, char **argv) {
     bool print_classes = false;
     bool print_chi_square_result = false;
     bool print_frequency_difference = false;
+    bool print_distribution = true;
     unsigned int generate_output = 0;
     for(int i = 1; i < argc; ++i) {
         string cur_arg(argv[i]);
@@ -134,6 +135,9 @@ int main(int argc, char **argv) {
         else if(cur_arg == "--print_frequency_difference" || cur_arg == "-pfd") {
             print_frequency_difference = true;
         }
+        else if(cur_arg == "--no_print_dist" || cur_arg == "-npd") {
+            print_distribution = false;
+        }
         else if(cur_arg == "--normal" || cur_arg == "-nrm") {
             desired_distributions.insert(DistributionType::NORMAL);
         }
@@ -212,10 +216,11 @@ int main(int argc, char **argv) {
             cout << "Dist: " << chosen_distr_klass_freq << "." << endl;
         }
     }
-    output << "Best distribution found: " << distr_ptr->get_distribution_name() << " with parameters:" << endl;
-    output << distr_ptr->get_parameters_str() << "." << endl;
+    if(print_distribution) {
+        output << "Best distribution found: " << distr_ptr->get_distribution_name() << " with parameters:" << endl;
+        output << distr_ptr->get_parameters_str() << "." << endl;
+    }
     if(generate_output) {
-        output << "Generating random numbers based on distribution " << distr_ptr->get_distribution_name() << "." << endl;
         for(unsigned int i = 0; i < generate_output; ++i) {
             output << distr_ptr->generate_value() << endl;
         }
@@ -252,6 +257,7 @@ void print_help() {
     cout << "test result." << endl;
     cout << "--print_frequency_difference or -pfd to print the difference between the data" << endl;
     cout << "frequency and the distribution frequency." << endl;
+    cout << "--no_print_dist or -npd to disable distribution printing." << endl;
     cout << "================================================================================" << endl;
     cout << "The user can supply a list of distributions that he wants to use. The program" << endl;
     cout << "will then select the one which best fits the data. If no option is supplied, the" << endl; 

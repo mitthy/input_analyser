@@ -1,6 +1,6 @@
 /*
  * Input analyser for statistical data processing
- * Copyright (C) 2018  Lucas Finger Roman lfrfinger@gmail.com
+ * Copyright (C) 2018  Lucas Finger Roman <lfrfinger@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,19 +33,22 @@ float TriangularDistribution::generate_value() const {
     float temp = (_mode - _min) / (_max - _min);
     float rand = dist(mt);
     if(rand < temp) {
-        return _min + sqrt(rand * (_max - _min) * (_mode - _min));
+        return _min + sqrt(rand * (_max - _min)) * sqrt(_mode - _min);
     }
-    return _max - sqrt((1 - rand) * (_max - _min) * (_max - _mode));
+    return _max - sqrt((1 - rand) * (_max - _min)) * sqrt(_max - _mode);
 }
 
 float TriangularDistribution::frequency_for(float value) const {
-    if(value > _max || value < _min) {
+    if(value > _max) {
         return 0;
     }
-    if(value < _mode) {
-        return 2 * (value - _min) / ((_max - _min) * (_mode - _min)); 
+    if(value < _min) {
+        return 0;
     }
-    return 2 * (_max - value) / ((_max - _min) * (_max - _mode));
+    if(value <= _mode) {
+        return 2 * (value - _min) / (_max - _min) / (_mode - _min); 
+    }
+    return 2 * (_max - value) / (_max - _min) / (_max - _mode);
 }
 
 
