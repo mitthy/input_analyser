@@ -6,11 +6,11 @@ Implementation of an input analyser for INE5425 - Modelagem e Simulação.
 
 To run the software, on the top-level directory of this project, run these commands
 
-mkdir build;
+mkdir build
 
-cd build;
+cd build
 
-cmake ..;
+cmake ..
 
 make
 
