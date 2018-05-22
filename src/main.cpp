@@ -144,9 +144,6 @@ int main(int argc, char **argv) {
         else if(cur_arg == "--triangular" || cur_arg == "-trng") {
             desired_distributions.insert(DistributionType::TRIANGULAR);;
         }
-        else if(cur_arg == "--beta" || cur_arg == "-bet") {
-            desired_distributions.insert(DistributionType::BETA);
-        }
         else if(cur_arg == "--uniform" || cur_arg == "-uni") {
             desired_distributions.insert(DistributionType::UNIFORM);
         }
@@ -266,7 +263,6 @@ void print_help() {
     cout << "To select the distributions, the user should supply these options:" << endl;
     cout << "--normal or -nrm => Normal distribution." << endl;
     cout << "--triangular or -trng => Triangular distribution." << endl;
-    cout << "--beta or -bet => Beta distribution." << endl;
     cout << "--uniform or -uni => Uniform distribution." << endl;
     cout << "--exponential or -exp => Exponential distribution." << endl;
     cout << "--log_normal or -ln => Lognormal distribution." << endl;

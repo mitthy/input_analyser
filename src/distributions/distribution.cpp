@@ -41,7 +41,6 @@ pair<unique_ptr<Distribution>, float> create_distribution(const MonteCarlo& mont
         desired_type.insert(DistributionType::UNIFORM);
         desired_type.insert(DistributionType::EXPONENTIAL);
         desired_type.insert(DistributionType::LOGNORMAL);
-        desired_type.insert(DistributionType::BETA);
         desired_type.insert(DistributionType::POISSON);
     }
     unique_ptr<Distribution> best_distribution = nullptr;
@@ -116,24 +115,6 @@ pair<unique_ptr<Distribution>, float> create_distribution(const MonteCarlo& mont
                     }
                 }
                 dist_to_test = make_unique<LogNormalDistribution>(log_mean, log_standard_dev);
-                break;
-            }
-            case(DistributionType::BETA): {
-                if(isnan(mean)) {
-                    mean = monte_carlo_histogram.histogram_mean();
-                }
-                if(isnan(standard_deviation)) {
-                    if(isnan(variance)) {
-                        variance = monte_carlo_histogram.histogram_variance();
-                    }
-                    standard_deviation = sqrt(variance);
-                }
-                if(isnan(variance)) {
-                    variance = monte_carlo_histogram.histogram_variance();
-                }
-                float alpha = standard_deviation == 0 ? 0 : pow((mean / standard_deviation), 2);
-                float beta = mean == 0 ? 0 : variance / mean;
-                dist_to_test = make_unique<BetaDistribution>(alpha, beta);
                 break;
             }
             case(DistributionType::POISSON): {

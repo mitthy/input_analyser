@@ -30,7 +30,6 @@ enum class DistributionType {
     UNIFORM,
     EXPONENTIAL,
     LOGNORMAL,
-    BETA,
     POISSON
 };
 
