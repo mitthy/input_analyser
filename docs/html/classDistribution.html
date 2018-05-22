@@ -76,10 +76,10 @@ Inheritance diagram for Distribution:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa1ea89994ac123f003b8b8f5fe6fad40"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDistribution.html#aa1ea89994ac123f003b8b8f5fe6fad40">generate_value</a> () const =0</td></tr>
-<tr class="separator:aa1ea89994ac123f003b8b8f5fe6fad40"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0778c93fb686dd1abe2830e1c7e564a6"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDistribution.html#a0778c93fb686dd1abe2830e1c7e564a6">frequency_for</a> (float value) const =0</td></tr>
-<tr class="separator:a0778c93fb686dd1abe2830e1c7e564a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a096af8a5e59bd38e0ad7da10632e0c83"><td class="memItemLeft" align="right" valign="top">virtual input_data_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDistribution.html#a096af8a5e59bd38e0ad7da10632e0c83">generate_value</a> () const =0</td></tr>
+<tr class="separator:a096af8a5e59bd38e0ad7da10632e0c83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5146d1193531b15a872d401cb97f06ca"><td class="memItemLeft" align="right" valign="top">virtual input_data_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDistribution.html#a5146d1193531b15a872d401cb97f06ca">frequency_for</a> (input_data_t value) const =0</td></tr>
+<tr class="separator:a5146d1193531b15a872d401cb97f06ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a478a0c7b72d3ad266a2b6f1b9ed20fe9"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDistribution.html#a478a0c7b72d3ad266a2b6f1b9ed20fe9">get_distribution_name</a> () const</td></tr>
 <tr class="separator:a478a0c7b72d3ad266a2b6f1b9ed20fe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a716b7df9facb6bb016f46ac130297f9c"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDistribution.html#a716b7df9facb6bb016f46ac130297f9c">get_parameters_str</a> () const</td></tr>
@@ -88,8 +88,8 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Abstract class that represents a probability distribution. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a0778c93fb686dd1abe2830e1c7e564a6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0778c93fb686dd1abe2830e1c7e564a6">&#9670;&nbsp;</a></span>frequency_for()</h2>
+<a id="a5146d1193531b15a872d401cb97f06ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5146d1193531b15a872d401cb97f06ca">&#9670;&nbsp;</a></span>frequency_for()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -98,9 +98,9 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual float Distribution::frequency_for </td>
+          <td class="memname">virtual input_data_t Distribution::frequency_for </td>
           <td>(</td>
-          <td class="paramtype">float&#160;</td>
+          <td class="paramtype">input_data_t&#160;</td>
           <td class="paramname"><em>value</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -119,12 +119,12 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The probability of value. </dd></dl>
 
-<p>Implemented in <a class="el" href="classTriangularDistribution.html#a9a87e1d66d544ce0460dd457a6740dce">TriangularDistribution</a>, <a class="el" href="classUniformDistribution.html#a3e96960abeab2f77b22c3a2b9c80695b">UniformDistribution</a>, <a class="el" href="classLogNormalDistribution.html#ab60a8974eaed392159b794994ed20999">LogNormalDistribution</a>, <a class="el" href="classNormalDistribution.html#a9e53ead03edb6441713d84eaa73976dd">NormalDistribution</a>, <a class="el" href="classPoissonDistribution.html#a48783969aa40f3d9549a9db51ca1c97a">PoissonDistribution</a>, <a class="el" href="classExponentialDistribution.html#a3299605c567141253eb32891f19ccef8">ExponentialDistribution</a>, and <a class="el" href="classBetaDistribution.html#a83fdd40854dbcf9ab2654e82ceb011d0">BetaDistribution</a>.</p>
+<p>Implemented in <a class="el" href="classTriangularDistribution.html#a32419db37453948870df589d6c4abf3d">TriangularDistribution</a>, <a class="el" href="classUniformDistribution.html#a3bf3390b5717b5958e36726b12aa953b">UniformDistribution</a>, <a class="el" href="classLogNormalDistribution.html#aa4a17cea478421db3a75e0728a63c371">LogNormalDistribution</a>, <a class="el" href="classNormalDistribution.html#a6041c54ace5ecc585fdef3d21386e831">NormalDistribution</a>, <a class="el" href="classPoissonDistribution.html#ae3eb709210bb2dcae5f41c6fdccede44">PoissonDistribution</a>, <a class="el" href="classExponentialDistribution.html#a1bf7a6f5d124a053934654af1e70f9bc">ExponentialDistribution</a>, and <a class="el" href="classBetaDistribution.html#aa4c1f6ab287cadbefc1f955f9d7f4f42">BetaDistribution</a>.</p>
 
 </div>
 </div>
-<a id="aa1ea89994ac123f003b8b8f5fe6fad40"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa1ea89994ac123f003b8b8f5fe6fad40">&#9670;&nbsp;</a></span>generate_value()</h2>
+<a id="a096af8a5e59bd38e0ad7da10632e0c83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a096af8a5e59bd38e0ad7da10632e0c83">&#9670;&nbsp;</a></span>generate_value()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -133,7 +133,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual float Distribution::generate_value </td>
+          <td class="memname">virtual input_data_t Distribution::generate_value </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -147,7 +147,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Calculates a random value following a certain distribution. Subclasses should implement this method. </p><dl class="section return"><dt>Returns</dt><dd>A random value. </dd></dl>
 
-<p>Implemented in <a class="el" href="classTriangularDistribution.html#a76d6a4477676d8f4d85513b887b4f2b3">TriangularDistribution</a>, <a class="el" href="classUniformDistribution.html#ab2bfddd4540b6f88d1d366c9d1bbb5e6">UniformDistribution</a>, <a class="el" href="classLogNormalDistribution.html#a02ed860dc4f556df25e9274cd106937c">LogNormalDistribution</a>, <a class="el" href="classNormalDistribution.html#a121b2abfc13fc376512aa4f7e2fb1bb4">NormalDistribution</a>, <a class="el" href="classPoissonDistribution.html#ab9c01eabf7c125677da2dc56d23e4212">PoissonDistribution</a>, <a class="el" href="classExponentialDistribution.html#aab3b68ba1f724307b74108ac96f92357">ExponentialDistribution</a>, and <a class="el" href="classBetaDistribution.html#ab99568888730dc83177503ae52de7c4b">BetaDistribution</a>.</p>
+<p>Implemented in <a class="el" href="classTriangularDistribution.html#a2fd4ac4297a82fc223cdb0d3a81408cb">TriangularDistribution</a>, <a class="el" href="classUniformDistribution.html#a3a5482105f2b3cabc7a2cc33ce27c1ea">UniformDistribution</a>, <a class="el" href="classLogNormalDistribution.html#a3c4f651b46cfec8372671ab32889a0c7">LogNormalDistribution</a>, <a class="el" href="classNormalDistribution.html#a147f7de64cc0d8eb98a44a4aa1187ec2">NormalDistribution</a>, <a class="el" href="classPoissonDistribution.html#a8d8c1d669615f2259af239df01550f7d">PoissonDistribution</a>, <a class="el" href="classExponentialDistribution.html#a00e0abeff4f9e4cc64926de49d027711">ExponentialDistribution</a>, and <a class="el" href="classBetaDistribution.html#ad2cb0829f67c4c5d508960b2f39439da">BetaDistribution</a>.</p>
 
 </div>
 </div>

@@ -82,12 +82,12 @@ Collaboration diagram for PoissonDistribution:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a007e64ef8a5292b4932a2f47b3459ab2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPoissonDistribution.html#a007e64ef8a5292b4932a2f47b3459ab2">PoissonDistribution</a> (float lambda)</td></tr>
-<tr class="separator:a007e64ef8a5292b4932a2f47b3459ab2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9c01eabf7c125677da2dc56d23e4212"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPoissonDistribution.html#ab9c01eabf7c125677da2dc56d23e4212">generate_value</a> () const</td></tr>
-<tr class="separator:ab9c01eabf7c125677da2dc56d23e4212"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48783969aa40f3d9549a9db51ca1c97a"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPoissonDistribution.html#a48783969aa40f3d9549a9db51ca1c97a">frequency_for</a> (float value) const</td></tr>
-<tr class="separator:a48783969aa40f3d9549a9db51ca1c97a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cbe17ce7593689a1e5123647801536a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPoissonDistribution.html#a8cbe17ce7593689a1e5123647801536a">PoissonDistribution</a> (input_data_t lambda)</td></tr>
+<tr class="separator:a8cbe17ce7593689a1e5123647801536a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d8c1d669615f2259af239df01550f7d"><td class="memItemLeft" align="right" valign="top">virtual input_data_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPoissonDistribution.html#a8d8c1d669615f2259af239df01550f7d">generate_value</a> () const</td></tr>
+<tr class="separator:a8d8c1d669615f2259af239df01550f7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3eb709210bb2dcae5f41c6fdccede44"><td class="memItemLeft" align="right" valign="top">virtual input_data_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPoissonDistribution.html#ae3eb709210bb2dcae5f41c6fdccede44">frequency_for</a> (input_data_t value) const</td></tr>
+<tr class="separator:ae3eb709210bb2dcae5f41c6fdccede44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c6ac9d330241badbdeadc065ad47c1e"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPoissonDistribution.html#a2c6ac9d330241badbdeadc065ad47c1e">get_distribution_name</a> () const</td></tr>
 <tr class="separator:a2c6ac9d330241badbdeadc065ad47c1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48e471c3bcae5b197a576f61777e67f3"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPoissonDistribution.html#a48e471c3bcae5b197a576f61777e67f3">get_parameters_str</a> () const</td></tr>
@@ -96,8 +96,8 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class that represents a poisson distribution. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a007e64ef8a5292b4932a2f47b3459ab2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a007e64ef8a5292b4932a2f47b3459ab2">&#9670;&nbsp;</a></span>PoissonDistribution()</h2>
+<a id="a8cbe17ce7593689a1e5123647801536a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cbe17ce7593689a1e5123647801536a">&#9670;&nbsp;</a></span>PoissonDistribution()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -108,7 +108,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">PoissonDistribution::PoissonDistribution </td>
           <td>(</td>
-          <td class="paramtype">float&#160;</td>
+          <td class="paramtype">input_data_t&#160;</td>
           <td class="paramname"><em>lambda</em></td><td>)</td>
           <td></td>
         </tr>
@@ -130,8 +130,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a48783969aa40f3d9549a9db51ca1c97a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a48783969aa40f3d9549a9db51ca1c97a">&#9670;&nbsp;</a></span>frequency_for()</h2>
+<a id="ae3eb709210bb2dcae5f41c6fdccede44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3eb709210bb2dcae5f41c6fdccede44">&#9670;&nbsp;</a></span>frequency_for()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -140,9 +140,9 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float PoissonDistribution::frequency_for </td>
+          <td class="memname">input_data_t PoissonDistribution::frequency_for </td>
           <td>(</td>
-          <td class="paramtype">float&#160;</td>
+          <td class="paramtype">input_data_t&#160;</td>
           <td class="paramname"><em>value</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -161,12 +161,12 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The probability of value. </dd></dl>
 
-<p>Implements <a class="el" href="classDistribution.html#a0778c93fb686dd1abe2830e1c7e564a6">Distribution</a>.</p>
+<p>Implements <a class="el" href="classDistribution.html#a5146d1193531b15a872d401cb97f06ca">Distribution</a>.</p>
 
 </div>
 </div>
-<a id="ab9c01eabf7c125677da2dc56d23e4212"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab9c01eabf7c125677da2dc56d23e4212">&#9670;&nbsp;</a></span>generate_value()</h2>
+<a id="a8d8c1d669615f2259af239df01550f7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d8c1d669615f2259af239df01550f7d">&#9670;&nbsp;</a></span>generate_value()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -175,7 +175,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float PoissonDistribution::generate_value </td>
+          <td class="memname">input_data_t PoissonDistribution::generate_value </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -189,7 +189,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Generates a random value following a poisson distribution. </p><dl class="section return"><dt>Returns</dt><dd>Poisson distributed random value. </dd></dl>
 
-<p>Implements <a class="el" href="classDistribution.html#aa1ea89994ac123f003b8b8f5fe6fad40">Distribution</a>.</p>
+<p>Implements <a class="el" href="classDistribution.html#a096af8a5e59bd38e0ad7da10632e0c83">Distribution</a>.</p>
 
 </div>
 </div>

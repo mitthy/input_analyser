@@ -15,11 +15,11 @@ Collaboration diagram for Exponential\+Distribution\+:
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classExponentialDistribution_a94130671faa94ac834caa08799c9048a}{Exponential\+Distribution} (float lambda)
+\hyperlink{classExponentialDistribution_a3355ec9d5206c46a0478937f659aa802}{Exponential\+Distribution} (input\+\_\+data\+\_\+t lambda)
 \item 
-virtual float \hyperlink{classExponentialDistribution_aab3b68ba1f724307b74108ac96f92357}{generate\+\_\+value} () const
+virtual input\+\_\+data\+\_\+t \hyperlink{classExponentialDistribution_a00e0abeff4f9e4cc64926de49d027711}{generate\+\_\+value} () const
 \item 
-virtual float \hyperlink{classExponentialDistribution_a3299605c567141253eb32891f19ccef8}{frequency\+\_\+for} (float value) const
+virtual input\+\_\+data\+\_\+t \hyperlink{classExponentialDistribution_a1bf7a6f5d124a053934654af1e70f9bc}{frequency\+\_\+for} (input\+\_\+data\+\_\+t value) const
 \item 
 virtual std\+::string \hyperlink{classExponentialDistribution_a98ac6f2df798ae19bc371a2f071e21bb}{get\+\_\+distribution\+\_\+name} () const
 \item 
@@ -33,11 +33,11 @@ virtual std\+::string \hyperlink{classExponentialDistribution_aa6f3a3208a0ec5f4b
 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classExponentialDistribution_a94130671faa94ac834caa08799c9048a}\label{classExponentialDistribution_a94130671faa94ac834caa08799c9048a}} 
+\mbox{\Hypertarget{classExponentialDistribution_a3355ec9d5206c46a0478937f659aa802}\label{classExponentialDistribution_a3355ec9d5206c46a0478937f659aa802}} 
 \index{Exponential\+Distribution@{Exponential\+Distribution}!Exponential\+Distribution@{Exponential\+Distribution}}
 \index{Exponential\+Distribution@{Exponential\+Distribution}!Exponential\+Distribution@{Exponential\+Distribution}}
 \subsubsection{\texorpdfstring{Exponential\+Distribution()}{ExponentialDistribution()}}
-{\footnotesize\ttfamily Exponential\+Distribution\+::\+Exponential\+Distribution (\begin{DoxyParamCaption}\item[{float}]{lambda }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily Exponential\+Distribution\+::\+Exponential\+Distribution (\begin{DoxyParamCaption}\item[{input\+\_\+data\+\_\+t}]{lambda }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Constructs an object 
 \begin{DoxyParams}{Parameters}
@@ -50,11 +50,11 @@ Constructs an object
 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{classExponentialDistribution_a3299605c567141253eb32891f19ccef8}\label{classExponentialDistribution_a3299605c567141253eb32891f19ccef8}} 
+\mbox{\Hypertarget{classExponentialDistribution_a1bf7a6f5d124a053934654af1e70f9bc}\label{classExponentialDistribution_a1bf7a6f5d124a053934654af1e70f9bc}} 
 \index{Exponential\+Distribution@{Exponential\+Distribution}!frequency\+\_\+for@{frequency\+\_\+for}}
 \index{frequency\+\_\+for@{frequency\+\_\+for}!Exponential\+Distribution@{Exponential\+Distribution}}
 \subsubsection{\texorpdfstring{frequency\+\_\+for()}{frequency\_for()}}
-{\footnotesize\ttfamily float Exponential\+Distribution\+::frequency\+\_\+for (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily input\+\_\+data\+\_\+t Exponential\+Distribution\+::frequency\+\_\+for (\begin{DoxyParamCaption}\item[{input\+\_\+data\+\_\+t}]{value }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
 
 Calculates the probability distribution. 
 \begin{DoxyParams}{Parameters}
@@ -66,20 +66,20 @@ The probability of value.
 \end{DoxyReturn}
 
 
-Implements \hyperlink{classDistribution_a0778c93fb686dd1abe2830e1c7e564a6}{Distribution}.
+Implements \hyperlink{classDistribution_a5146d1193531b15a872d401cb97f06ca}{Distribution}.
 
-\mbox{\Hypertarget{classExponentialDistribution_aab3b68ba1f724307b74108ac96f92357}\label{classExponentialDistribution_aab3b68ba1f724307b74108ac96f92357}} 
+\mbox{\Hypertarget{classExponentialDistribution_a00e0abeff4f9e4cc64926de49d027711}\label{classExponentialDistribution_a00e0abeff4f9e4cc64926de49d027711}} 
 \index{Exponential\+Distribution@{Exponential\+Distribution}!generate\+\_\+value@{generate\+\_\+value}}
 \index{generate\+\_\+value@{generate\+\_\+value}!Exponential\+Distribution@{Exponential\+Distribution}}
 \subsubsection{\texorpdfstring{generate\+\_\+value()}{generate\_value()}}
-{\footnotesize\ttfamily float Exponential\+Distribution\+::generate\+\_\+value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily input\+\_\+data\+\_\+t Exponential\+Distribution\+::generate\+\_\+value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
 
 Generates a random value following an exponential distribution. \begin{DoxyReturn}{Returns}
 Exponential distributed random value. 
 \end{DoxyReturn}
 
 
-Implements \hyperlink{classDistribution_aa1ea89994ac123f003b8b8f5fe6fad40}{Distribution}.
+Implements \hyperlink{classDistribution_a096af8a5e59bd38e0ad7da10632e0c83}{Distribution}.
 
 \mbox{\Hypertarget{classExponentialDistribution_a98ac6f2df798ae19bc371a2f071e21bb}\label{classExponentialDistribution_a98ac6f2df798ae19bc371a2f071e21bb}} 
 \index{Exponential\+Distribution@{Exponential\+Distribution}!get\+\_\+distribution\+\_\+name@{get\+\_\+distribution\+\_\+name}}

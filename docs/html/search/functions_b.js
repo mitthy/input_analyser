@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['triangulardistribution',['TriangularDistribution',['../classTriangularDistribution.html#a40478f0856ecf66c9b42addf3372394a',1,'TriangularDistribution']]]
+  ['triangulardistribution',['TriangularDistribution',['../classTriangularDistribution.html#aa58f55ecf1baa2060fb8e6307eb07f4a',1,'TriangularDistribution']]]
 ];

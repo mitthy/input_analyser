@@ -15,11 +15,11 @@ Collaboration diagram for Poisson\+Distribution\+:
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classPoissonDistribution_a007e64ef8a5292b4932a2f47b3459ab2}{Poisson\+Distribution} (float lambda)
+\hyperlink{classPoissonDistribution_a8cbe17ce7593689a1e5123647801536a}{Poisson\+Distribution} (input\+\_\+data\+\_\+t lambda)
 \item 
-virtual float \hyperlink{classPoissonDistribution_ab9c01eabf7c125677da2dc56d23e4212}{generate\+\_\+value} () const
+virtual input\+\_\+data\+\_\+t \hyperlink{classPoissonDistribution_a8d8c1d669615f2259af239df01550f7d}{generate\+\_\+value} () const
 \item 
-virtual float \hyperlink{classPoissonDistribution_a48783969aa40f3d9549a9db51ca1c97a}{frequency\+\_\+for} (float value) const
+virtual input\+\_\+data\+\_\+t \hyperlink{classPoissonDistribution_ae3eb709210bb2dcae5f41c6fdccede44}{frequency\+\_\+for} (input\+\_\+data\+\_\+t value) const
 \item 
 virtual std\+::string \hyperlink{classPoissonDistribution_a2c6ac9d330241badbdeadc065ad47c1e}{get\+\_\+distribution\+\_\+name} () const
 \item 
@@ -31,11 +31,11 @@ virtual std\+::string \hyperlink{classPoissonDistribution_a48e471c3bcae5b197a576
 Class that represents a poisson distribution. 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classPoissonDistribution_a007e64ef8a5292b4932a2f47b3459ab2}\label{classPoissonDistribution_a007e64ef8a5292b4932a2f47b3459ab2}} 
+\mbox{\Hypertarget{classPoissonDistribution_a8cbe17ce7593689a1e5123647801536a}\label{classPoissonDistribution_a8cbe17ce7593689a1e5123647801536a}} 
 \index{Poisson\+Distribution@{Poisson\+Distribution}!Poisson\+Distribution@{Poisson\+Distribution}}
 \index{Poisson\+Distribution@{Poisson\+Distribution}!Poisson\+Distribution@{Poisson\+Distribution}}
 \subsubsection{\texorpdfstring{Poisson\+Distribution()}{PoissonDistribution()}}
-{\footnotesize\ttfamily Poisson\+Distribution\+::\+Poisson\+Distribution (\begin{DoxyParamCaption}\item[{float}]{lambda }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily Poisson\+Distribution\+::\+Poisson\+Distribution (\begin{DoxyParamCaption}\item[{input\+\_\+data\+\_\+t}]{lambda }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Constructs an object. 
 \begin{DoxyParams}{Parameters}
@@ -48,11 +48,11 @@ Constructs an object.
 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{classPoissonDistribution_a48783969aa40f3d9549a9db51ca1c97a}\label{classPoissonDistribution_a48783969aa40f3d9549a9db51ca1c97a}} 
+\mbox{\Hypertarget{classPoissonDistribution_ae3eb709210bb2dcae5f41c6fdccede44}\label{classPoissonDistribution_ae3eb709210bb2dcae5f41c6fdccede44}} 
 \index{Poisson\+Distribution@{Poisson\+Distribution}!frequency\+\_\+for@{frequency\+\_\+for}}
 \index{frequency\+\_\+for@{frequency\+\_\+for}!Poisson\+Distribution@{Poisson\+Distribution}}
 \subsubsection{\texorpdfstring{frequency\+\_\+for()}{frequency\_for()}}
-{\footnotesize\ttfamily float Poisson\+Distribution\+::frequency\+\_\+for (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily input\+\_\+data\+\_\+t Poisson\+Distribution\+::frequency\+\_\+for (\begin{DoxyParamCaption}\item[{input\+\_\+data\+\_\+t}]{value }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
 
 Calculates the probability distribution. 
 \begin{DoxyParams}{Parameters}
@@ -64,20 +64,20 @@ The probability of value.
 \end{DoxyReturn}
 
 
-Implements \hyperlink{classDistribution_a0778c93fb686dd1abe2830e1c7e564a6}{Distribution}.
+Implements \hyperlink{classDistribution_a5146d1193531b15a872d401cb97f06ca}{Distribution}.
 
-\mbox{\Hypertarget{classPoissonDistribution_ab9c01eabf7c125677da2dc56d23e4212}\label{classPoissonDistribution_ab9c01eabf7c125677da2dc56d23e4212}} 
+\mbox{\Hypertarget{classPoissonDistribution_a8d8c1d669615f2259af239df01550f7d}\label{classPoissonDistribution_a8d8c1d669615f2259af239df01550f7d}} 
 \index{Poisson\+Distribution@{Poisson\+Distribution}!generate\+\_\+value@{generate\+\_\+value}}
 \index{generate\+\_\+value@{generate\+\_\+value}!Poisson\+Distribution@{Poisson\+Distribution}}
 \subsubsection{\texorpdfstring{generate\+\_\+value()}{generate\_value()}}
-{\footnotesize\ttfamily float Poisson\+Distribution\+::generate\+\_\+value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily input\+\_\+data\+\_\+t Poisson\+Distribution\+::generate\+\_\+value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
 
 Generates a random value following a poisson distribution. \begin{DoxyReturn}{Returns}
 Poisson distributed random value. 
 \end{DoxyReturn}
 
 
-Implements \hyperlink{classDistribution_aa1ea89994ac123f003b8b8f5fe6fad40}{Distribution}.
+Implements \hyperlink{classDistribution_a096af8a5e59bd38e0ad7da10632e0c83}{Distribution}.
 
 \mbox{\Hypertarget{classPoissonDistribution_a2c6ac9d330241badbdeadc065ad47c1e}\label{classPoissonDistribution_a2c6ac9d330241badbdeadc065ad47c1e}} 
 \index{Poisson\+Distribution@{Poisson\+Distribution}!get\+\_\+distribution\+\_\+name@{get\+\_\+distribution\+\_\+name}}

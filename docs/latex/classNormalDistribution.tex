@@ -15,11 +15,11 @@ Collaboration diagram for Normal\+Distribution\+:
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classNormalDistribution_a329f8413620c0bfbe2fca4e3ef958de5}{Normal\+Distribution} (float mean, float standard\+\_\+deviation)
+\hyperlink{classNormalDistribution_a62230bbde6fd5134be9ec87581a505cd}{Normal\+Distribution} (input\+\_\+data\+\_\+t mean, input\+\_\+data\+\_\+t standard\+\_\+deviation)
 \item 
-virtual float \hyperlink{classNormalDistribution_a121b2abfc13fc376512aa4f7e2fb1bb4}{generate\+\_\+value} () const
+virtual input\+\_\+data\+\_\+t \hyperlink{classNormalDistribution_a147f7de64cc0d8eb98a44a4aa1187ec2}{generate\+\_\+value} () const
 \item 
-virtual float \hyperlink{classNormalDistribution_a9e53ead03edb6441713d84eaa73976dd}{frequency\+\_\+for} (float value) const
+virtual input\+\_\+data\+\_\+t \hyperlink{classNormalDistribution_a6041c54ace5ecc585fdef3d21386e831}{frequency\+\_\+for} (input\+\_\+data\+\_\+t value) const
 \item 
 virtual std\+::string \hyperlink{classNormalDistribution_a13afb9f11a9d643ff1af5de2ca066005}{get\+\_\+distribution\+\_\+name} () const
 \item 
@@ -31,11 +31,11 @@ virtual std\+::string \hyperlink{classNormalDistribution_acedea04da0d96d01ed5c7f
 Class that represents a normal distribution. 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classNormalDistribution_a329f8413620c0bfbe2fca4e3ef958de5}\label{classNormalDistribution_a329f8413620c0bfbe2fca4e3ef958de5}} 
+\mbox{\Hypertarget{classNormalDistribution_a62230bbde6fd5134be9ec87581a505cd}\label{classNormalDistribution_a62230bbde6fd5134be9ec87581a505cd}} 
 \index{Normal\+Distribution@{Normal\+Distribution}!Normal\+Distribution@{Normal\+Distribution}}
 \index{Normal\+Distribution@{Normal\+Distribution}!Normal\+Distribution@{Normal\+Distribution}}
 \subsubsection{\texorpdfstring{Normal\+Distribution()}{NormalDistribution()}}
-{\footnotesize\ttfamily Normal\+Distribution\+::\+Normal\+Distribution (\begin{DoxyParamCaption}\item[{float}]{mean,  }\item[{float}]{standard\+\_\+deviation }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily Normal\+Distribution\+::\+Normal\+Distribution (\begin{DoxyParamCaption}\item[{input\+\_\+data\+\_\+t}]{mean,  }\item[{input\+\_\+data\+\_\+t}]{standard\+\_\+deviation }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Constructs an object 
 \begin{DoxyParams}{Parameters}
@@ -47,11 +47,11 @@ Constructs an object
 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{classNormalDistribution_a9e53ead03edb6441713d84eaa73976dd}\label{classNormalDistribution_a9e53ead03edb6441713d84eaa73976dd}} 
+\mbox{\Hypertarget{classNormalDistribution_a6041c54ace5ecc585fdef3d21386e831}\label{classNormalDistribution_a6041c54ace5ecc585fdef3d21386e831}} 
 \index{Normal\+Distribution@{Normal\+Distribution}!frequency\+\_\+for@{frequency\+\_\+for}}
 \index{frequency\+\_\+for@{frequency\+\_\+for}!Normal\+Distribution@{Normal\+Distribution}}
 \subsubsection{\texorpdfstring{frequency\+\_\+for()}{frequency\_for()}}
-{\footnotesize\ttfamily float Normal\+Distribution\+::frequency\+\_\+for (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily input\+\_\+data\+\_\+t Normal\+Distribution\+::frequency\+\_\+for (\begin{DoxyParamCaption}\item[{input\+\_\+data\+\_\+t}]{value }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
 
 Calculates the probability distribution. 
 \begin{DoxyParams}{Parameters}
@@ -63,20 +63,20 @@ The probability of value.
 \end{DoxyReturn}
 
 
-Implements \hyperlink{classDistribution_a0778c93fb686dd1abe2830e1c7e564a6}{Distribution}.
+Implements \hyperlink{classDistribution_a5146d1193531b15a872d401cb97f06ca}{Distribution}.
 
-\mbox{\Hypertarget{classNormalDistribution_a121b2abfc13fc376512aa4f7e2fb1bb4}\label{classNormalDistribution_a121b2abfc13fc376512aa4f7e2fb1bb4}} 
+\mbox{\Hypertarget{classNormalDistribution_a147f7de64cc0d8eb98a44a4aa1187ec2}\label{classNormalDistribution_a147f7de64cc0d8eb98a44a4aa1187ec2}} 
 \index{Normal\+Distribution@{Normal\+Distribution}!generate\+\_\+value@{generate\+\_\+value}}
 \index{generate\+\_\+value@{generate\+\_\+value}!Normal\+Distribution@{Normal\+Distribution}}
 \subsubsection{\texorpdfstring{generate\+\_\+value()}{generate\_value()}}
-{\footnotesize\ttfamily float Normal\+Distribution\+::generate\+\_\+value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily input\+\_\+data\+\_\+t Normal\+Distribution\+::generate\+\_\+value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
 
 Generates a random value following a normal distribution. \begin{DoxyReturn}{Returns}
 Normal distributed random value. 
 \end{DoxyReturn}
 
 
-Implements \hyperlink{classDistribution_aa1ea89994ac123f003b8b8f5fe6fad40}{Distribution}.
+Implements \hyperlink{classDistribution_a096af8a5e59bd38e0ad7da10632e0c83}{Distribution}.
 
 \mbox{\Hypertarget{classNormalDistribution_a13afb9f11a9d643ff1af5de2ca066005}\label{classNormalDistribution_a13afb9f11a9d643ff1af5de2ca066005}} 
 \index{Normal\+Distribution@{Normal\+Distribution}!get\+\_\+distribution\+\_\+name@{get\+\_\+distribution\+\_\+name}}

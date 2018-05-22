@@ -15,11 +15,11 @@ Collaboration diagram for Triangular\+Distribution\+:
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classTriangularDistribution_a40478f0856ecf66c9b42addf3372394a}{Triangular\+Distribution} (float min, float max, float mode)
+\hyperlink{classTriangularDistribution_aa58f55ecf1baa2060fb8e6307eb07f4a}{Triangular\+Distribution} (input\+\_\+data\+\_\+t min, input\+\_\+data\+\_\+t max, input\+\_\+data\+\_\+t mode)
 \item 
-virtual float \hyperlink{classTriangularDistribution_a76d6a4477676d8f4d85513b887b4f2b3}{generate\+\_\+value} () const
+virtual input\+\_\+data\+\_\+t \hyperlink{classTriangularDistribution_a2fd4ac4297a82fc223cdb0d3a81408cb}{generate\+\_\+value} () const
 \item 
-virtual float \hyperlink{classTriangularDistribution_a9a87e1d66d544ce0460dd457a6740dce}{frequency\+\_\+for} (float value) const
+virtual input\+\_\+data\+\_\+t \hyperlink{classTriangularDistribution_a32419db37453948870df589d6c4abf3d}{frequency\+\_\+for} (input\+\_\+data\+\_\+t value) const
 \item 
 virtual std\+::string \hyperlink{classTriangularDistribution_ae9ceb04d07ea5f9dd9390ec62a7d0849}{get\+\_\+distribution\+\_\+name} () const
 \item 
@@ -31,11 +31,11 @@ virtual std\+::string \hyperlink{classTriangularDistribution_af54199e88d5c537fe6
 Class that represents a triangular distribution. 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classTriangularDistribution_a40478f0856ecf66c9b42addf3372394a}\label{classTriangularDistribution_a40478f0856ecf66c9b42addf3372394a}} 
+\mbox{\Hypertarget{classTriangularDistribution_aa58f55ecf1baa2060fb8e6307eb07f4a}\label{classTriangularDistribution_aa58f55ecf1baa2060fb8e6307eb07f4a}} 
 \index{Triangular\+Distribution@{Triangular\+Distribution}!Triangular\+Distribution@{Triangular\+Distribution}}
 \index{Triangular\+Distribution@{Triangular\+Distribution}!Triangular\+Distribution@{Triangular\+Distribution}}
 \subsubsection{\texorpdfstring{Triangular\+Distribution()}{TriangularDistribution()}}
-{\footnotesize\ttfamily Triangular\+Distribution\+::\+Triangular\+Distribution (\begin{DoxyParamCaption}\item[{float}]{min,  }\item[{float}]{max,  }\item[{float}]{mode }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily Triangular\+Distribution\+::\+Triangular\+Distribution (\begin{DoxyParamCaption}\item[{input\+\_\+data\+\_\+t}]{min,  }\item[{input\+\_\+data\+\_\+t}]{max,  }\item[{input\+\_\+data\+\_\+t}]{mode }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Constructs an object. 
 \begin{DoxyParams}{Parameters}
@@ -54,11 +54,11 @@ Constructs an object.
 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{classTriangularDistribution_a9a87e1d66d544ce0460dd457a6740dce}\label{classTriangularDistribution_a9a87e1d66d544ce0460dd457a6740dce}} 
+\mbox{\Hypertarget{classTriangularDistribution_a32419db37453948870df589d6c4abf3d}\label{classTriangularDistribution_a32419db37453948870df589d6c4abf3d}} 
 \index{Triangular\+Distribution@{Triangular\+Distribution}!frequency\+\_\+for@{frequency\+\_\+for}}
 \index{frequency\+\_\+for@{frequency\+\_\+for}!Triangular\+Distribution@{Triangular\+Distribution}}
 \subsubsection{\texorpdfstring{frequency\+\_\+for()}{frequency\_for()}}
-{\footnotesize\ttfamily float Triangular\+Distribution\+::frequency\+\_\+for (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily input\+\_\+data\+\_\+t Triangular\+Distribution\+::frequency\+\_\+for (\begin{DoxyParamCaption}\item[{input\+\_\+data\+\_\+t}]{value }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
 
 Calculates the probability distribution. 
 \begin{DoxyParams}{Parameters}
@@ -70,20 +70,20 @@ The probability of value.
 \end{DoxyReturn}
 
 
-Implements \hyperlink{classDistribution_a0778c93fb686dd1abe2830e1c7e564a6}{Distribution}.
+Implements \hyperlink{classDistribution_a5146d1193531b15a872d401cb97f06ca}{Distribution}.
 
-\mbox{\Hypertarget{classTriangularDistribution_a76d6a4477676d8f4d85513b887b4f2b3}\label{classTriangularDistribution_a76d6a4477676d8f4d85513b887b4f2b3}} 
+\mbox{\Hypertarget{classTriangularDistribution_a2fd4ac4297a82fc223cdb0d3a81408cb}\label{classTriangularDistribution_a2fd4ac4297a82fc223cdb0d3a81408cb}} 
 \index{Triangular\+Distribution@{Triangular\+Distribution}!generate\+\_\+value@{generate\+\_\+value}}
 \index{generate\+\_\+value@{generate\+\_\+value}!Triangular\+Distribution@{Triangular\+Distribution}}
 \subsubsection{\texorpdfstring{generate\+\_\+value()}{generate\_value()}}
-{\footnotesize\ttfamily float Triangular\+Distribution\+::generate\+\_\+value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily input\+\_\+data\+\_\+t Triangular\+Distribution\+::generate\+\_\+value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
 
 Generates a random value following a triangular distribution. \begin{DoxyReturn}{Returns}
 Triangular distributed random value. 
 \end{DoxyReturn}
 
 
-Implements \hyperlink{classDistribution_aa1ea89994ac123f003b8b8f5fe6fad40}{Distribution}.
+Implements \hyperlink{classDistribution_a096af8a5e59bd38e0ad7da10632e0c83}{Distribution}.
 
 \mbox{\Hypertarget{classTriangularDistribution_ae9ceb04d07ea5f9dd9390ec62a7d0849}\label{classTriangularDistribution_ae9ceb04d07ea5f9dd9390ec62a7d0849}} 
 \index{Triangular\+Distribution@{Triangular\+Distribution}!get\+\_\+distribution\+\_\+name@{get\+\_\+distribution\+\_\+name}}

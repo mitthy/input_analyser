@@ -21,21 +21,21 @@ typedef std\+::vector$<$ \hyperlink{structMonteCarlo_1_1monte__carlo__class}{mon
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\footnotesize template$<$typename Iterator $>$ }\\\hyperlink{classMonteCarlo_a1620378a238453e1203ffb45d8b9df82}{Monte\+Carlo} (Iterator \hyperlink{classMonteCarlo_ab9578a53842f7df281ad198f195f3c47}{begin}, Iterator \hyperlink{classMonteCarlo_a52b4ed803009aa163306b63796827d61}{end})
+{\footnotesize template$<$typename Iterator $>$ }\\\hyperlink{classMonteCarlo_a7b779a6815e26603f4c18e56195bd050}{Monte\+Carlo} (Iterator \hyperlink{classMonteCarlo_ab9578a53842f7df281ad198f195f3c47}{begin}, Iterator \hyperlink{classMonteCarlo_a52b4ed803009aa163306b63796827d61}{end}, std\+::size\+\_\+t classes=0)
 \item 
-float \hyperlink{classMonteCarlo_ac66e8e496c2790a58440cfa879587be6}{generate\+\_\+value} () const
+input\+\_\+data\+\_\+t \hyperlink{classMonteCarlo_a32ac50ed9ba5bf78398681192ccfc301}{generate\+\_\+value} () const
 \item 
-float \hyperlink{classMonteCarlo_a59eb4eacad6a3e88b2ee2cd21cb177cd}{histogram\+\_\+mean} () const
+input\+\_\+data\+\_\+t \hyperlink{classMonteCarlo_a0eec2f41498ce1c18d70967a1ce90c29}{histogram\+\_\+mean} () const
 \item 
-float \hyperlink{classMonteCarlo_a40ba8a0aaa4d03aa64571fe29f61049a}{histogram\+\_\+variance} () const
+input\+\_\+data\+\_\+t \hyperlink{classMonteCarlo_a06304df8a3012e772db198f6338ebc51}{histogram\+\_\+variance} () const
 \item 
-float \hyperlink{classMonteCarlo_ab54725f0438b5ba9eeefdf60efd23577}{histogram\+\_\+standard\+\_\+deviation} () const
+input\+\_\+data\+\_\+t \hyperlink{classMonteCarlo_a444d97838d7f3f04cbbaf11d2f514887}{histogram\+\_\+standard\+\_\+deviation} () const
 \item 
-float \hyperlink{classMonteCarlo_a1280523b7ca7463dcd16c23a8f8a5439}{histogram\+\_\+min\+\_\+value} () const
+input\+\_\+data\+\_\+t \hyperlink{classMonteCarlo_a49567ab1184a37aa847566728384bd57}{histogram\+\_\+min\+\_\+value} () const
 \item 
-float \hyperlink{classMonteCarlo_a422c7392cf26796d756b347a4d97a522}{histogram\+\_\+max\+\_\+value} () const
+input\+\_\+data\+\_\+t \hyperlink{classMonteCarlo_a21d7ee80b6b7fb92e620008754934541}{histogram\+\_\+max\+\_\+value} () const
 \item 
-float \hyperlink{classMonteCarlo_a88e6309c74bb2e935dba5e4b7682da5b}{histogram\+\_\+mode} () const
+input\+\_\+data\+\_\+t \hyperlink{classMonteCarlo_aad9154200dcbb94c5ddd15c98e38f08d}{histogram\+\_\+mode} () const
 \item 
 \hyperlink{classMonteCarlo_a8f83ff48a51d2f19e5c87b8fade7bbe3}{iterator} \hyperlink{classMonteCarlo_ab9578a53842f7df281ad198f195f3c47}{begin} ()
 \item 
@@ -70,12 +70,12 @@ Typedef to const\+\_\+iterator. \mbox{\Hypertarget{classMonteCarlo_a8f83ff48a51d
 Typedef to iterator. 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classMonteCarlo_a1620378a238453e1203ffb45d8b9df82}\label{classMonteCarlo_a1620378a238453e1203ffb45d8b9df82}} 
+\mbox{\Hypertarget{classMonteCarlo_a7b779a6815e26603f4c18e56195bd050}\label{classMonteCarlo_a7b779a6815e26603f4c18e56195bd050}} 
 \index{Monte\+Carlo@{Monte\+Carlo}!Monte\+Carlo@{Monte\+Carlo}}
 \index{Monte\+Carlo@{Monte\+Carlo}!Monte\+Carlo@{Monte\+Carlo}}
 \subsubsection{\texorpdfstring{Monte\+Carlo()}{MonteCarlo()}}
 {\footnotesize\ttfamily template$<$typename Iterator $>$ \\
-Monte\+Carlo\+::\+Monte\+Carlo (\begin{DoxyParamCaption}\item[{Iterator}]{begin,  }\item[{Iterator}]{end }\end{DoxyParamCaption})}
+Monte\+Carlo\+::\+Monte\+Carlo (\begin{DoxyParamCaption}\item[{Iterator}]{begin,  }\item[{Iterator}]{end,  }\item[{std\+::size\+\_\+t}]{classes = {\ttfamily 0} }\end{DoxyParamCaption})}
 
 Constructor for Monte Carlo histogram. 
 \begin{DoxyParams}{Parameters}
@@ -83,9 +83,13 @@ Constructor for Monte Carlo histogram.
 \hline
 {\em end} & iterator to element one past the end of data. \\
 \hline
+{\em classes} & desired number of classes. \\
+\hline
 \end{DoxyParams}
 \begin{DoxyPrecond}{Precondition}
 {\bfseries begin} $<$ {\bfseries end}. 
+
+{\bfseries classes} $<$= {\bfseries end} -\/ {\bfseries begin}. 
 \end{DoxyPrecond}
 
 
@@ -135,65 +139,65 @@ iterator to one past the end Monte Carlo class.
 Gets const\+\_\+iterator to Monte Carlo class. \begin{DoxyReturn}{Returns}
 const\+\_\+iterator to one past the end Monte Carlo class. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classMonteCarlo_ac66e8e496c2790a58440cfa879587be6}\label{classMonteCarlo_ac66e8e496c2790a58440cfa879587be6}} 
+\mbox{\Hypertarget{classMonteCarlo_a32ac50ed9ba5bf78398681192ccfc301}\label{classMonteCarlo_a32ac50ed9ba5bf78398681192ccfc301}} 
 \index{Monte\+Carlo@{Monte\+Carlo}!generate\+\_\+value@{generate\+\_\+value}}
 \index{generate\+\_\+value@{generate\+\_\+value}!Monte\+Carlo@{Monte\+Carlo}}
 \subsubsection{\texorpdfstring{generate\+\_\+value()}{generate\_value()}}
-{\footnotesize\ttfamily float Monte\+Carlo\+::generate\+\_\+value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily input\+\_\+data\+\_\+t Monte\+Carlo\+::generate\+\_\+value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 Function that uses the Monte Carlo histogram as a random number generator. \begin{DoxyReturn}{Returns}
 A random number based on the frequency distribution of the supplied data. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classMonteCarlo_a422c7392cf26796d756b347a4d97a522}\label{classMonteCarlo_a422c7392cf26796d756b347a4d97a522}} 
+\mbox{\Hypertarget{classMonteCarlo_a21d7ee80b6b7fb92e620008754934541}\label{classMonteCarlo_a21d7ee80b6b7fb92e620008754934541}} 
 \index{Monte\+Carlo@{Monte\+Carlo}!histogram\+\_\+max\+\_\+value@{histogram\+\_\+max\+\_\+value}}
 \index{histogram\+\_\+max\+\_\+value@{histogram\+\_\+max\+\_\+value}!Monte\+Carlo@{Monte\+Carlo}}
 \subsubsection{\texorpdfstring{histogram\+\_\+max\+\_\+value()}{histogram\_max\_value()}}
-{\footnotesize\ttfamily float Monte\+Carlo\+::histogram\+\_\+max\+\_\+value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily input\+\_\+data\+\_\+t Monte\+Carlo\+::histogram\+\_\+max\+\_\+value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 Function that calculates the maximum value of the Monte Carlo histogram. \begin{DoxyReturn}{Returns}
 The maximum class value of the aggruped data or NaN if there is no data. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classMonteCarlo_a59eb4eacad6a3e88b2ee2cd21cb177cd}\label{classMonteCarlo_a59eb4eacad6a3e88b2ee2cd21cb177cd}} 
+\mbox{\Hypertarget{classMonteCarlo_a0eec2f41498ce1c18d70967a1ce90c29}\label{classMonteCarlo_a0eec2f41498ce1c18d70967a1ce90c29}} 
 \index{Monte\+Carlo@{Monte\+Carlo}!histogram\+\_\+mean@{histogram\+\_\+mean}}
 \index{histogram\+\_\+mean@{histogram\+\_\+mean}!Monte\+Carlo@{Monte\+Carlo}}
 \subsubsection{\texorpdfstring{histogram\+\_\+mean()}{histogram\_mean()}}
-{\footnotesize\ttfamily float Monte\+Carlo\+::histogram\+\_\+mean (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily input\+\_\+data\+\_\+t Monte\+Carlo\+::histogram\+\_\+mean (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 Function that calculates the mean of the Monte Carlo histogram. \begin{DoxyReturn}{Returns}
 The mean of the aggruped data or NaN if there is no data. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classMonteCarlo_a1280523b7ca7463dcd16c23a8f8a5439}\label{classMonteCarlo_a1280523b7ca7463dcd16c23a8f8a5439}} 
+\mbox{\Hypertarget{classMonteCarlo_a49567ab1184a37aa847566728384bd57}\label{classMonteCarlo_a49567ab1184a37aa847566728384bd57}} 
 \index{Monte\+Carlo@{Monte\+Carlo}!histogram\+\_\+min\+\_\+value@{histogram\+\_\+min\+\_\+value}}
 \index{histogram\+\_\+min\+\_\+value@{histogram\+\_\+min\+\_\+value}!Monte\+Carlo@{Monte\+Carlo}}
 \subsubsection{\texorpdfstring{histogram\+\_\+min\+\_\+value()}{histogram\_min\_value()}}
-{\footnotesize\ttfamily float Monte\+Carlo\+::histogram\+\_\+min\+\_\+value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily input\+\_\+data\+\_\+t Monte\+Carlo\+::histogram\+\_\+min\+\_\+value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 Function that calculates the minimum value of the Monte Carlo histogram. \begin{DoxyReturn}{Returns}
 The minimum class value of the aggruped data or NaN if there is no data. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classMonteCarlo_a88e6309c74bb2e935dba5e4b7682da5b}\label{classMonteCarlo_a88e6309c74bb2e935dba5e4b7682da5b}} 
+\mbox{\Hypertarget{classMonteCarlo_aad9154200dcbb94c5ddd15c98e38f08d}\label{classMonteCarlo_aad9154200dcbb94c5ddd15c98e38f08d}} 
 \index{Monte\+Carlo@{Monte\+Carlo}!histogram\+\_\+mode@{histogram\+\_\+mode}}
 \index{histogram\+\_\+mode@{histogram\+\_\+mode}!Monte\+Carlo@{Monte\+Carlo}}
 \subsubsection{\texorpdfstring{histogram\+\_\+mode()}{histogram\_mode()}}
-{\footnotesize\ttfamily float Monte\+Carlo\+::histogram\+\_\+mode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily input\+\_\+data\+\_\+t Monte\+Carlo\+::histogram\+\_\+mode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 Function that calculates the mode of the Monte Carlo histogram. \begin{DoxyReturn}{Returns}
 The class with the most data of the aggruped data or NaN if there is no data. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classMonteCarlo_ab54725f0438b5ba9eeefdf60efd23577}\label{classMonteCarlo_ab54725f0438b5ba9eeefdf60efd23577}} 
+\mbox{\Hypertarget{classMonteCarlo_a444d97838d7f3f04cbbaf11d2f514887}\label{classMonteCarlo_a444d97838d7f3f04cbbaf11d2f514887}} 
 \index{Monte\+Carlo@{Monte\+Carlo}!histogram\+\_\+standard\+\_\+deviation@{histogram\+\_\+standard\+\_\+deviation}}
 \index{histogram\+\_\+standard\+\_\+deviation@{histogram\+\_\+standard\+\_\+deviation}!Monte\+Carlo@{Monte\+Carlo}}
 \subsubsection{\texorpdfstring{histogram\+\_\+standard\+\_\+deviation()}{histogram\_standard\_deviation()}}
-{\footnotesize\ttfamily float Monte\+Carlo\+::histogram\+\_\+standard\+\_\+deviation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily input\+\_\+data\+\_\+t Monte\+Carlo\+::histogram\+\_\+standard\+\_\+deviation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 Function that calculates the standard deviation of the Monte Carlo histogram. \begin{DoxyReturn}{Returns}
 The standard deviation of the aggruped data, 0 if there is only 1 class or NaN if there is no data. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classMonteCarlo_a40ba8a0aaa4d03aa64571fe29f61049a}\label{classMonteCarlo_a40ba8a0aaa4d03aa64571fe29f61049a}} 
+\mbox{\Hypertarget{classMonteCarlo_a06304df8a3012e772db198f6338ebc51}\label{classMonteCarlo_a06304df8a3012e772db198f6338ebc51}} 
 \index{Monte\+Carlo@{Monte\+Carlo}!histogram\+\_\+variance@{histogram\+\_\+variance}}
 \index{histogram\+\_\+variance@{histogram\+\_\+variance}!Monte\+Carlo@{Monte\+Carlo}}
 \subsubsection{\texorpdfstring{histogram\+\_\+variance()}{histogram\_variance()}}
-{\footnotesize\ttfamily float Monte\+Carlo\+::histogram\+\_\+variance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily input\+\_\+data\+\_\+t Monte\+Carlo\+::histogram\+\_\+variance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 Function that calculates the variance of the Monte Carlo histogram. \begin{DoxyReturn}{Returns}
 The variance of the aggruped data, 0 if there is only 1 class or NaN if there is no data. 

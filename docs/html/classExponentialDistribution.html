@@ -82,12 +82,12 @@ Collaboration diagram for ExponentialDistribution:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a94130671faa94ac834caa08799c9048a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classExponentialDistribution.html#a94130671faa94ac834caa08799c9048a">ExponentialDistribution</a> (float lambda)</td></tr>
-<tr class="separator:a94130671faa94ac834caa08799c9048a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab3b68ba1f724307b74108ac96f92357"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classExponentialDistribution.html#aab3b68ba1f724307b74108ac96f92357">generate_value</a> () const</td></tr>
-<tr class="separator:aab3b68ba1f724307b74108ac96f92357"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3299605c567141253eb32891f19ccef8"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classExponentialDistribution.html#a3299605c567141253eb32891f19ccef8">frequency_for</a> (float value) const</td></tr>
-<tr class="separator:a3299605c567141253eb32891f19ccef8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3355ec9d5206c46a0478937f659aa802"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classExponentialDistribution.html#a3355ec9d5206c46a0478937f659aa802">ExponentialDistribution</a> (input_data_t lambda)</td></tr>
+<tr class="separator:a3355ec9d5206c46a0478937f659aa802"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00e0abeff4f9e4cc64926de49d027711"><td class="memItemLeft" align="right" valign="top">virtual input_data_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classExponentialDistribution.html#a00e0abeff4f9e4cc64926de49d027711">generate_value</a> () const</td></tr>
+<tr class="separator:a00e0abeff4f9e4cc64926de49d027711"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bf7a6f5d124a053934654af1e70f9bc"><td class="memItemLeft" align="right" valign="top">virtual input_data_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classExponentialDistribution.html#a1bf7a6f5d124a053934654af1e70f9bc">frequency_for</a> (input_data_t value) const</td></tr>
+<tr class="separator:a1bf7a6f5d124a053934654af1e70f9bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98ac6f2df798ae19bc371a2f071e21bb"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classExponentialDistribution.html#a98ac6f2df798ae19bc371a2f071e21bb">get_distribution_name</a> () const</td></tr>
 <tr class="separator:a98ac6f2df798ae19bc371a2f071e21bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa6f3a3208a0ec5f4b7f5fa8a36938c89"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classExponentialDistribution.html#aa6f3a3208a0ec5f4b7f5fa8a36938c89">get_parameters_str</a> () const</td></tr>
@@ -96,8 +96,8 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>write docs </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a94130671faa94ac834caa08799c9048a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a94130671faa94ac834caa08799c9048a">&#9670;&nbsp;</a></span>ExponentialDistribution()</h2>
+<a id="a3355ec9d5206c46a0478937f659aa802"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3355ec9d5206c46a0478937f659aa802">&#9670;&nbsp;</a></span>ExponentialDistribution()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -108,7 +108,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">ExponentialDistribution::ExponentialDistribution </td>
           <td>(</td>
-          <td class="paramtype">float&#160;</td>
+          <td class="paramtype">input_data_t&#160;</td>
           <td class="paramname"><em>lambda</em></td><td>)</td>
           <td></td>
         </tr>
@@ -130,8 +130,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a3299605c567141253eb32891f19ccef8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3299605c567141253eb32891f19ccef8">&#9670;&nbsp;</a></span>frequency_for()</h2>
+<a id="a1bf7a6f5d124a053934654af1e70f9bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bf7a6f5d124a053934654af1e70f9bc">&#9670;&nbsp;</a></span>frequency_for()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -140,9 +140,9 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float ExponentialDistribution::frequency_for </td>
+          <td class="memname">input_data_t ExponentialDistribution::frequency_for </td>
           <td>(</td>
-          <td class="paramtype">float&#160;</td>
+          <td class="paramtype">input_data_t&#160;</td>
           <td class="paramname"><em>value</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -161,12 +161,12 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The probability of value. </dd></dl>
 
-<p>Implements <a class="el" href="classDistribution.html#a0778c93fb686dd1abe2830e1c7e564a6">Distribution</a>.</p>
+<p>Implements <a class="el" href="classDistribution.html#a5146d1193531b15a872d401cb97f06ca">Distribution</a>.</p>
 
 </div>
 </div>
-<a id="aab3b68ba1f724307b74108ac96f92357"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aab3b68ba1f724307b74108ac96f92357">&#9670;&nbsp;</a></span>generate_value()</h2>
+<a id="a00e0abeff4f9e4cc64926de49d027711"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00e0abeff4f9e4cc64926de49d027711">&#9670;&nbsp;</a></span>generate_value()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -175,7 +175,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float ExponentialDistribution::generate_value </td>
+          <td class="memname">input_data_t ExponentialDistribution::generate_value </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -189,7 +189,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Generates a random value following an exponential distribution. </p><dl class="section return"><dt>Returns</dt><dd>Exponential distributed random value. </dd></dl>
 
-<p>Implements <a class="el" href="classDistribution.html#aa1ea89994ac123f003b8b8f5fe6fad40">Distribution</a>.</p>
+<p>Implements <a class="el" href="classDistribution.html#a096af8a5e59bd38e0ad7da10632e0c83">Distribution</a>.</p>
 
 </div>
 </div>

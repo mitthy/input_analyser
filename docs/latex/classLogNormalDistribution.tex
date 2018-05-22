@@ -15,11 +15,11 @@ Collaboration diagram for Log\+Normal\+Distribution\+:
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classLogNormalDistribution_a002e474d56d9a3d7204642fcf8bb9a46}{Log\+Normal\+Distribution} (float mean, float standard\+\_\+deviation)
+\hyperlink{classLogNormalDistribution_aa19384628632f1261ed28cdb9a21cbfe}{Log\+Normal\+Distribution} (input\+\_\+data\+\_\+t mean, input\+\_\+data\+\_\+t standard\+\_\+deviation)
 \item 
-virtual float \hyperlink{classLogNormalDistribution_a02ed860dc4f556df25e9274cd106937c}{generate\+\_\+value} () const
+virtual input\+\_\+data\+\_\+t \hyperlink{classLogNormalDistribution_a3c4f651b46cfec8372671ab32889a0c7}{generate\+\_\+value} () const
 \item 
-virtual float \hyperlink{classLogNormalDistribution_ab60a8974eaed392159b794994ed20999}{frequency\+\_\+for} (float value) const
+virtual input\+\_\+data\+\_\+t \hyperlink{classLogNormalDistribution_aa4a17cea478421db3a75e0728a63c371}{frequency\+\_\+for} (input\+\_\+data\+\_\+t value) const
 \item 
 virtual std\+::string \hyperlink{classLogNormalDistribution_a05e474accd65f523749011fbc8b42b65}{get\+\_\+distribution\+\_\+name} () const
 \item 
@@ -31,11 +31,11 @@ virtual std\+::string \hyperlink{classLogNormalDistribution_a5dfd7c43d883d868dab
 Class that represents a lognormal distribution. 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classLogNormalDistribution_a002e474d56d9a3d7204642fcf8bb9a46}\label{classLogNormalDistribution_a002e474d56d9a3d7204642fcf8bb9a46}} 
+\mbox{\Hypertarget{classLogNormalDistribution_aa19384628632f1261ed28cdb9a21cbfe}\label{classLogNormalDistribution_aa19384628632f1261ed28cdb9a21cbfe}} 
 \index{Log\+Normal\+Distribution@{Log\+Normal\+Distribution}!Log\+Normal\+Distribution@{Log\+Normal\+Distribution}}
 \index{Log\+Normal\+Distribution@{Log\+Normal\+Distribution}!Log\+Normal\+Distribution@{Log\+Normal\+Distribution}}
 \subsubsection{\texorpdfstring{Log\+Normal\+Distribution()}{LogNormalDistribution()}}
-{\footnotesize\ttfamily Log\+Normal\+Distribution\+::\+Log\+Normal\+Distribution (\begin{DoxyParamCaption}\item[{float}]{mean,  }\item[{float}]{standard\+\_\+deviation }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily Log\+Normal\+Distribution\+::\+Log\+Normal\+Distribution (\begin{DoxyParamCaption}\item[{input\+\_\+data\+\_\+t}]{mean,  }\item[{input\+\_\+data\+\_\+t}]{standard\+\_\+deviation }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Constructs an object 
 \begin{DoxyParams}{Parameters}
@@ -47,11 +47,11 @@ Constructs an object
 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{classLogNormalDistribution_ab60a8974eaed392159b794994ed20999}\label{classLogNormalDistribution_ab60a8974eaed392159b794994ed20999}} 
+\mbox{\Hypertarget{classLogNormalDistribution_aa4a17cea478421db3a75e0728a63c371}\label{classLogNormalDistribution_aa4a17cea478421db3a75e0728a63c371}} 
 \index{Log\+Normal\+Distribution@{Log\+Normal\+Distribution}!frequency\+\_\+for@{frequency\+\_\+for}}
 \index{frequency\+\_\+for@{frequency\+\_\+for}!Log\+Normal\+Distribution@{Log\+Normal\+Distribution}}
 \subsubsection{\texorpdfstring{frequency\+\_\+for()}{frequency\_for()}}
-{\footnotesize\ttfamily float Log\+Normal\+Distribution\+::frequency\+\_\+for (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily input\+\_\+data\+\_\+t Log\+Normal\+Distribution\+::frequency\+\_\+for (\begin{DoxyParamCaption}\item[{input\+\_\+data\+\_\+t}]{value }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
 
 Calculates the probability distribution. 
 \begin{DoxyParams}{Parameters}
@@ -63,20 +63,20 @@ The probability of value.
 \end{DoxyReturn}
 
 
-Implements \hyperlink{classDistribution_a0778c93fb686dd1abe2830e1c7e564a6}{Distribution}.
+Implements \hyperlink{classDistribution_a5146d1193531b15a872d401cb97f06ca}{Distribution}.
 
-\mbox{\Hypertarget{classLogNormalDistribution_a02ed860dc4f556df25e9274cd106937c}\label{classLogNormalDistribution_a02ed860dc4f556df25e9274cd106937c}} 
+\mbox{\Hypertarget{classLogNormalDistribution_a3c4f651b46cfec8372671ab32889a0c7}\label{classLogNormalDistribution_a3c4f651b46cfec8372671ab32889a0c7}} 
 \index{Log\+Normal\+Distribution@{Log\+Normal\+Distribution}!generate\+\_\+value@{generate\+\_\+value}}
 \index{generate\+\_\+value@{generate\+\_\+value}!Log\+Normal\+Distribution@{Log\+Normal\+Distribution}}
 \subsubsection{\texorpdfstring{generate\+\_\+value()}{generate\_value()}}
-{\footnotesize\ttfamily float Log\+Normal\+Distribution\+::generate\+\_\+value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily input\+\_\+data\+\_\+t Log\+Normal\+Distribution\+::generate\+\_\+value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
 
 Generates a random value following a lognormal distribution. \begin{DoxyReturn}{Returns}
 Lognormal distributed random value. 
 \end{DoxyReturn}
 
 
-Implements \hyperlink{classDistribution_aa1ea89994ac123f003b8b8f5fe6fad40}{Distribution}.
+Implements \hyperlink{classDistribution_a096af8a5e59bd38e0ad7da10632e0c83}{Distribution}.
 
 \mbox{\Hypertarget{classLogNormalDistribution_a05e474accd65f523749011fbc8b42b65}\label{classLogNormalDistribution_a05e474accd65f523749011fbc8b42b65}} 
 \index{Log\+Normal\+Distribution@{Log\+Normal\+Distribution}!get\+\_\+distribution\+\_\+name@{get\+\_\+distribution\+\_\+name}}

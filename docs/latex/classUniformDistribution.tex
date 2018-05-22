@@ -15,11 +15,11 @@ Collaboration diagram for Uniform\+Distribution\+:
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classUniformDistribution_ab9fbcd64819f53f1bb56a0f49562f529}{Uniform\+Distribution} (float min, float max)
+\hyperlink{classUniformDistribution_a9f5f6a4b36365d61a012de6bd9ee08f8}{Uniform\+Distribution} (input\+\_\+data\+\_\+t min, input\+\_\+data\+\_\+t max)
 \item 
-virtual float \hyperlink{classUniformDistribution_ab2bfddd4540b6f88d1d366c9d1bbb5e6}{generate\+\_\+value} () const
+virtual input\+\_\+data\+\_\+t \hyperlink{classUniformDistribution_a3a5482105f2b3cabc7a2cc33ce27c1ea}{generate\+\_\+value} () const
 \item 
-virtual float \hyperlink{classUniformDistribution_a3e96960abeab2f77b22c3a2b9c80695b}{frequency\+\_\+for} (float value) const
+virtual input\+\_\+data\+\_\+t \hyperlink{classUniformDistribution_a3bf3390b5717b5958e36726b12aa953b}{frequency\+\_\+for} (input\+\_\+data\+\_\+t value) const
 \item 
 virtual std\+::string \hyperlink{classUniformDistribution_a41a9a47839d15e67d5e2432f983ed382}{get\+\_\+distribution\+\_\+name} () const
 \item 
@@ -31,11 +31,11 @@ virtual std\+::string \hyperlink{classUniformDistribution_a9e276cfa4ff3021a0e4b1
 Class that represents an uniform distribution. 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classUniformDistribution_ab9fbcd64819f53f1bb56a0f49562f529}\label{classUniformDistribution_ab9fbcd64819f53f1bb56a0f49562f529}} 
+\mbox{\Hypertarget{classUniformDistribution_a9f5f6a4b36365d61a012de6bd9ee08f8}\label{classUniformDistribution_a9f5f6a4b36365d61a012de6bd9ee08f8}} 
 \index{Uniform\+Distribution@{Uniform\+Distribution}!Uniform\+Distribution@{Uniform\+Distribution}}
 \index{Uniform\+Distribution@{Uniform\+Distribution}!Uniform\+Distribution@{Uniform\+Distribution}}
 \subsubsection{\texorpdfstring{Uniform\+Distribution()}{UniformDistribution()}}
-{\footnotesize\ttfamily Uniform\+Distribution\+::\+Uniform\+Distribution (\begin{DoxyParamCaption}\item[{float}]{min,  }\item[{float}]{max }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily Uniform\+Distribution\+::\+Uniform\+Distribution (\begin{DoxyParamCaption}\item[{input\+\_\+data\+\_\+t}]{min,  }\item[{input\+\_\+data\+\_\+t}]{max }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Constructs an object. 
 \begin{DoxyParams}{Parameters}
@@ -50,11 +50,11 @@ Constructs an object.
 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{classUniformDistribution_a3e96960abeab2f77b22c3a2b9c80695b}\label{classUniformDistribution_a3e96960abeab2f77b22c3a2b9c80695b}} 
+\mbox{\Hypertarget{classUniformDistribution_a3bf3390b5717b5958e36726b12aa953b}\label{classUniformDistribution_a3bf3390b5717b5958e36726b12aa953b}} 
 \index{Uniform\+Distribution@{Uniform\+Distribution}!frequency\+\_\+for@{frequency\+\_\+for}}
 \index{frequency\+\_\+for@{frequency\+\_\+for}!Uniform\+Distribution@{Uniform\+Distribution}}
 \subsubsection{\texorpdfstring{frequency\+\_\+for()}{frequency\_for()}}
-{\footnotesize\ttfamily float Uniform\+Distribution\+::frequency\+\_\+for (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily input\+\_\+data\+\_\+t Uniform\+Distribution\+::frequency\+\_\+for (\begin{DoxyParamCaption}\item[{input\+\_\+data\+\_\+t}]{value }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
 
 Calculates the probability distribution. 
 \begin{DoxyParams}{Parameters}
@@ -66,20 +66,20 @@ The probability of value.
 \end{DoxyReturn}
 
 
-Implements \hyperlink{classDistribution_a0778c93fb686dd1abe2830e1c7e564a6}{Distribution}.
+Implements \hyperlink{classDistribution_a5146d1193531b15a872d401cb97f06ca}{Distribution}.
 
-\mbox{\Hypertarget{classUniformDistribution_ab2bfddd4540b6f88d1d366c9d1bbb5e6}\label{classUniformDistribution_ab2bfddd4540b6f88d1d366c9d1bbb5e6}} 
+\mbox{\Hypertarget{classUniformDistribution_a3a5482105f2b3cabc7a2cc33ce27c1ea}\label{classUniformDistribution_a3a5482105f2b3cabc7a2cc33ce27c1ea}} 
 \index{Uniform\+Distribution@{Uniform\+Distribution}!generate\+\_\+value@{generate\+\_\+value}}
 \index{generate\+\_\+value@{generate\+\_\+value}!Uniform\+Distribution@{Uniform\+Distribution}}
 \subsubsection{\texorpdfstring{generate\+\_\+value()}{generate\_value()}}
-{\footnotesize\ttfamily float Uniform\+Distribution\+::generate\+\_\+value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily input\+\_\+data\+\_\+t Uniform\+Distribution\+::generate\+\_\+value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
 
 Generates a random value following an uniform distribution. \begin{DoxyReturn}{Returns}
 Uniform distributed random value in the range (min, max). 
 \end{DoxyReturn}
 
 
-Implements \hyperlink{classDistribution_aa1ea89994ac123f003b8b8f5fe6fad40}{Distribution}.
+Implements \hyperlink{classDistribution_a096af8a5e59bd38e0ad7da10632e0c83}{Distribution}.
 
 \mbox{\Hypertarget{classUniformDistribution_a41a9a47839d15e67d5e2432f983ed382}\label{classUniformDistribution_a41a9a47839d15e67d5e2432f983ed382}} 
 \index{Uniform\+Distribution@{Uniform\+Distribution}!get\+\_\+distribution\+\_\+name@{get\+\_\+distribution\+\_\+name}}

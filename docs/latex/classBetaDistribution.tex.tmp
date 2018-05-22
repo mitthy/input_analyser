@@ -15,11 +15,11 @@ Collaboration diagram for Beta\+Distribution\+:
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classBetaDistribution_a93a4e82300e1c050b9d46418f840fd05}{Beta\+Distribution} (float alpha, float beta)
+\hyperlink{classBetaDistribution_a9e15474b0c592e36e7830b8c66753a6d}{Beta\+Distribution} (input\+\_\+data\+\_\+t alpha, input\+\_\+data\+\_\+t beta)
 \item 
-virtual float \hyperlink{classBetaDistribution_ab99568888730dc83177503ae52de7c4b}{generate\+\_\+value} () const
+virtual input\+\_\+data\+\_\+t \hyperlink{classBetaDistribution_ad2cb0829f67c4c5d508960b2f39439da}{generate\+\_\+value} () const
 \item 
-virtual float \hyperlink{classBetaDistribution_a83fdd40854dbcf9ab2654e82ceb011d0}{frequency\+\_\+for} (float value) const
+virtual input\+\_\+data\+\_\+t \hyperlink{classBetaDistribution_aa4c1f6ab287cadbefc1f955f9d7f4f42}{frequency\+\_\+for} (input\+\_\+data\+\_\+t value) const
 \end{DoxyCompactItemize}
 
 
@@ -27,11 +27,11 @@ virtual float \hyperlink{classBetaDistribution_a83fdd40854dbcf9ab2654e82ceb011d0
 Class that represents a beta distribution. It is not yet implemented. 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classBetaDistribution_a93a4e82300e1c050b9d46418f840fd05}\label{classBetaDistribution_a93a4e82300e1c050b9d46418f840fd05}} 
+\mbox{\Hypertarget{classBetaDistribution_a9e15474b0c592e36e7830b8c66753a6d}\label{classBetaDistribution_a9e15474b0c592e36e7830b8c66753a6d}} 
 \index{Beta\+Distribution@{Beta\+Distribution}!Beta\+Distribution@{Beta\+Distribution}}
 \index{Beta\+Distribution@{Beta\+Distribution}!Beta\+Distribution@{Beta\+Distribution}}
 \subsubsection{\texorpdfstring{Beta\+Distribution()}{BetaDistribution()}}
-{\footnotesize\ttfamily Beta\+Distribution\+::\+Beta\+Distribution (\begin{DoxyParamCaption}\item[{float}]{alpha,  }\item[{float}]{beta }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Beta\+Distribution\+::\+Beta\+Distribution (\begin{DoxyParamCaption}\item[{input\+\_\+data\+\_\+t}]{alpha,  }\item[{input\+\_\+data\+\_\+t}]{beta }\end{DoxyParamCaption})}
 
 Constructs an object. 
 \begin{DoxyParams}{Parameters}
@@ -43,11 +43,11 @@ Constructs an object.
 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{classBetaDistribution_a83fdd40854dbcf9ab2654e82ceb011d0}\label{classBetaDistribution_a83fdd40854dbcf9ab2654e82ceb011d0}} 
+\mbox{\Hypertarget{classBetaDistribution_aa4c1f6ab287cadbefc1f955f9d7f4f42}\label{classBetaDistribution_aa4c1f6ab287cadbefc1f955f9d7f4f42}} 
 \index{Beta\+Distribution@{Beta\+Distribution}!frequency\+\_\+for@{frequency\+\_\+for}}
 \index{frequency\+\_\+for@{frequency\+\_\+for}!Beta\+Distribution@{Beta\+Distribution}}
 \subsubsection{\texorpdfstring{frequency\+\_\+for()}{frequency\_for()}}
-{\footnotesize\ttfamily float Beta\+Distribution\+::frequency\+\_\+for (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily input\+\_\+data\+\_\+t Beta\+Distribution\+::frequency\+\_\+for (\begin{DoxyParamCaption}\item[{input\+\_\+data\+\_\+t}]{value }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
 
 Calculates the probability distribution. 
 \begin{DoxyParams}{Parameters}
@@ -59,20 +59,20 @@ The probability of value.
 \end{DoxyReturn}
 
 
-Implements \hyperlink{classDistribution_a0778c93fb686dd1abe2830e1c7e564a6}{Distribution}.
+Implements \hyperlink{classDistribution_a5146d1193531b15a872d401cb97f06ca}{Distribution}.
 
-\mbox{\Hypertarget{classBetaDistribution_ab99568888730dc83177503ae52de7c4b}\label{classBetaDistribution_ab99568888730dc83177503ae52de7c4b}} 
+\mbox{\Hypertarget{classBetaDistribution_ad2cb0829f67c4c5d508960b2f39439da}\label{classBetaDistribution_ad2cb0829f67c4c5d508960b2f39439da}} 
 \index{Beta\+Distribution@{Beta\+Distribution}!generate\+\_\+value@{generate\+\_\+value}}
 \index{generate\+\_\+value@{generate\+\_\+value}!Beta\+Distribution@{Beta\+Distribution}}
 \subsubsection{\texorpdfstring{generate\+\_\+value()}{generate\_value()}}
-{\footnotesize\ttfamily float Beta\+Distribution\+::generate\+\_\+value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily input\+\_\+data\+\_\+t Beta\+Distribution\+::generate\+\_\+value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
 
 Generates a random value following a beta distribution. \begin{DoxyReturn}{Returns}
 Beta distributed random value. 
 \end{DoxyReturn}
 
 
-Implements \hyperlink{classDistribution_aa1ea89994ac123f003b8b8f5fe6fad40}{Distribution}.
+Implements \hyperlink{classDistribution_a096af8a5e59bd38e0ad7da10632e0c83}{Distribution}.
 
 
 
