@@ -23,47 +23,116 @@
 #include <iostream>
 
 /**
- * @todo write docs
+ * Class that we use to grab data from istream. It can also be used to output data to an ostream.
  */
 class DataHolder {
 public:
     //Typedefs
+    
+    /**
+     * Typedef to iterator
+     */
     typedef std::vector<float>::iterator iterator;
     
+    /**
+     * Typedef to const_iterator
+     */
     typedef std::vector<float>::const_iterator const_iterator;
     
+    /**
+     * Typedef to value_type
+     */
     typedef std::vector<float>::value_type value_type;
     
     //Constructors
+    
+    /**
+     * Construct an object with no data.
+     */
     DataHolder() = default;
     
+    
+    /**
+     * Constructs an object with data from begin to end.
+     * @param begin Iterator to first element of range.
+     * @param end Iterator to one past the last element of the range.
+     * @pre <strong class="paramname">begin</strong> should be lesser or equal than <strong class="paramname">end</strong>.
+     */
     template<typename Iterator>
     DataHolder(Iterator begin, Iterator end);
     
-    DataHolder(const DataHolder&) = default;
+    /**
+     * Copy construct an object
+     * @param rhs other object
+     */
+    DataHolder(const DataHolder& rhs) = default;
     
-    DataHolder(DataHolder&&) = default;
+    /**
+     * Move construct an object
+     * @param rhs other object
+     */
+    DataHolder(DataHolder&& rhs) = default;
     
     //Destructor
+    
     ~DataHolder() = default;
     
     //Assignment operators
-    DataHolder& operator=(const DataHolder&) = default;
     
-    DataHolder& operator=(DataHolder&&) = default;
+    /**
+     * Copy assigns an object
+     * @param rhs other object
+     */
+    DataHolder& operator=(const DataHolder& rhs) = default;
+    
+    /**
+     * Move assigns an object
+     * @param rhs other object
+     */
+    DataHolder& operator=(DataHolder&& rhs) = default;
     
     //Stream operators
-    friend std::ostream& operator<<(std::ostream&, const DataHolder&);
     
-    friend std::istream& operator>>(std::istream&, DataHolder&);
+    /**
+     * Outputs data to stream.
+     * @param os Output stream.
+     * @param obj DataHolder to output.
+     * @return The output stream <strong class="paramname">os
+     */
+    friend std::ostream& operator<<(std::ostream& os, const DataHolder& obj);
+    
+    /**
+     * Inputs data from stream.
+     * @param is Input stream.
+     * @param obj DataHolder object that will read value from stream.
+     * @return The input stream <strong class="paramname">is
+     */
+    friend std::istream& operator>>(std::istream& is, DataHolder& obj);
     
     //Iterators
+    
+    /**
+     * Gets an iterator.
+     * @return iterator to first element.
+     */
     iterator begin();
     
+    /**
+     * Gets an iterator.
+     * @return iterator to one past the end element.
+     */
     iterator end();
     
+    /**
+     * Gets a const_iterator.
+     * @return const_iterator to first element.
+     */
     const_iterator begin() const;
     
+    /**
+     * Gets a const_iterator.
+     * @return const_iterator to one past the end element.
+     */
     const_iterator end() const;
     
 private:
@@ -72,9 +141,7 @@ private:
 
 template<typename Iterator>
 DataHolder::DataHolder(Iterator begin, Iterator end) {
-    while(begin != end) {
-        _data.push_back(*begin++);
-    }
+    _data.insert(_data.begin(), begin, end);
 }
 
 #endif // DATAHOLDER_H

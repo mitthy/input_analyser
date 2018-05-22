@@ -47,37 +47,37 @@ public:
     
     /**
      * Function that calculates the mean of the Monte Carlo histogram.
-     * @return The mean of the aggruped data.
+     * @return The mean of the aggruped data or NaN if there is no data.
      */
     float histogram_mean() const;
     
     /**
      * Function that calculates the variance of the Monte Carlo histogram.
-     * @return The variance of the aggruped data.
+     * @return The variance of the aggruped data, 0 if there is only 1 class or NaN if there is no data.
      */
     float histogram_variance() const;
     
     /**
      * Function that calculates the standard deviation of the Monte Carlo histogram.
-     * @return The standard deviation of the aggruped data.
+     * @return The standard deviation of the aggruped data, 0 if there is only 1 class or NaN if there is no data.
      */
     float histogram_standard_deviation() const;
     
     /**
      * Function that calculates the minimum value of the Monte Carlo histogram.
-     * @return The minimum class value of the aggruped data.
+     * @return The minimum class value of the aggruped data or NaN if there is no data.
      */
     float histogram_min_value() const;
     
     /**
      * Function that calculates the maximum value of the Monte Carlo histogram.
-     * @return The maximum class value of the aggruped data.
+     * @return The maximum class value of the aggruped data or NaN if there is no data.
      */
     float histogram_max_value() const;
     
     /**
      * Function that calculates the mode of the Monte Carlo histogram.
-     * @return The class with the most data of the aggruped data.
+     * @return The class with the most data of the aggruped data or NaN if there is no data.
      */
     float histogram_mode() const;
     
@@ -222,42 +222,35 @@ MonteCarlo::MonteCarlo(Iterator begin, Iterator end): _data_count(std::distance(
     //Calculates the bound for each class.
     float lower_bound = step ? min - step / 2 : min;
     float upper_bound = step ? min + step / 2 : max;
-    struct monte_carlo_frenquecy {
-        std::size_t count = 0;
-        float lower_bound;
-        float upper_bound;
-    };
     //Insert all the classes into a vector.
-    std::vector<monte_carlo_frenquecy> frequency_count;
     for(int i = 0; i < number_of_classes; ++i) {
-        monte_carlo_frenquecy freq;
-        freq.lower_bound = lower_bound;
-        freq.upper_bound = upper_bound;
+        float avg = lower_bound + (upper_bound - lower_bound) / 2;
+        monte_carlo_class new_class = {avg, 0, 0, lower_bound, upper_bound};
         lower_bound += step;
         upper_bound += step;
-        frequency_count.push_back(freq);
+        _organized_data.push_back(new_class);
     }
     //For each element, we do a binary search to find its position in the class vector and then we increment the amount of data of that class.
     while(begin != end) {
-        std::size_t low = 0, high = frequency_count.size();
+        std::size_t low = 0, high = _organized_data.size();
         float val = *begin++;
+        //Binary search to find first element less than val.
         while(low != high) {
+            //We do this to avoid overflow.
             std::size_t mid = (low >> 1) + (high >> 1) + ((low & high & 1));
-            if(val < frequency_count[mid].lower_bound) {
+            if(val < _organized_data[mid].lower_bound) {
                 high = mid;
             }
             else {
                 low = mid + 1;
             }
         }
-        ++frequency_count[--low].count;
+        ++_organized_data[--low].class_count;
     }
     float acum = 0;
-    for(const monte_carlo_frenquecy& analysed : frequency_count) {
-        float avg = analysed.lower_bound + (analysed.upper_bound - analysed.lower_bound) / 2;
-        monte_carlo_class new_class = {avg, acum, analysed.count, analysed.lower_bound, analysed.upper_bound};
-        _organized_data.push_back(new_class);
-        acum += analysed.count * 1.0 / _data_count;
+    for(monte_carlo_class& klass : _organized_data) {
+        klass.acum_probability = acum;
+        acum += klass.class_count * 1.0f / _data_count;
     }
 }
 

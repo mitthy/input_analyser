@@ -28,7 +28,7 @@ using namespace std;
 namespace {
     random_device rd;
     mt19937 mt(rd());
-    uniform_real_distribution<float> dist(0, 1);
+    uniform_real_distribution<float> dist(0, std::nextafter(1.0f, 2.0f));
 }
 
 float MonteCarlo::generate_value() const {
@@ -37,6 +37,9 @@ float MonteCarlo::generate_value() const {
     }
     size_t low = 0, high = _organized_data.size();
     float random_value = dist(mt);
+    //Finds the first class with probability less than random value.
+    //Since the value is uniform in the interval (0,1), it works like a voting system, where the more data one class has, the more likely
+    //it is to be chosen.
     while(low != high) {
         size_t mid = (low >> 1) + (high >> 1) + (low & high & 1);
         if(random_value < _organized_data[mid].acum_probability) {
@@ -80,6 +83,9 @@ float MonteCarlo::histogram_variance() const {
 }
 
 float MonteCarlo::histogram_standard_deviation() const {
+    if(_organized_data.empty()) {
+        return numeric_limits<float>::quiet_NaN();
+    }
     float variance = histogram_variance();
     return sqrt(variance);
 }

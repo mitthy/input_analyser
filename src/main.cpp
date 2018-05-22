@@ -36,6 +36,8 @@ using namespace std;
 
 void print_help();
 
+//Just argument parsing in this file and setting up the system.
+
 int main(int argc, char **argv) {
     DataHolder h;
     istream* stream_ptr = &cin;
