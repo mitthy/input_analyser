@@ -16,22 +16,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "distributions/normaldistribution.h"
-#include <cmath>
-#include "mathutils.h"
 
-using namespace std;
-
-input_data_t NormalDistribution::generate_value() const {
-    return box_muller_transform(_mean, _standard_deviation);
-}
-
-input_data_t NormalDistribution::frequency_for(input_data_t value) const {
-    input_data_t expo = -1 * pow((value - _mean), 2) /  (2 * pow(_standard_deviation, 2));
-    input_data_t pot = pow(M_E, expo);
-    const input_data_t sqr_2pi = 2.50662827463;
-    return 1 / (_standard_deviation * sqr_2pi) * pot;
-}
+#ifndef INPUT_TYPES_H
+#define INPUT_TYPES_H
 
 
+typedef double input_data_t;
 
+
+#endif

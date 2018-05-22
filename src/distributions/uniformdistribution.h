@@ -20,6 +20,7 @@
 #define UNIFORMDISTRIBUTION_H
 #include "distribution.h"
 #include <string>
+#include "inputtypes.h"
 
 /**
  * Class that represents an uniform distribution.
@@ -33,7 +34,7 @@ public:
      * @param max the maximum (b) value of an uniform distribution.
      * @pre <strong class="paramname">min</strong> < <strong class="paramname">max</strong>.
      */
-    UniformDistribution(float min, float max): _min(min), _max(max) {}
+    UniformDistribution(input_data_t min, input_data_t max): _min(min), _max(max) {}
     
     virtual ~UniformDistribution() = default;
     
@@ -41,14 +42,14 @@ public:
      * Generates a random value following an uniform distribution.
      * @return Uniform distributed random value in the range (min, max).
      */
-    virtual float generate_value() const;
+    virtual input_data_t generate_value() const;
     
     /**
      * Calculates the probability distribution.
      * @param value The value to calculate the probability.
      * @return The probability of value.
      */
-    virtual float frequency_for(float value) const;
+    virtual input_data_t frequency_for(input_data_t value) const;
     
     /**
      * @return The name of the distribution.
@@ -64,8 +65,8 @@ public:
         return "a = " + std::to_string(_min) + "; b = " + std::to_string(_max);
     }
 private:
-    float _min;
-    float _max;
+    input_data_t _min;
+    input_data_t _max;
 };
 
 #endif // UNIFORMDISTRIBUTION_H

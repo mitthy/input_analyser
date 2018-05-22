@@ -23,6 +23,7 @@
 #include <set>
 #include <utility>
 #include <string>
+#include "inputtypes.h"
 
 /**
  * Enum listing the distribution types.
@@ -49,14 +50,14 @@ public:
      * Calculates a random value following a certain distribution. Subclasses should implement this method.
      * @return A random value.
      */
-    virtual float generate_value() const = 0;
+    virtual input_data_t generate_value() const = 0;
     
     /**
      * Calculates the probability distribution. Subclasses should implement this method.
      * @param value The value to calculate the probability.
      * @return The probability of value.
      */
-    virtual float frequency_for(float value) const = 0;
+    virtual input_data_t frequency_for(input_data_t value) const = 0;
     
     /**
      * Method that returns the name of the distribution. Subclasses can choose to not implement this in which case it is simply undefined.
@@ -78,7 +79,7 @@ public:
 /**
  * Chi Squared test for a certain distribution given a monte carlo histogram.
  */
-float chi_squared_test(const MonteCarlo& hist, const Distribution& dist);
+input_data_t chi_squared_test(const MonteCarlo& hist, const Distribution& dist);
 
 /**
  * Creates distribution with the best Chi Squared score for the histogram among the desired types. If no types are supplied, it picks the best among all types
@@ -86,6 +87,6 @@ float chi_squared_test(const MonteCarlo& hist, const Distribution& dist);
  * @param dsr_types The types of distributions the user desires. If empty, it assumes the user wants to check all types.
  * @return The distribution with the best Chi Squared score.
  */
-std::pair<std::unique_ptr<Distribution>, float> create_distribution(const MonteCarlo& hist, std::set<DistributionType>& dsr_types);
+std::pair<std::unique_ptr<Distribution>, input_data_t> create_distribution(const MonteCarlo& hist, std::set<DistributionType>& dsr_types);
 
 #endif

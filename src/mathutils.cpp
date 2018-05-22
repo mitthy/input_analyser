@@ -27,24 +27,24 @@ using namespace std;
 namespace {
     random_device rd;
     mt19937 mt(rd());
-    uniform_real_distribution<float> dist(nextafter(numeric_limits<float>::min(), 1.0f), 1);
+    uniform_real_distribution<input_data_t> dist(nextafter(numeric_limits<input_data_t>::min(), static_cast<input_data_t>(1.0)), 1);
 }
 
-float box_muller_transform(float mean, float standard_deviation) {
+input_data_t box_muller_transform(input_data_t mean, input_data_t standard_deviation) {
     //Implementation of a normal random number generator using the Box-Muller transform. 
     //Link: https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform
     static bool generate = true;
-    static float z0, z1;
+    static input_data_t z0, z1;
     //If generate is false, it means we calculated both z0 and z1 on a previous iteration, so we just use z1.
     if(!generate) {
         generate = true;
         return z1 * standard_deviation + mean;
     }
     //It is guaranteed that dist(mt) will never be 0, since its limit is set to the minimum positive float point + 1.
-    float random1 = dist(mt);
-    float random2 = dist(mt);
-    z0 = sqrt(-2.0f * log(random1)) * cos(2 * M_PI * random2);
-    z1 = sqrt(-2.0f * log(random1)) * sin(2 * M_PI * random2);
+    input_data_t random1 = dist(mt);
+    input_data_t random2 = dist(mt);
+    z0 = sqrt(static_cast<input_data_t>(-2.0) * log(random1)) * cos(2 * M_PI * random2);
+    z1 = sqrt(static_cast<input_data_t>(-2.0) * log(random1)) * sin(2 * M_PI * random2);
     generate = false;
     return z0 * standard_deviation + mean;
 }

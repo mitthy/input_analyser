@@ -30,21 +30,21 @@ public:
      * @param alpha The alpha value of a beta distribution.
      * @param beta The beta value of a beta distribution.
      */
-    BetaDistribution(float alpha, float beta);
+    BetaDistribution(input_data_t alpha, input_data_t beta);
     virtual ~BetaDistribution() = default;
     
     /**
      * Generates a random value following a beta distribution.
      * @return Beta distributed random value.
      */
-    virtual float generate_value() const;
+    virtual input_data_t generate_value() const;
     
     /**
      * Calculates the probability distribution.
      * @param value The value to calculate the probability.
      * @return The probability of value.
      */
-    virtual float frequency_for(float value) const;
+    virtual input_data_t frequency_for(input_data_t value) const;
 };
 
 #endif // BETADISTRIBUTION_H

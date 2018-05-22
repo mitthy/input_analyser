@@ -22,6 +22,7 @@
 #include <vector>
 #include <algorithm>
 #include <iostream>
+#include "inputtypes.h"
 
 /**
  * Class representing a Monte Carlo method and its generated histogram.
@@ -43,43 +44,43 @@ public:
      * Function that uses the Monte Carlo histogram as a random number generator.
      * @return A random number based on the frequency distribution of the supplied data.
      */
-    float generate_value() const;
+    input_data_t generate_value() const;
     
     /**
      * Function that calculates the mean of the Monte Carlo histogram.
      * @return The mean of the aggruped data or NaN if there is no data.
      */
-    float histogram_mean() const;
+    input_data_t histogram_mean() const;
     
     /**
      * Function that calculates the variance of the Monte Carlo histogram.
      * @return The variance of the aggruped data, 0 if there is only 1 class or NaN if there is no data.
      */
-    float histogram_variance() const;
+    input_data_t histogram_variance() const;
     
     /**
      * Function that calculates the standard deviation of the Monte Carlo histogram.
      * @return The standard deviation of the aggruped data, 0 if there is only 1 class or NaN if there is no data.
      */
-    float histogram_standard_deviation() const;
+    input_data_t histogram_standard_deviation() const;
     
     /**
      * Function that calculates the minimum value of the Monte Carlo histogram.
      * @return The minimum class value of the aggruped data or NaN if there is no data.
      */
-    float histogram_min_value() const;
+    input_data_t histogram_min_value() const;
     
     /**
      * Function that calculates the maximum value of the Monte Carlo histogram.
      * @return The maximum class value of the aggruped data or NaN if there is no data.
      */
-    float histogram_max_value() const;
+    input_data_t histogram_max_value() const;
     
     /**
      * Function that calculates the mode of the Monte Carlo histogram.
      * @return The class with the most data of the aggruped data or NaN if there is no data.
      */
-    float histogram_mode() const;
+    input_data_t histogram_mode() const;
     
     /**
     * Internal struct that contains data for each Monte Carlo histogram class
@@ -88,12 +89,12 @@ public:
         /**
         * Value that represents the class. This is usually the mid point.
         */
-        float value;
+        input_data_t value;
         
         /**
         * Value that represents the accumulated probability. This value is equal to acum_probability[cur_class - 1] + prob[cur_class].
         */
-        float acum_probability;
+        input_data_t acum_probability;
         
         /**
         * The number of elements in the class.
@@ -103,12 +104,12 @@ public:
         /**
         * The lower bound of the class.
         */
-        float lower_bound;
+        input_data_t lower_bound;
         
         /**
         * The upper bound of the class.
         */
-        float upper_bound;
+        input_data_t upper_bound;
         
         /**
         * C++ stream operator for printing the class.
@@ -209,22 +210,22 @@ public:
 template<typename Iterator>
 MonteCarlo::MonteCarlo(Iterator begin, Iterator end): _data_count(std::distance(begin, end)) {
     //If the difference between the max element and the minimum element is lesser than this value, we don't split the data into classes.
-    const float EPSLON = 1e-4;
+    const input_data_t EPSLON = static_cast<input_data_t>(1e-4);
     auto min_max = std::minmax_element(begin, end);
-    float min = *min_max.first, max = *min_max.second;
+    input_data_t min = *min_max.first, max = *min_max.second;
     //We split the input data into classes. For now, it just gets the minimum between the amount of data / 10 + 1 and 15.
     int number_of_classes = max - min < EPSLON ? 1 : std::min((_data_count / 10) + 1, (size_t)15);
-    float step = 0;
+    input_data_t step = 0;
     //The step that we take between each classes.
     if(number_of_classes > 1) {
         step = (max - min) / (number_of_classes - 1);
     }
     //Calculates the bound for each class.
-    float lower_bound = step ? min - step / 2 : min;
-    float upper_bound = step ? min + step / 2 : max;
+    input_data_t lower_bound = step ? min - step / 2 : min;
+    input_data_t upper_bound = step ? min + step / 2 : max;
     //Insert all the classes into a vector.
     for(int i = 0; i < number_of_classes; ++i) {
-        float avg = lower_bound + (upper_bound - lower_bound) / 2;
+        input_data_t avg = lower_bound + (upper_bound - lower_bound) / 2;
         monte_carlo_class new_class = {avg, 0, 0, lower_bound, upper_bound};
         lower_bound += step;
         upper_bound += step;
@@ -233,7 +234,7 @@ MonteCarlo::MonteCarlo(Iterator begin, Iterator end): _data_count(std::distance(
     //For each element, we do a binary search to find its position in the class vector and then we increment the amount of data of that class.
     while(begin != end) {
         std::size_t low = 0, high = _organized_data.size();
-        float val = *begin++;
+        input_data_t val = *begin++;
         //Binary search to find first element less than val.
         while(low != high) {
             //We do this to avoid overflow.
@@ -247,10 +248,10 @@ MonteCarlo::MonteCarlo(Iterator begin, Iterator end): _data_count(std::distance(
         }
         ++_organized_data[--low].class_count;
     }
-    float acum = 0;
+    input_data_t acum = 0;
     for(monte_carlo_class& klass : _organized_data) {
         klass.acum_probability = acum;
-        acum += klass.class_count * 1.0f / _data_count;
+        acum += klass.class_count * static_cast<input_data_t>(1.0) / _data_count;
     }
 }
 

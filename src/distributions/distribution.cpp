@@ -35,7 +35,7 @@ unique_ptr<T> make_unique(Args&&... args) {
     return unique_ptr<T>(new T(std::forward<Args>(args)...));
 }
 
-pair<unique_ptr<Distribution>, float> create_distribution(const MonteCarlo& monte_carlo_histogram, set<DistributionType>& desired_type) {
+pair<unique_ptr<Distribution>, input_data_t> create_distribution(const MonteCarlo& monte_carlo_histogram, set<DistributionType>& desired_type) {
     //If no type was supplied, we assume all.
     if(desired_type.empty()) {
         desired_type.insert(DistributionType::TRIANGULAR);
@@ -46,13 +46,13 @@ pair<unique_ptr<Distribution>, float> create_distribution(const MonteCarlo& mont
         desired_type.insert(DistributionType::POISSON);
     }
     unique_ptr<Distribution> best_distribution = nullptr;
-    float best_fit = numeric_limits<float>::quiet_NaN();
+    input_data_t best_fit = numeric_limits<input_data_t>::quiet_NaN();
     //We initialize all those values as NaN so we don't have to recalculate them for each type.
-    float mean = numeric_limits<float>::quiet_NaN();
-    float variance = numeric_limits<float>::quiet_NaN();
-    float standard_deviation = numeric_limits<float>::quiet_NaN();
-    float min = numeric_limits<float>::quiet_NaN();
-    float max = numeric_limits<float>::quiet_NaN();
+    input_data_t mean = numeric_limits<input_data_t>::quiet_NaN();
+    input_data_t variance = numeric_limits<input_data_t>::quiet_NaN();
+    input_data_t standard_deviation = numeric_limits<input_data_t>::quiet_NaN();
+    input_data_t min = numeric_limits<input_data_t>::quiet_NaN();
+    input_data_t max = numeric_limits<input_data_t>::quiet_NaN();
     for(auto& type: desired_type) {
         unique_ptr<Distribution> dist_to_test(nullptr);
         //Based on the current distribution, we estimate its parameters and perform the Chi Squared test.
@@ -70,7 +70,7 @@ pair<unique_ptr<Distribution>, float> create_distribution(const MonteCarlo& mont
                 if(isnan(mean)) {
                     mean = monte_carlo_histogram.histogram_mean();
                 }
-                float mode = mean - min - max + mean + mean;
+                input_data_t mode = mean - min - max + mean + mean;
                 dist_to_test = make_unique<TriangularDistribution>(min, max, mode);
                 break;
             }
@@ -107,8 +107,8 @@ pair<unique_ptr<Distribution>, float> create_distribution(const MonteCarlo& mont
                 break;
             }
             case(DistributionType::LOGNORMAL): {
-                float log_mean = 0;
-                float log_standard_dev = 0;
+                input_data_t log_mean = 0;
+                input_data_t log_standard_dev = 0;
                 auto sz = monte_carlo_histogram.data_size();
                 for(auto& klass: monte_carlo_histogram) {
                     if(klass.value > 0) {
@@ -117,8 +117,8 @@ pair<unique_ptr<Distribution>, float> create_distribution(const MonteCarlo& mont
                 }
                 for(auto& klass : monte_carlo_histogram) {
                     if(klass.value > 0) {
-                        float tmp = pow(log(klass.value) - log_mean, 2);
-                        log_standard_dev += tmp / std::max(1.0f, (float)(sz - 1)) *  klass.class_count;
+                        input_data_t tmp = pow(log(klass.value) - log_mean, 2);
+                        log_standard_dev += tmp / std::max((input_data_t)1.0, (input_data_t)(sz - 1)) *  klass.class_count;
                     }
                 }
                 dist_to_test = make_unique<LogNormalDistribution>(log_mean, log_standard_dev);
@@ -135,7 +135,7 @@ pair<unique_ptr<Distribution>, float> create_distribution(const MonteCarlo& mont
                 break;
             }
         }
-        float test_result = chi_squared_test(monte_carlo_histogram, *dist_to_test);
+        input_data_t test_result = chi_squared_test(monte_carlo_histogram, *dist_to_test);
         if(isnan(best_fit) || test_result < best_fit) {
             best_fit = test_result;
             best_distribution.swap(dist_to_test);
@@ -145,17 +145,17 @@ pair<unique_ptr<Distribution>, float> create_distribution(const MonteCarlo& mont
 }
 
 
-float chi_squared_test(const MonteCarlo& hist, const Distribution& dist) {
+input_data_t chi_squared_test(const MonteCarlo& hist, const Distribution& dist) {
     auto sz = hist.data_size();
-    float sum = 0;
+    input_data_t sum = 0;
     //We check the data count for the current distribution and compare it with the data count for the histogram.
     //We know that the data count for the distribution is equal to the integral of the probability function from the lower limit to the upper limit * the total amount of data, so we just compute it for every class and apply the Chi Squared test formula.
     for(auto& klass : hist) {
         if(klass.class_count) {
-            auto fx = [&dist](float x) {
+            auto fx = [&dist](input_data_t x) {
                 return dist.frequency_for(x);
             };
-            float integral_value = integral(klass.lower_bound, klass.upper_bound, fx);
+            input_data_t integral_value = integral(klass.lower_bound, klass.upper_bound, fx);
             sum += pow(integral_value * sz - klass.class_count, 2) / (1.0f * klass.class_count);
         }
     }

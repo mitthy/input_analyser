@@ -26,15 +26,15 @@ using namespace std;
 namespace {
     random_device rd;
     mt19937 mt(rd());
-    uniform_real_distribution<float> dist(0, 1);
+    uniform_real_distribution<input_data_t> dist(0, 1);
 }
 
-float UniformDistribution::generate_value() const {
-    float random = dist(mt);
+input_data_t UniformDistribution::generate_value() const {
+    input_data_t random = dist(mt);
     return _min + random * (_max - _min);
 }
 
-float UniformDistribution::frequency_for(float value) const {
+input_data_t UniformDistribution::frequency_for(input_data_t value) const {
     if(value < _min || value > _max) {
         return 0;
     }

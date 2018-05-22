@@ -18,16 +18,16 @@
 
 #include "distributions/betadistribution.h"
 
-BetaDistribution::BetaDistribution(float alfa, float beta) {
+BetaDistribution::BetaDistribution(input_data_t alfa, input_data_t beta) {
     //TODO
 }
 
-float BetaDistribution::generate_value() const {
+input_data_t BetaDistribution::generate_value() const {
     //TODO
     return 0;
 }
 
-float BetaDistribution::frequency_for(float value) const {
+input_data_t BetaDistribution::frequency_for(input_data_t value) const {
     return 0;
 }
 

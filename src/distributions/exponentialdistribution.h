@@ -19,6 +19,7 @@
 #ifndef EXPONENTIALDISTRIBUTION_H
 #define EXPONENTIALDISTRIBUTION_H
 #include "distribution.h"
+#include "inputtypes.h"
 
 /**
  * @todo write docs
@@ -31,21 +32,21 @@ public:
      * @param lambda The lambda value of the exponential distribution.
      * @pre <strong class="paramname">lambda</strong> > 0
      */
-    ExponentialDistribution(float lambda): _lambda(lambda) {}
+    ExponentialDistribution(input_data_t lambda): _lambda(lambda) {}
     virtual ~ExponentialDistribution() = default;
     
     /**
      * Generates a random value following an exponential distribution.
      * @return Exponential distributed random value.
      */
-    virtual float generate_value() const;
+    virtual input_data_t generate_value() const;
     
     /**
      * Calculates the probability distribution.
      * @param value The value to calculate the probability.
      * @return The probability of value.
      */
-    virtual float frequency_for(float value) const;
+    virtual input_data_t frequency_for(input_data_t value) const;
     
     /**
      * @return The name of the distribution.
@@ -61,7 +62,7 @@ public:
         return "lambda = " + std::to_string(_lambda);
     }
 private:
-    float _lambda;
+    input_data_t _lambda;
 };
 
 #endif // EXPONENTIALDISTRIBUTION_H

@@ -19,6 +19,7 @@
 #ifndef TRIANGULARDISTRIBUTION_H
 #define TRIANGULARDISTRIBUTION_H
 #include "distribution.h"
+#include "inputtypes.h"
 
 /**
  * Class that represents a triangular distribution.
@@ -34,21 +35,21 @@ public:
      * @pre <strong class="paramname">min</strong> <= <strong class="paramname">mode</strong> <= <strong class="paramname">max</strong>.
      * @pre <strong class="paramname">min</strong> < <strong class="paramname">max</strong>.
      */
-    TriangularDistribution(float min, float max, float mode): _min(min), _max(max), _mode(mode){}
+    TriangularDistribution(input_data_t min, input_data_t max, input_data_t mode): _min(min), _max(max), _mode(mode){}
     virtual ~TriangularDistribution() = default;
     
     /**
      * Generates a random value following a triangular distribution.
      * @return Triangular distributed random value.
      */
-    virtual float generate_value() const;
+    virtual input_data_t generate_value() const;
     
     /**
      * Calculates the probability distribution.
      * @param value The value to calculate the probability.
      * @return The probability of value.
      */
-    virtual float frequency_for(float value) const;
+    virtual input_data_t frequency_for(input_data_t value) const;
     
     /**
      * @return The name of the distribution.
@@ -64,9 +65,9 @@ public:
         return "a = " + std::to_string(_min) + "; b = " + std::to_string(_max) + "; c = " + std::to_string(_mode);
     }
 private:
-    float _min;
-    float _max;
-    float _mode;
+    input_data_t _min;
+    input_data_t _max;
+    input_data_t _mode;
 };
 
 #endif // TRIANGULARDISTRIBUTION_H

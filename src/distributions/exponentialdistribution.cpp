@@ -28,16 +28,16 @@ using namespace std;
 namespace {
     random_device rd;
     mt19937 mt(rd());
-    uniform_real_distribution<float> dist(nextafter(numeric_limits<float>::min(), 1.0f), 1);
+    uniform_real_distribution<input_data_t> dist(nextafter(numeric_limits<input_data_t>::min(), static_cast<input_data_t>(1.0)), 1);
 }
 
-float ExponentialDistribution::generate_value() const {
+input_data_t ExponentialDistribution::generate_value() const {
     //Rand is guaranteed to be greater than 0
-    float rand = dist(mt);
+    input_data_t rand = dist(mt);
     return -1 * log(rand) / _lambda;
 }
 
-float ExponentialDistribution::frequency_for(float value) const {
+input_data_t ExponentialDistribution::frequency_for(input_data_t value) const {
     if(value < 0) {
         return 0;
     }

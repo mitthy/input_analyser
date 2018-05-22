@@ -26,19 +26,19 @@ using namespace std;
 namespace {
     random_device rd;
     mt19937 mt(rd());
-    uniform_real_distribution<float> dist(0, 1);
+    uniform_real_distribution<input_data_t> dist(0, 1);
 }
 
-float TriangularDistribution::generate_value() const {
-    float temp = (_mode - _min) / (_max - _min);
-    float rand = dist(mt);
+input_data_t TriangularDistribution::generate_value() const {
+    input_data_t temp = (_mode - _min) / (_max - _min);
+    input_data_t rand = dist(mt);
     if(rand < temp) {
         return _min + sqrt(rand * (_max - _min)) * sqrt(_mode - _min);
     }
     return _max - sqrt((1 - rand) * (_max - _min)) * sqrt(_max - _mode);
 }
 
-float TriangularDistribution::frequency_for(float value) const {
+input_data_t TriangularDistribution::frequency_for(input_data_t value) const {
     if(value > _max) {
         return 0;
     }

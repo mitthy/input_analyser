@@ -24,6 +24,9 @@
 #include "distributions/distribution.h"
 #include <set>
 #include "mathutils.h"
+#include "inputtypes.h"
+#include <iomanip>
+#include <limits>
 
 #ifndef EXIT_FAILURE
 #define EXIT_FAILURE 1
@@ -168,6 +171,7 @@ int main(int argc, char **argv) {
     }
     ostream& output = *ostream_ptr;
     istream& input = *stream_ptr;
+    output.precision(numeric_limits<input_data_t>::max_digits10);
     while(input >> h);
     if(h.begin() == h.end()) {
         cerr << "Can't process empty data. Please supply floating point values for processing." << endl;
@@ -175,7 +179,7 @@ int main(int argc, char **argv) {
     }
     MonteCarlo monte_carlo(h.begin(), h.end());
     unique_ptr<Distribution> distr_ptr;
-    float chi_result;
+    input_data_t chi_result;
     tie(distr_ptr, chi_result) = create_distribution(monte_carlo, desired_distributions);
     if(print_classes) {
         output << monte_carlo.print_classes() << endl;
@@ -204,11 +208,11 @@ int main(int argc, char **argv) {
     if(print_frequency_difference) {
         output << "Frequency differences between chosen distribution and supplied data:" << endl;
         for(auto it1 = monte_carlo.begin(), it2 = ++monte_carlo.begin(); it1 != monte_carlo.end(); ++it1, ++it2) {
-            float klass_freq = it2 != monte_carlo.end() ? it2->acum_probability - it1->acum_probability : 1 - it1->acum_probability;
-            auto fx = [&distr_ptr](float x) {
+            input_data_t klass_freq = it2 != monte_carlo.end() ? it2->acum_probability - it1->acum_probability : 1 - it1->acum_probability;
+            auto fx = [&distr_ptr](input_data_t x) {
                 return distr_ptr->frequency_for(x);
             };
-            float chosen_distr_klass_freq = integral(it1->lower_bound, it1->upper_bound, fx);
+            input_data_t chosen_distr_klass_freq = integral(it1->lower_bound, it1->upper_bound, fx);
             output << "[" << it1->lower_bound << " - " << it2->lower_bound << "] - ";
             output << "Data: " << klass_freq << "; ";
             output << "Dist: " << chosen_distr_klass_freq << "." << endl;

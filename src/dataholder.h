@@ -21,6 +21,7 @@
 
 #include <vector>
 #include <iostream>
+#include "inputtypes.h"
 
 /**
  * Class that we use to grab data from istream. It can also be used to output data to an ostream.
@@ -32,17 +33,17 @@ public:
     /**
      * Typedef to iterator
      */
-    typedef std::vector<float>::iterator iterator;
+    typedef std::vector<input_data_t>::iterator iterator;
     
     /**
      * Typedef to const_iterator
      */
-    typedef std::vector<float>::const_iterator const_iterator;
+    typedef std::vector<input_data_t>::const_iterator const_iterator;
     
     /**
      * Typedef to value_type
      */
-    typedef std::vector<float>::value_type value_type;
+    typedef std::vector<input_data_t>::value_type value_type;
     
     //Constructors
     
@@ -136,7 +137,7 @@ public:
     const_iterator end() const;
     
 private:
-    std::vector<float> _data;
+    std::vector<input_data_t> _data;
 };
 
 template<typename Iterator>

@@ -27,8 +27,9 @@ ostream& operator<<(ostream& os, const DataHolder& dh) {
     return os;
 }
     
+//TODO Could be nice if we could read values into it even if there were some strings mixed into the stream.
 istream& operator>>(istream& is, DataHolder& dh) {
-    float value = 0;
+    input_data_t value = 0;
     if(is >> value) {
         dh._data.push_back(value);
     }

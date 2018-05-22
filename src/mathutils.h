@@ -22,6 +22,7 @@
 #include <type_traits>
 #include <algorithm>
 #include <iostream>
+#include "inputtypes.h"
 
 /**
  * Applies Box Muller Transform algorithm to calculate a normal distribution.
@@ -29,7 +30,7 @@
  * @param standard_deviation The standard deviation of the desired normal distribution random value.
  * @return A random value from the normal distribution with mean = 0, standard deviation = 1 transformed to mean, standard_deviation
  */
-float box_muller_transform(float mean, float standard_deviation);
+input_data_t box_muller_transform(input_data_t mean, input_data_t standard_deviation);
 
 namespace {
     
@@ -44,12 +45,12 @@ namespace {
     * @return The intergral of the function fx.
     */
     template<typename Function, typename NumberType>
-    float integral(NumberType first, NumberType last, Function fx, const std::true_type&) {
+    input_data_t integral(NumberType first, NumberType last, Function fx, const std::true_type&) {
         NumberType max = std::max(first, last);
         NumberType min = std::min(first, last);
         NumberType step = static_cast<NumberType>(0.05);
         NumberType _first = first, _second = first + step;
-        float sum = 0;
+        input_data_t sum = 0;
         int iterations = (max - _second) / step;
         //Uses the sum of areas of trapezia to calculate the integral of fx.
         //(y0 + y1)/2 * (x1 - x0) + (y1 + y2)/2 * (x2 - x1)...
@@ -60,7 +61,7 @@ namespace {
             NumberType x_first = _first + (i * step);
             NumberType x_second = _second + (i * step);
             NumberType y_first = fx(x_first), y_second = fx(x_second);
-            sum += static_cast<float>(y_first + y_second) / 2.0f * step;
+            sum += static_cast<input_data_t>(y_first + y_second) / 2.0f * step;
         }
         return sum;
     }
@@ -75,13 +76,13 @@ namespace {
     * @return The intergral of the function fx in discrete steps.
     */
     template<typename Function, typename NumberType>
-    float integral(NumberType first, NumberType last, Function fx, const std::false_type&) {
+    input_data_t integral(NumberType first, NumberType last, Function fx, const std::false_type&) {
         NumberType max = std::max(first, last);
         NumberType min = std::min(first, last);
         NumberType step = static_cast<NumberType>(1);
         NumberType _first = first, _second = _first + step;
         int iterations = (max - _second);
-        float sum = 0;
+        input_data_t sum = 0;
         //Uses the sum of areas of trapezia to calculate the integral of fx.
         //(y0 + y1)/2 * (x1 - x0) + (y1 + y2)/2 * (x2 - x1)...
         //Since (x(n) - x(n-1)) delta x is always equal to step, we don't need to calculate it.
@@ -91,7 +92,7 @@ namespace {
             NumberType x_first = _first + i;
             NumberType x_second = _second + i;
             NumberType y_first = fx(_first), y_second = fx(_second);
-            sum += static_cast<float>(y_first + y_second) / 2.0f;
+            sum += static_cast<input_data_t>(y_first + y_second) / 2.0f;
             _first += step;
             _second += step;
         }
@@ -108,7 +109,7 @@ namespace {
  * @return The integral of the function fx. If NumberType is a floating point number, it calculates in small steps. Else, it calculates on discrete steps.
  */
 template<typename Function, typename NumberType>
-float integral(NumberType first, NumberType last, Function fx) {
+input_data_t integral(NumberType first, NumberType last, Function fx) {
     //We just static dispatch to the above function.
     return integral(first, last, fx, typename std::is_floating_point<NumberType>::type());
 }

@@ -29,27 +29,27 @@ using namespace std;
 namespace {
     random_device rd;
     mt19937 mt(rd());
-    uniform_real_distribution<float> dist(nextafter(numeric_limits<float>::min(), 1.0f), 1);
+    uniform_real_distribution<input_data_t> dist(nextafter(numeric_limits<input_data_t>::min(), static_cast<input_data_t>(1.0)), 1);
 }
 
-float PoissonDistribution::generate_value() const {
-    float temp = pow(M_E, -_lambda);
+input_data_t PoissonDistribution::generate_value() const {
+    input_data_t temp = pow(M_E, -_lambda);
     int k = 0;
-    float p = 1;
+    input_data_t p = 1;
     do {
         ++k;
-        float random = dist(mt);
+        input_data_t random = dist(mt);
         p *= random;
     } while(p > temp);
     return k - 1;
 }
 
-float PoissonDistribution::frequency_for(float value) const {
+input_data_t PoissonDistribution::frequency_for(input_data_t value) const {
     int val = static_cast<long>(value);
     if(val < 0) {
         return 0;
     }
-    float temp = pow(M_E, -_lambda) * (pow(_lambda, val));
+    input_data_t temp = pow(M_E, -_lambda) * (pow(_lambda, val));
     while(val) {
         temp /= 1.0f * val--;
     }

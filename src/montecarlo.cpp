@@ -28,15 +28,15 @@ using namespace std;
 namespace {
     random_device rd;
     mt19937 mt(rd());
-    uniform_real_distribution<float> dist(0, std::nextafter(1.0f, 2.0f));
+    uniform_real_distribution<input_data_t> dist(0, std::nextafter(static_cast<input_data_t>(1.0), static_cast<input_data_t>(2.0)));
 }
 
-float MonteCarlo::generate_value() const {
+input_data_t MonteCarlo::generate_value() const {
     if(_organized_data.empty()) {
-        return numeric_limits<float>::quiet_NaN();
+        return numeric_limits<input_data_t>::quiet_NaN();
     }
     size_t low = 0, high = _organized_data.size();
-    float random_value = dist(mt);
+    input_data_t random_value = dist(mt);
     //Finds the first class with probability less than random value.
     //Since the value is uniform in the interval (0,1), it works like a voting system, where the more data one class has, the more likely
     //it is to be chosen.
@@ -53,60 +53,60 @@ float MonteCarlo::generate_value() const {
 }
 
 
-float MonteCarlo::histogram_mean() const {
+input_data_t MonteCarlo::histogram_mean() const {
     if(_organized_data.empty()) {
-        return numeric_limits<float>::quiet_NaN();
+        return numeric_limits<input_data_t>::quiet_NaN();
     }
-    float sum = 0;
+    input_data_t sum = 0;
     for(int i = 0; i < _organized_data.size(); ++i) {
         auto& el = _organized_data[i];
-        sum += el.class_count * (el.value / (float)_data_count);
+        sum += el.class_count * (el.value / (input_data_t)_data_count);
     }
     return sum;
 }
 
-float MonteCarlo::histogram_variance() const {
+input_data_t MonteCarlo::histogram_variance() const {
     if(_organized_data.empty()) {
-        return numeric_limits<float>::quiet_NaN();
+        return numeric_limits<input_data_t>::quiet_NaN();
     }
     if(_data_count == 1) {
         return 0;
     }
-    float mean = histogram_mean();
-    float sum = 0;
+    input_data_t mean = histogram_mean();
+    input_data_t sum = 0;
     for(int i = 0; i < _organized_data.size(); ++i) {
         auto& el = _organized_data[i];
-        float dif_from_mean = el.value - mean;
-        sum += el.class_count * ((dif_from_mean * dif_from_mean) / max(1.0f, (float)(_data_count - 1)));
+        input_data_t dif_from_mean = el.value - mean;
+        sum += el.class_count * ((dif_from_mean * dif_from_mean) / max(static_cast<input_data_t>(1.0), (input_data_t)(_data_count - 1)));
     }
     return sum;
 }
 
-float MonteCarlo::histogram_standard_deviation() const {
+input_data_t MonteCarlo::histogram_standard_deviation() const {
     if(_organized_data.empty()) {
-        return numeric_limits<float>::quiet_NaN();
+        return numeric_limits<input_data_t>::quiet_NaN();
     }
-    float variance = histogram_variance();
+    input_data_t variance = histogram_variance();
     return sqrt(variance);
 }
 
 
-float MonteCarlo::histogram_min_value() const {
+input_data_t MonteCarlo::histogram_min_value() const {
     if(_organized_data.empty()) {
-        return numeric_limits<float>::quiet_NaN();
+        return numeric_limits<input_data_t>::quiet_NaN();
     }
     return _organized_data.front().value;
 }
 
-float MonteCarlo::histogram_max_value() const {
+input_data_t MonteCarlo::histogram_max_value() const {
     if(_organized_data.empty()) {
-        return numeric_limits<float>::quiet_NaN();
+        return numeric_limits<input_data_t>::quiet_NaN();
     } 
     return _organized_data.back().value;
 }
 
-float MonteCarlo::histogram_mode() const {
-    float return_value = numeric_limits<float>::quiet_NaN();
+input_data_t MonteCarlo::histogram_mode() const {
+    input_data_t return_value = numeric_limits<input_data_t>::quiet_NaN();
     auto compare_function = [](const monte_carlo_class& left, const monte_carlo_class& right) {
         return left.class_count < right.class_count;
     };

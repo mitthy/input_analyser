@@ -19,6 +19,7 @@
 #ifndef LOGNORMALDISTRIBUTION_H
 #define LOGNORMALDISTRIBUTION_H
 #include "distribution.h"
+#include "inputtypes.h"
 
 /**
  * Class that represents a lognormal distribution.
@@ -31,7 +32,7 @@ public:
      * @param mean The mean of the lognormal distribution.
      * @param standard_deviation The standard deviation of the lognormal distribution.
      */
-    LogNormalDistribution(float mean, float standard_deviation): _mean(mean), _standard_deviation(standard_deviation) {}
+    LogNormalDistribution(input_data_t mean, input_data_t standard_deviation): _mean(mean), _standard_deviation(standard_deviation) {}
     
     
     virtual ~LogNormalDistribution() = default;
@@ -40,14 +41,14 @@ public:
      * Generates a random value following a lognormal distribution.
      * @return Lognormal distributed random value.
      */
-    virtual float generate_value() const;
+    virtual input_data_t generate_value() const;
     
     /**
      * Calculates the probability distribution.
      * @param value The value to calculate the probability.
      * @return The probability of value.
      */
-    virtual float frequency_for(float value) const;
+    virtual input_data_t frequency_for(input_data_t value) const;
     
     /**
      * @return The name of the distribution.
@@ -63,8 +64,8 @@ public:
         return "mean = " + std::to_string(_mean) + "; standard deviation = " + std::to_string(_standard_deviation);
     }
 private:
-    float _mean;
-    float _standard_deviation;
+    input_data_t _mean;
+    input_data_t _standard_deviation;
 };
 
 #endif // LOGNORMALDISTRIBUTION_H
