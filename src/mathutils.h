@@ -34,11 +34,12 @@ namespace {
         NumberType _first = first, _second = first + step;
         float sum = 0;
         int iterations = (max - _second) / step;
+        #pragma omp parallel for reduction (+:sum)
         for(int i = 0; i < iterations; ++i) {
-            float y_first = fx(_first), y_second = fx(_second);
-            sum += (y_first + y_second) / 2 * step;
-            _first += step;
-            _second += step;
+            NumberType x_first = _first + (i * step);
+            NumberType x_second = _second + (i * step);
+            NumberType y_first = fx(x_first), y_second = fx(x_second);
+            sum += static_cast<float>(y_first + y_second) / 2.0f * step;
         }
         return sum;
     }
@@ -49,11 +50,14 @@ namespace {
         NumberType min = std::min(first, last);
         NumberType step = static_cast<NumberType>(1);
         NumberType _first = first, _second = first + step;
-        int iterations = (max - _second) / step;
+        int iterations = (max - _second);
         float sum = 0;
+        #pragma omp parallel for reduction (+:sum)
         for(int i = 0; i < iterations; ++i) {
-            float y_first = fx(_first), y_second = fx(_second);
-            sum += (y_first + y_second) / 2;
+            NumberType x_first = _first + i;
+            NumberType x_second = _second + i;
+            NumberType y_first = fx(_first), y_second = fx(_second);
+            sum += static_cast<float>(y_first + y_second) / 2.0f;
             _first += step;
             _second += step;
         }
