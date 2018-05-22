@@ -25,10 +25,14 @@
  */
 class TriangularDistribution: public Distribution {
 public:
-    TriangularDistribution(float min, float max, float mode);
+    TriangularDistribution(float min, float max, float mode): _min(min), _max(max), _mode(mode){}
     virtual ~TriangularDistribution() = default;
     virtual float generate_value() const;
     virtual float frequency_for(float value) const;
+private:
+    float _min;
+    float _max;
+    float _mode;
 };
 
 #endif // TRIANGULARDISTRIBUTION_H

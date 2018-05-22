@@ -97,7 +97,7 @@ pair<unique_ptr<Distribution>, float> create_distribution(const MonteCarlo& mont
                 if(isnan(mean)) {
                     mean = monte_carlo_histogram.histogram_mean();
                 }
-                dist_to_test = make_unique<ExponentialDistribution>(mean);
+                dist_to_test = make_unique<ExponentialDistribution>(1 / mean);
                 break;
             }
             case(DistributionType::LOGNORMAL): {

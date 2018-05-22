@@ -39,6 +39,8 @@ void print_help();
 int main(int argc, char **argv) {
     DataHolder h;
     istream* stream_ptr = &cin;
+    ostream* ostream_ptr = &cout;
+    ofstream out_file;
     ifstream file;
     set<DistributionType> desired_distributions;
     bool print_var = false;
@@ -49,24 +51,60 @@ int main(int argc, char **argv) {
     bool print_max = false;
     bool print_classes = false;
     bool print_chi_square_result = false;
+    unsigned int generate_output = 0;
     for(int i = 1; i < argc; ++i) {
         string cur_arg(argv[i]);
         if(cur_arg == "--help" || cur_arg == "-h") {
             print_help();
             return EXIT_SUCCESS;
         }
-        else if(cur_arg == "--file" || cur_arg == "-f") {
+        else if(cur_arg == "--input_file" || cur_arg == "-if") {
             if((++i) == argc) {
-                cerr << "Error parsing arguments. Argument after --file should be a file name. Found: None." << endl;
+                cerr << "Error parsing arguments. Argument after " << cur_arg << " should be a file name." << endl;
+                cerr << "Found: None." << endl;
                 return EXIT_FAILURE;
             }
             file.open(argv[i]);
             if(!file) {
-                cerr << "Error parsing arguments. Argument after --file should be a file name. Found: " << argv[i];
+                cerr << "Error parsing arguments. Argument after " << cur_arg << " should be a file name." << endl;
+                cerr << "Found: " << argv[i];
                 cerr << " which is not a file." << endl;
                 return EXIT_FAILURE;
             }
             stream_ptr = &file;
+        }
+        else if(cur_arg == "--output_file" || cur_arg == "-of") {
+            if((++i) == argc) {
+                cerr << "Error parsing arguments. Argument after " << cur_arg << " should be a file name." << endl; 
+                cerr << "Found: None." << endl;
+                return EXIT_FAILURE;
+            }
+            out_file.open(argv[i]);
+            if(!out_file) {
+                cerr << "Error opening file " << argv[i] << "for write." << endl;
+                return EXIT_FAILURE;
+            }
+            ostream_ptr = &out_file;
+        }
+        else if(cur_arg == "--generate_random" || cur_arg == "-gr") {
+            if((++i) == argc) {
+                cerr << "Error parsing arguments. Argument after " << cur_arg << "should be an unsigned number." << endl;
+                cerr << "Found: None." << endl;
+                return EXIT_FAILURE;
+            }
+            size_t next_position = 0;
+            string count_str = argv[i];
+            try {
+                generate_output = stoi(count_str, &next_position);
+                if(next_position != count_str.size()) {
+                    cerr << "Expected a number after " << cur_arg << ". Found: " << count_str << endl;
+                    return EXIT_FAILURE;
+                }
+            }
+            catch(invalid_argument& e) {
+                cerr << "Expected a number after " << cur_arg << ". Found: " << count_str << endl;
+                return EXIT_FAILURE;
+            }
         }
         else if(cur_arg == "--print_var" || cur_arg == "-pvr" || cur_arg == "--print_variance") {
             print_var = true;
@@ -120,6 +158,7 @@ int main(int argc, char **argv) {
             return EXIT_FAILURE;
         }
     }
+    ostream& output = *ostream_ptr;
     istream& input = *stream_ptr;
     while(input >> h);
     if(h.begin() == h.end()) {
@@ -131,31 +170,37 @@ int main(int argc, char **argv) {
     float chi_result;
     tie(distr_ptr, chi_result) = create_distribution(monte_carlo, desired_distributions);
     if(print_classes) {
-        cout << monte_carlo.print_classes() << endl;
+        output << monte_carlo.print_classes() << endl;
     }
     if(print_mean) {
-        cout << "Monte Carlo calculated histogram mean: " << monte_carlo.histogram_mean() << "." << endl;
+        output << "Monte Carlo calculated histogram mean: " << monte_carlo.histogram_mean() << "." << endl;
     }
     if(print_var) {
-        cout << "Monte Carlo calculated histogram variance: " << monte_carlo.histogram_variance() << "." << endl;
+        output << "Monte Carlo calculated histogram variance: " << monte_carlo.histogram_variance() << "." << endl;
     }
     if(print_std_deviation) {
-        cout << "Monte Carlo calculated histogram standard deviation: " << monte_carlo.histogram_standard_deviation() << "." << endl;
+        output << "Monte Carlo calculated histogram standard deviation: " << monte_carlo.histogram_standard_deviation() << "." << endl;
     }
     if(print_mode) {
-        cout << "Monte Carlo calculated histogram mode: " << monte_carlo.histogram_mode() << "." << endl;
+        output << "Monte Carlo calculated histogram mode: " << monte_carlo.histogram_mode() << "." << endl;
     }
     if(print_min) {
-        cout << "Monte Carlo calculated histogram min value: " << monte_carlo.histogram_min_value() << "." << endl;
+        output << "Monte Carlo calculated histogram min value: " << monte_carlo.histogram_min_value() << "." << endl;
     }
     if(print_max) {
-        cout << "Monte Carlo calculated histogram max value: " << monte_carlo.histogram_max_value() << "." << endl;
+        output << "Monte Carlo calculated histogram max value: " << monte_carlo.histogram_max_value() << "." << endl;
     }
     if(print_chi_square_result) {
-        cout << "Chi square test result for distribution " << distr_ptr->get_distribution_name() << ": " << chi_result << "." << endl;
+        output << "Chi square test result for distribution " << distr_ptr->get_distribution_name() << ": " << chi_result << "." << endl;
     }
-    cout << "Best distribution found: " << distr_ptr->get_distribution_name() << " with parameters:" << endl;
-    cout << distr_ptr->get_parameters_str() << "." << endl;
+    output << "Best distribution found: " << distr_ptr->get_distribution_name() << " with parameters:" << endl;
+    output << distr_ptr->get_parameters_str() << "." << endl;
+    if(generate_output) {
+        output << "Generating random numbers based on distribution " << distr_ptr->get_distribution_name() << "." << endl;
+        for(unsigned int i = 0; i < generate_output; ++i) {
+            output << distr_ptr->generate_value() << endl;
+        }
+    }
     return EXIT_SUCCESS;
 }
 
@@ -164,9 +209,12 @@ void print_help() {
     cout << "================================================================================" << endl;
     cout << "Usage:" << endl;
     cout << "--help or -h to print help." << endl;
-    cout << "--file or -f filename: opens filename for processing, which should contain a" << endl;
-    cout << "list of float values. If not supplied, the user can enter numbers by hand" << endl;
-    cout << "when the software starts." << endl;
+    cout << "--input_file or -if filename: opens filename for processing, which should" << endl;
+    cout << "contain a list of float values. If not supplied, the user can enter numbers by" << endl;
+    cout << "hand when the software starts." << endl;
+    cout << "--output_file or -of filename: opens filename to output results." << endl;
+    cout << "--generate_random or -gr number: generates number random values using the" << endl;
+    cout << "best distribution found." << endl; 
     cout << "--print_classes or -pclasses if the user wants the classes calculated on the" << endl;
     cout << "histogram to be printed." << endl;
     cout << "--print_mean or -pmn if the user wants the mean calculated on the histogram to" << endl;

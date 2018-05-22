@@ -17,18 +17,31 @@
  */
 
 #include "distributions/exponentialdistribution.h"
+#include <cmath>
+#include <random>
+#include <limits>
 
-ExponentialDistribution::ExponentialDistribution(float mean) {
-    //TODO
+using namespace std;
+
+//These variables are made global to this file to preserve state (not sure if necessary).
+//Also they're implemented in an unamed namespace so they can't be accessed from outside.
+namespace {
+    random_device rd;
+    mt19937 mt(rd());
+    uniform_real_distribution<float> dist(nextafter(numeric_limits<float>::min(), 1.0f), 1);
 }
 
 float ExponentialDistribution::generate_value() const {
-    //TODO
-    return 0;
+    //Rand is guaranteed to be greater than 0
+    float rand = dist(mt);
+    return -1 * log(rand) / _lambda;
 }
 
 float ExponentialDistribution::frequency_for(float value) const {
-    return 0;
+    if(value < 0) {
+        return 0;
+    }
+    return _lambda * pow(M_E, -1 * _lambda * value);
 }
 
 

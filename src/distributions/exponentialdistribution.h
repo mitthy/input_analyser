@@ -25,10 +25,12 @@
  */
 class ExponentialDistribution: public Distribution {
 public:
-    ExponentialDistribution(float mean);
+    ExponentialDistribution(float mean): _lambda(mean) {}
     virtual ~ExponentialDistribution() = default;
     virtual float generate_value() const;
     virtual float frequency_for(float value) const;
+private:
+    float _lambda;
 };
 
 #endif // EXPONENTIALDISTRIBUTION_H
