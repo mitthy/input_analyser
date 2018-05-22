@@ -51,6 +51,7 @@ int main(int argc, char **argv) {
     bool print_max = false;
     bool print_classes = false;
     bool print_chi_square_result = false;
+    bool print_frequency_difference = false;
     unsigned int generate_output = 0;
     for(int i = 1; i < argc; ++i) {
         string cur_arg(argv[i]);
@@ -130,6 +131,9 @@ int main(int argc, char **argv) {
         else if(cur_arg == "--print_chi_square" || cur_arg == "-pcs") {
             print_chi_square_result = true;
         }
+        else if(cur_arg == "--print_frequency_difference" || cur_arg == "-pfd") {
+            print_frequency_difference = true;
+        }
         else if(cur_arg == "--normal" || cur_arg == "-nrm") {
             desired_distributions.insert(DistributionType::NORMAL);
         }
@@ -193,6 +197,21 @@ int main(int argc, char **argv) {
     if(print_chi_square_result) {
         output << "Chi square test result for distribution " << distr_ptr->get_distribution_name() << ": " << chi_result << "." << endl;
     }
+    if(print_frequency_difference) {
+        output << "Frequency differences between chosen distribution and supplied data:" << endl;
+        float step = 0;
+        for(auto it1 = monte_carlo.begin(), it2 = ++monte_carlo.begin(); it1 != monte_carlo.end(); ++it1, ++it2) {
+            if(it1 == monte_carlo.begin()) {
+                step = it2 != monte_carlo.end() ? it2->value - it1->value : 0;
+            }
+            float min = it1->value - step, max = it1->value + step;
+            float klass_freq = it2 != monte_carlo.end() ? it2->acum_probability - it1->acum_probability : 1 - it1->acum_probability;
+            float chosen_distr_klass_freq = distr_ptr->frequency_for(it1->value);
+            cout << "[" << min << " - " << max << "] - ";
+            cout << "Data: " << klass_freq << " ";
+            cout << "Dist: " << chosen_distr_klass_freq << "." << endl;
+        }
+    }
     output << "Best distribution found: " << distr_ptr->get_distribution_name() << " with parameters:" << endl;
     output << distr_ptr->get_parameters_str() << "." << endl;
     if(generate_output) {
@@ -231,6 +250,8 @@ void print_help() {
     cout <<" printed." << endl;
     cout << "--print_chi_square_result or -pcs to print best fit distribution chi squared" << endl;
     cout << "test result." << endl;
+    cout << "--print_frequency_difference or -pfd to print the difference between the data" << endl;
+    cout << "frequency and the distribution frequency." << endl;
     cout << "================================================================================" << endl;
     cout << "The user can supply a list of distributions that he wants to use. The program" << endl;
     cout << "will then select the one which best fits the data. If no option is supplied, the" << endl; 
