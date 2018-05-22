@@ -60,6 +60,7 @@ int main(int argc, char **argv) {
     bool print_frequency_difference = false;
     bool print_distribution = true;
     unsigned int generate_output = 0;
+    unsigned int class_count = 0;
     for(int i = 1; i < argc; ++i) {
         string cur_arg(argv[i]);
         if(cur_arg == "--help" || cur_arg == "-h") {
@@ -111,6 +112,34 @@ int main(int argc, char **argv) {
             }
             catch(invalid_argument& e) {
                 cerr << "Expected a number after " << cur_arg << ". Found: " << count_str << endl;
+                return EXIT_FAILURE;
+            }
+            catch(out_of_range& e) {
+                cerr << "Couldn't set number of random numbers. " <<  count_str << " is too big." << endl;
+                return EXIT_FAILURE;
+            }
+        }
+        else if(cur_arg == "--class_count" || cur_arg == "-cc") {
+            if((++i) == argc) {
+                cerr << "Error parsing arguments. Argument after " << cur_arg << "should be an unsigned number." << endl;
+                cerr << "Found: None." << endl;
+                return EXIT_FAILURE;
+            }
+            size_t next_position = 0;
+            string count_str = argv[i];
+            try {
+                class_count = stoi(count_str, &next_position);
+                if(next_position != count_str.size()) {
+                    cerr << "Expected a number after " << cur_arg << ". Found: " << count_str << endl;
+                    return EXIT_FAILURE;
+                }
+            }
+            catch(invalid_argument& e) {
+                cerr << "Expected a number after " << cur_arg << ". Found: " << count_str << endl;
+                return EXIT_FAILURE;
+            }
+            catch(out_of_range& e) {
+                cerr << "Couldn't set class count. " << count_str << " is too big." << endl;
                 return EXIT_FAILURE;
             }
         }
@@ -177,7 +206,33 @@ int main(int argc, char **argv) {
         cerr << "Can't process empty data. Please supply floating point values for processing." << endl;
         return EXIT_FAILURE;
     }
-    MonteCarlo monte_carlo(h.begin(), h.end());
+    auto amount_of_data = std::distance(h.begin(), h.end());
+    while(class_count > amount_of_data) {
+        cerr << "Invalid amount of classes. Should be <= amount of data = " << amount_of_data << "." << endl;
+        cerr << "Please type in a new class value or quit to quit." << endl;
+        string option;
+        cin >> option;
+        if(option == "quit") {
+            return EXIT_FAILURE;
+        }
+        std::size_t next_position;
+        try {
+            auto tmp = stoi(option, &next_position);
+            if(next_position != option.size()) {
+                cerr << option << " is not a number." << endl;
+            }
+            else {
+                class_count = tmp;
+            }
+        }
+        catch(invalid_argument& e) {
+            cerr << option << " is not a number." << endl;
+        }
+        catch(out_of_range& e) {
+            cerr << option << " is too big." << endl;
+        }
+    }
+    MonteCarlo monte_carlo(h.begin(), h.end(), class_count);
     unique_ptr<Distribution> distr_ptr;
     input_data_t chi_result;
     tie(distr_ptr, chi_result) = create_distribution(monte_carlo, desired_distributions);
@@ -243,6 +298,8 @@ void print_help() {
     cout << "2 different files for input and output." << endl;
     cout << "--generate_random or -gr number: generates number random values using the" << endl;
     cout << "best distribution found." << endl; 
+    cout << "--class_count or -cc number: chooses number as the number of classes for monte" << endl;
+    cout << "carlo." << endl;
     cout << "--print_classes or -pclasses if the user wants the classes calculated on the" << endl;
     cout << "histogram to be printed." << endl;
     cout << "--print_mean or -pmn if the user wants the mean calculated on the histogram to" << endl;

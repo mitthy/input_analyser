@@ -23,6 +23,7 @@
 #include <algorithm>
 #include <iostream>
 #include "inputtypes.h"
+#include <cmath>
 
 /**
  * Class representing a Monte Carlo method and its generated histogram.
@@ -35,10 +36,12 @@ public:
      * Constructor for Monte Carlo histogram.
      * @param begin iterator to first element of data.
      * @param end iterator to element one past the end of data.
+     * @param classes desired number of classes.
      * @pre <strong class="paramname">begin</strong> < <strong class="paramname">end</strong>.
+     * @pre <strong class="paramname">classes</strong> <= <strong class="paramname">end</strong> - <strong class="paramname">begin</strong>.
      */
     template<typename Iterator>
-    MonteCarlo(Iterator begin, Iterator end);
+    MonteCarlo(Iterator begin, Iterator end, std::size_t classes = 0);
     
     /**
      * Function that uses the Monte Carlo histogram as a random number generator.
@@ -208,13 +211,23 @@ public:
 
 //Since it is a templated method, we implement it in the header.
 template<typename Iterator>
-MonteCarlo::MonteCarlo(Iterator begin, Iterator end): _data_count(std::distance(begin, end)) {
+MonteCarlo::MonteCarlo(Iterator begin, Iterator end, std::size_t classes): _data_count(std::distance(begin, end)) {
     //If the difference between the max element and the minimum element is lesser than this value, we don't split the data into classes.
-    const input_data_t EPSLON = static_cast<input_data_t>(1e-4);
+    input_data_t EPSLON = 0;
+    input_data_t sqrt_sz = std::sqrt(_data_count);
+    if(classes) {
+        EPSLON = std::nextafter(std::numeric_limits<input_data_t>::min(), (input_data_t)1.0) * classes * 4;
+    }
+    else {
+        EPSLON = std::nextafter(std::numeric_limits<input_data_t>::min(), (input_data_t)1.0) * sqrt_sz * 4;
+    }
     auto min_max = std::minmax_element(begin, end);
     input_data_t min = *min_max.first, max = *min_max.second;
     //We split the input data into classes. For now, it just gets the minimum between the amount of data / 10 + 1 and 15.
-    int number_of_classes = max - min < EPSLON ? 1 : std::min((_data_count / 10) + 1, (size_t)15);
+    int number_of_classes = classes;
+    if(!number_of_classes || number_of_classes > _data_count) {
+        number_of_classes = max - min < EPSLON ? 1 : sqrt_sz;
+    }
     input_data_t step = 0;
     //The step that we take between each classes.
     if(number_of_classes > 1) {

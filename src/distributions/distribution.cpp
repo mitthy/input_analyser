@@ -151,12 +151,16 @@ input_data_t chi_squared_test(const MonteCarlo& hist, const Distribution& dist) 
     //We check the data count for the current distribution and compare it with the data count for the histogram.
     //We know that the data count for the distribution is equal to the integral of the probability function from the lower limit to the upper limit * the total amount of data, so we just compute it for every class and apply the Chi Squared test formula.
     for(auto& klass : hist) {
-        if(klass.class_count) {
-            auto fx = [&dist](input_data_t x) {
-                return dist.frequency_for(x);
-            };
-            input_data_t integral_value = integral(klass.lower_bound, klass.upper_bound, fx);
-            sum += pow(integral_value * sz - klass.class_count, 2) / (1.0f * klass.class_count);
+        auto fx = [&dist](input_data_t x) {
+            return dist.frequency_for(x);
+        };
+        input_data_t integral_value = integral(klass.lower_bound, klass.upper_bound, fx);
+        auto expected = integral_value * sz;
+        if(expected) {
+            sum += pow(expected - klass.class_count, 2) / static_cast<input_data_t>(expected);
+        }
+        else {
+            return numeric_limits<input_data_t>::infinity();
         }
     }
     return sum;
