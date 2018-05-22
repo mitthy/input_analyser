@@ -26,6 +26,7 @@
 #include "uniformdistribution.h"
 #include <limits>
 #include <cmath>
+#include "mathutils.h"
 
 using namespace std;
 
@@ -142,7 +143,11 @@ float chi_squared_test(const MonteCarlo& hist, const Distribution& dist) {
     float sum = 0;
     for(auto& klass : hist) {
         if(klass.class_count) {
-            sum += pow(dist.frequency_for(klass.value) * sz - klass.class_count, 2) / (1.0f * klass.class_count);
+            auto fx = [&dist](float x) {
+                return dist.frequency_for(x);
+            };
+            float integral_value = integral(klass.lower_bound, klass.upper_bound, fx);
+            sum += pow(integral_value * sz - klass.class_count, 2) / (1.0f * klass.class_count);
         }
     }
     return sum;

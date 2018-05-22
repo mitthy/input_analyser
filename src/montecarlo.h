@@ -50,6 +50,8 @@ public:
         float value;
         float acum_probability;
         std::size_t class_count;
+        float lower_bound;
+        float upper_bound;
         friend std::ostream& operator<<(std::ostream& os, const monte_carlo_class& monte_class) {
             os << "Class value " << monte_class.value << "; Initial probability " << monte_class.acum_probability << "; Number of data ";
             os << monte_class.class_count;
@@ -142,7 +144,7 @@ MonteCarlo::MonteCarlo(Iterator begin, Iterator end): _data_count(std::distance(
     for(const monte_carlo_frenquecy& analysed : frequency_count) {
         float avg = analysed.lower_bound + (analysed.upper_bound - analysed.lower_bound) / 2;
         float prob = acum;
-        monte_carlo_class new_class = {avg, prob, analysed.count};
+        monte_carlo_class new_class = {avg, prob, analysed.count, analysed.lower_bound, analysed.upper_bound};
         _organized_data.push_back(new_class);
         acum += analysed.count * 1.0 / _data_count;
     }
