@@ -1,0 +1,89 @@
+\hypertarget{classDistribution}{}\section{Distribution Class Reference}
+\label{classDistribution}\index{Distribution@{Distribution}}
+
+
+{\ttfamily \#include $<$distribution.\+h$>$}
+
+
+
+Inheritance diagram for Distribution\+:
+% FIG 0
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual float \hyperlink{classDistribution_aa1ea89994ac123f003b8b8f5fe6fad40}{generate\+\_\+value} () const =0
+\item 
+virtual float \hyperlink{classDistribution_a0778c93fb686dd1abe2830e1c7e564a6}{frequency\+\_\+for} (float value) const =0
+\item 
+virtual std\+::string \hyperlink{classDistribution_a478a0c7b72d3ad266a2b6f1b9ed20fe9}{get\+\_\+distribution\+\_\+name} () const
+\item 
+virtual std\+::string \hyperlink{classDistribution_a716b7df9facb6bb016f46ac130297f9c}{get\+\_\+parameters\+\_\+str} () const
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Abstract class that represents a probability distribution. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classDistribution_a0778c93fb686dd1abe2830e1c7e564a6}\label{classDistribution_a0778c93fb686dd1abe2830e1c7e564a6}} 
+\index{Distribution@{Distribution}!frequency\+\_\+for@{frequency\+\_\+for}}
+\index{frequency\+\_\+for@{frequency\+\_\+for}!Distribution@{Distribution}}
+\subsubsection{\texorpdfstring{frequency\+\_\+for()}{frequency\_for()}}
+{\footnotesize\ttfamily virtual float Distribution\+::frequency\+\_\+for (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Calculates the probability distribution. Subclasses should implement this method. 
+\begin{DoxyParams}{Parameters}
+{\em value} & The value to calculate the probability. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The probability of value. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classTriangularDistribution_a9a87e1d66d544ce0460dd457a6740dce}{Triangular\+Distribution}, \hyperlink{classUniformDistribution_a3e96960abeab2f77b22c3a2b9c80695b}{Uniform\+Distribution}, \hyperlink{classLogNormalDistribution_ab60a8974eaed392159b794994ed20999}{Log\+Normal\+Distribution}, \hyperlink{classNormalDistribution_a9e53ead03edb6441713d84eaa73976dd}{Normal\+Distribution}, \hyperlink{classPoissonDistribution_a48783969aa40f3d9549a9db51ca1c97a}{Poisson\+Distribution}, \hyperlink{classExponentialDistribution_a3299605c567141253eb32891f19ccef8}{Exponential\+Distribution}, and \hyperlink{classBetaDistribution_a83fdd40854dbcf9ab2654e82ceb011d0}{Beta\+Distribution}.
+
+\mbox{\Hypertarget{classDistribution_aa1ea89994ac123f003b8b8f5fe6fad40}\label{classDistribution_aa1ea89994ac123f003b8b8f5fe6fad40}} 
+\index{Distribution@{Distribution}!generate\+\_\+value@{generate\+\_\+value}}
+\index{generate\+\_\+value@{generate\+\_\+value}!Distribution@{Distribution}}
+\subsubsection{\texorpdfstring{generate\+\_\+value()}{generate\_value()}}
+{\footnotesize\ttfamily virtual float Distribution\+::generate\+\_\+value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Calculates a random value following a certain distribution. Subclasses should implement this method. \begin{DoxyReturn}{Returns}
+A random value. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classTriangularDistribution_a76d6a4477676d8f4d85513b887b4f2b3}{Triangular\+Distribution}, \hyperlink{classUniformDistribution_ab2bfddd4540b6f88d1d366c9d1bbb5e6}{Uniform\+Distribution}, \hyperlink{classLogNormalDistribution_a02ed860dc4f556df25e9274cd106937c}{Log\+Normal\+Distribution}, \hyperlink{classNormalDistribution_a121b2abfc13fc376512aa4f7e2fb1bb4}{Normal\+Distribution}, \hyperlink{classPoissonDistribution_ab9c01eabf7c125677da2dc56d23e4212}{Poisson\+Distribution}, \hyperlink{classExponentialDistribution_aab3b68ba1f724307b74108ac96f92357}{Exponential\+Distribution}, and \hyperlink{classBetaDistribution_ab99568888730dc83177503ae52de7c4b}{Beta\+Distribution}.
+
+\mbox{\Hypertarget{classDistribution_a478a0c7b72d3ad266a2b6f1b9ed20fe9}\label{classDistribution_a478a0c7b72d3ad266a2b6f1b9ed20fe9}} 
+\index{Distribution@{Distribution}!get\+\_\+distribution\+\_\+name@{get\+\_\+distribution\+\_\+name}}
+\index{get\+\_\+distribution\+\_\+name@{get\+\_\+distribution\+\_\+name}!Distribution@{Distribution}}
+\subsubsection{\texorpdfstring{get\+\_\+distribution\+\_\+name()}{get\_distribution\_name()}}
+{\footnotesize\ttfamily virtual std\+::string Distribution\+::get\+\_\+distribution\+\_\+name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Method that returns the name of the distribution. Subclasses can choose to not implement this in which case it is simply undefined. \begin{DoxyReturn}{Returns}
+The name of the distribution. 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{classTriangularDistribution_ae9ceb04d07ea5f9dd9390ec62a7d0849}{Triangular\+Distribution}, \hyperlink{classUniformDistribution_a41a9a47839d15e67d5e2432f983ed382}{Uniform\+Distribution}, \hyperlink{classLogNormalDistribution_a05e474accd65f523749011fbc8b42b65}{Log\+Normal\+Distribution}, \hyperlink{classNormalDistribution_a13afb9f11a9d643ff1af5de2ca066005}{Normal\+Distribution}, \hyperlink{classPoissonDistribution_a2c6ac9d330241badbdeadc065ad47c1e}{Poisson\+Distribution}, and \hyperlink{classExponentialDistribution_a98ac6f2df798ae19bc371a2f071e21bb}{Exponential\+Distribution}.
+
+\mbox{\Hypertarget{classDistribution_a716b7df9facb6bb016f46ac130297f9c}\label{classDistribution_a716b7df9facb6bb016f46ac130297f9c}} 
+\index{Distribution@{Distribution}!get\+\_\+parameters\+\_\+str@{get\+\_\+parameters\+\_\+str}}
+\index{get\+\_\+parameters\+\_\+str@{get\+\_\+parameters\+\_\+str}!Distribution@{Distribution}}
+\subsubsection{\texorpdfstring{get\+\_\+parameters\+\_\+str()}{get\_parameters\_str()}}
+{\footnotesize\ttfamily virtual std\+::string Distribution\+::get\+\_\+parameters\+\_\+str (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Method that returns the parameters of the distribution. Subclasses can choose to not implement this in which case it is simply undefined. \begin{DoxyReturn}{Returns}
+A string with the values used as parameters for the distribution. 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{classTriangularDistribution_af54199e88d5c537fe621ae177b86a9d6}{Triangular\+Distribution}, \hyperlink{classUniformDistribution_a9e276cfa4ff3021a0e4b1b4edd8a1c67}{Uniform\+Distribution}, \hyperlink{classLogNormalDistribution_a5dfd7c43d883d868dab5d62e55a7e610}{Log\+Normal\+Distribution}, \hyperlink{classNormalDistribution_acedea04da0d96d01ed5c7fde83a56e1c}{Normal\+Distribution}, \hyperlink{classPoissonDistribution_a48e471c3bcae5b197a576f61777e67f3}{Poisson\+Distribution}, and \hyperlink{classExponentialDistribution_aa6f3a3208a0ec5f4b7f5fa8a36938c89}{Exponential\+Distribution}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/griffith/projects/input\+\_\+analyser/src/distributions/distribution.\+h\end{DoxyCompactItemize}

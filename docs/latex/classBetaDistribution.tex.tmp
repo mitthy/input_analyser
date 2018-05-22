@@ -1,0 +1,82 @@
+\hypertarget{classBetaDistribution}{}\section{Beta\+Distribution Class Reference}
+\label{classBetaDistribution}\index{Beta\+Distribution@{Beta\+Distribution}}
+
+
+{\ttfamily \#include $<$betadistribution.\+h$>$}
+
+
+
+Inheritance diagram for Beta\+Distribution\+:
+% FIG 0
+
+
+Collaboration diagram for Beta\+Distribution\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classBetaDistribution_a93a4e82300e1c050b9d46418f840fd05}{Beta\+Distribution} (float alpha, float beta)
+\item 
+virtual float \hyperlink{classBetaDistribution_ab99568888730dc83177503ae52de7c4b}{generate\+\_\+value} () const
+\item 
+virtual float \hyperlink{classBetaDistribution_a83fdd40854dbcf9ab2654e82ceb011d0}{frequency\+\_\+for} (float value) const
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class that represents a beta distribution. It is not yet implemented. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classBetaDistribution_a93a4e82300e1c050b9d46418f840fd05}\label{classBetaDistribution_a93a4e82300e1c050b9d46418f840fd05}} 
+\index{Beta\+Distribution@{Beta\+Distribution}!Beta\+Distribution@{Beta\+Distribution}}
+\index{Beta\+Distribution@{Beta\+Distribution}!Beta\+Distribution@{Beta\+Distribution}}
+\subsubsection{\texorpdfstring{Beta\+Distribution()}{BetaDistribution()}}
+{\footnotesize\ttfamily Beta\+Distribution\+::\+Beta\+Distribution (\begin{DoxyParamCaption}\item[{float}]{alpha,  }\item[{float}]{beta }\end{DoxyParamCaption})}
+
+Constructs an object. 
+\begin{DoxyParams}{Parameters}
+{\em alpha} & The alpha value of a beta distribution. \\
+\hline
+{\em beta} & The beta value of a beta distribution. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classBetaDistribution_a83fdd40854dbcf9ab2654e82ceb011d0}\label{classBetaDistribution_a83fdd40854dbcf9ab2654e82ceb011d0}} 
+\index{Beta\+Distribution@{Beta\+Distribution}!frequency\+\_\+for@{frequency\+\_\+for}}
+\index{frequency\+\_\+for@{frequency\+\_\+for}!Beta\+Distribution@{Beta\+Distribution}}
+\subsubsection{\texorpdfstring{frequency\+\_\+for()}{frequency\_for()}}
+{\footnotesize\ttfamily float Beta\+Distribution\+::frequency\+\_\+for (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Calculates the probability distribution. 
+\begin{DoxyParams}{Parameters}
+{\em value} & The value to calculate the probability. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The probability of value. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classDistribution_a0778c93fb686dd1abe2830e1c7e564a6}{Distribution}.
+
+\mbox{\Hypertarget{classBetaDistribution_ab99568888730dc83177503ae52de7c4b}\label{classBetaDistribution_ab99568888730dc83177503ae52de7c4b}} 
+\index{Beta\+Distribution@{Beta\+Distribution}!generate\+\_\+value@{generate\+\_\+value}}
+\index{generate\+\_\+value@{generate\+\_\+value}!Beta\+Distribution@{Beta\+Distribution}}
+\subsubsection{\texorpdfstring{generate\+\_\+value()}{generate\_value()}}
+{\footnotesize\ttfamily float Beta\+Distribution\+::generate\+\_\+value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Generates a random value following a beta distribution. \begin{DoxyReturn}{Returns}
+Beta distributed random value. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classDistribution_aa1ea89994ac123f003b8b8f5fe6fad40}{Distribution}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/griffith/projects/input\+\_\+analyser/src/distributions/betadistribution.\+h\item 
+/home/griffith/projects/input\+\_\+analyser/src/distributions/betadistribution.\+cpp\end{DoxyCompactItemize}

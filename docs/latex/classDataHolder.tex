@@ -1,0 +1,219 @@
+\hypertarget{classDataHolder}{}\section{Data\+Holder Class Reference}
+\label{classDataHolder}\index{Data\+Holder@{Data\+Holder}}
+
+
+{\ttfamily \#include $<$dataholder.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\+::vector$<$ float $>$\+::\hyperlink{classDataHolder_adecdb7b6c101d8ce9815c2ee2a4596b2}{iterator} \hyperlink{classDataHolder_adecdb7b6c101d8ce9815c2ee2a4596b2}{iterator}
+\item 
+typedef std\+::vector$<$ float $>$\+::\hyperlink{classDataHolder_a6284772630d15867fe5549a2903944cd}{const\+\_\+iterator} \hyperlink{classDataHolder_a6284772630d15867fe5549a2903944cd}{const\+\_\+iterator}
+\item 
+typedef std\+::vector$<$ float $>$\+::\hyperlink{classDataHolder_a6a84dd5b409f0eda7112dee0310e0d19}{value\+\_\+type} \hyperlink{classDataHolder_a6a84dd5b409f0eda7112dee0310e0d19}{value\+\_\+type}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classDataHolder_af76f72449ab22dafc1efa03084b525e5}{Data\+Holder} ()=default
+\item 
+{\footnotesize template$<$typename Iterator $>$ }\\\hyperlink{classDataHolder_a407d59793678968e1e4803bceeac9df5}{Data\+Holder} (Iterator \hyperlink{classDataHolder_a73bdc9101084dd53b22fdb40c877d10b}{begin}, Iterator \hyperlink{classDataHolder_a082001b8e93cf0aa1500677e4156b618}{end})
+\item 
+\hyperlink{classDataHolder_a62ed6b152862e8b9572187807640c586}{Data\+Holder} (const \hyperlink{classDataHolder}{Data\+Holder} \&rhs)=default
+\item 
+\hyperlink{classDataHolder_a6d1fdef9552e75f93c0174ec35a2fd57}{Data\+Holder} (\hyperlink{classDataHolder}{Data\+Holder} \&\&rhs)=default
+\item 
+\hyperlink{classDataHolder}{Data\+Holder} \& \hyperlink{classDataHolder_a3034e2aa41d6dfefcf4e60cc76bc555b}{operator=} (const \hyperlink{classDataHolder}{Data\+Holder} \&rhs)=default
+\item 
+\hyperlink{classDataHolder}{Data\+Holder} \& \hyperlink{classDataHolder_a16dcf3489a359c8f9c172f5178c6776f}{operator=} (\hyperlink{classDataHolder}{Data\+Holder} \&\&rhs)=default
+\item 
+\hyperlink{classDataHolder_adecdb7b6c101d8ce9815c2ee2a4596b2}{iterator} \hyperlink{classDataHolder_a73bdc9101084dd53b22fdb40c877d10b}{begin} ()
+\item 
+\hyperlink{classDataHolder_adecdb7b6c101d8ce9815c2ee2a4596b2}{iterator} \hyperlink{classDataHolder_a082001b8e93cf0aa1500677e4156b618}{end} ()
+\item 
+\hyperlink{classDataHolder_a6284772630d15867fe5549a2903944cd}{const\+\_\+iterator} \hyperlink{classDataHolder_a05afb99b3d1ea784b415bae839e1c4c5}{begin} () const
+\item 
+\hyperlink{classDataHolder_a6284772630d15867fe5549a2903944cd}{const\+\_\+iterator} \hyperlink{classDataHolder_a57f9f124e39a09c87bdc789fa376cb56}{end} () const
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \hyperlink{classDataHolder_a0f981cce0bcb94e5ad04cd86a520d5bb}{operator$<$$<$} (std\+::ostream \&os, const \hyperlink{classDataHolder}{Data\+Holder} \&obj)
+\item 
+std\+::istream \& \hyperlink{classDataHolder_ab300a1908af5ffa17e2106ce4d996fb6}{operator$>$$>$} (std\+::istream \&is, \hyperlink{classDataHolder}{Data\+Holder} \&obj)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class that we use to grab data from istream. It can also be used to output data to an ostream. 
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classDataHolder_a6284772630d15867fe5549a2903944cd}\label{classDataHolder_a6284772630d15867fe5549a2903944cd}} 
+\index{Data\+Holder@{Data\+Holder}!const\+\_\+iterator@{const\+\_\+iterator}}
+\index{const\+\_\+iterator@{const\+\_\+iterator}!Data\+Holder@{Data\+Holder}}
+\subsubsection{\texorpdfstring{const\+\_\+iterator}{const\_iterator}}
+{\footnotesize\ttfamily typedef std\+::vector$<$float$>$\+::\hyperlink{classDataHolder_a6284772630d15867fe5549a2903944cd}{const\+\_\+iterator} \hyperlink{classDataHolder_a6284772630d15867fe5549a2903944cd}{Data\+Holder\+::const\+\_\+iterator}}
+
+Typedef to const\+\_\+iterator \mbox{\Hypertarget{classDataHolder_adecdb7b6c101d8ce9815c2ee2a4596b2}\label{classDataHolder_adecdb7b6c101d8ce9815c2ee2a4596b2}} 
+\index{Data\+Holder@{Data\+Holder}!iterator@{iterator}}
+\index{iterator@{iterator}!Data\+Holder@{Data\+Holder}}
+\subsubsection{\texorpdfstring{iterator}{iterator}}
+{\footnotesize\ttfamily typedef std\+::vector$<$float$>$\+::\hyperlink{classDataHolder_adecdb7b6c101d8ce9815c2ee2a4596b2}{iterator} \hyperlink{classDataHolder_adecdb7b6c101d8ce9815c2ee2a4596b2}{Data\+Holder\+::iterator}}
+
+Typedef to iterator \mbox{\Hypertarget{classDataHolder_a6a84dd5b409f0eda7112dee0310e0d19}\label{classDataHolder_a6a84dd5b409f0eda7112dee0310e0d19}} 
+\index{Data\+Holder@{Data\+Holder}!value\+\_\+type@{value\+\_\+type}}
+\index{value\+\_\+type@{value\+\_\+type}!Data\+Holder@{Data\+Holder}}
+\subsubsection{\texorpdfstring{value\+\_\+type}{value\_type}}
+{\footnotesize\ttfamily typedef std\+::vector$<$float$>$\+::\hyperlink{classDataHolder_a6a84dd5b409f0eda7112dee0310e0d19}{value\+\_\+type} \hyperlink{classDataHolder_a6a84dd5b409f0eda7112dee0310e0d19}{Data\+Holder\+::value\+\_\+type}}
+
+Typedef to value\+\_\+type 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classDataHolder_af76f72449ab22dafc1efa03084b525e5}\label{classDataHolder_af76f72449ab22dafc1efa03084b525e5}} 
+\index{Data\+Holder@{Data\+Holder}!Data\+Holder@{Data\+Holder}}
+\index{Data\+Holder@{Data\+Holder}!Data\+Holder@{Data\+Holder}}
+\subsubsection{\texorpdfstring{Data\+Holder()}{DataHolder()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily Data\+Holder\+::\+Data\+Holder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+Construct an object with no data. \mbox{\Hypertarget{classDataHolder_a407d59793678968e1e4803bceeac9df5}\label{classDataHolder_a407d59793678968e1e4803bceeac9df5}} 
+\index{Data\+Holder@{Data\+Holder}!Data\+Holder@{Data\+Holder}}
+\index{Data\+Holder@{Data\+Holder}!Data\+Holder@{Data\+Holder}}
+\subsubsection{\texorpdfstring{Data\+Holder()}{DataHolder()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$typename Iterator $>$ \\
+Data\+Holder\+::\+Data\+Holder (\begin{DoxyParamCaption}\item[{Iterator}]{begin,  }\item[{Iterator}]{end }\end{DoxyParamCaption})}
+
+Constructs an object with data from begin to end. 
+\begin{DoxyParams}{Parameters}
+{\em begin} & Iterator to first element of range. \\
+\hline
+{\em end} & Iterator to one past the last element of the range. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+{\bfseries begin} $<$= {\bfseries end}. 
+\end{DoxyPrecond}
+\mbox{\Hypertarget{classDataHolder_a62ed6b152862e8b9572187807640c586}\label{classDataHolder_a62ed6b152862e8b9572187807640c586}} 
+\index{Data\+Holder@{Data\+Holder}!Data\+Holder@{Data\+Holder}}
+\index{Data\+Holder@{Data\+Holder}!Data\+Holder@{Data\+Holder}}
+\subsubsection{\texorpdfstring{Data\+Holder()}{DataHolder()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily Data\+Holder\+::\+Data\+Holder (\begin{DoxyParamCaption}\item[{const \hyperlink{classDataHolder}{Data\+Holder} \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+Copy construct an object 
+\begin{DoxyParams}{Parameters}
+{\em rhs} & other object \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classDataHolder_a6d1fdef9552e75f93c0174ec35a2fd57}\label{classDataHolder_a6d1fdef9552e75f93c0174ec35a2fd57}} 
+\index{Data\+Holder@{Data\+Holder}!Data\+Holder@{Data\+Holder}}
+\index{Data\+Holder@{Data\+Holder}!Data\+Holder@{Data\+Holder}}
+\subsubsection{\texorpdfstring{Data\+Holder()}{DataHolder()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily Data\+Holder\+::\+Data\+Holder (\begin{DoxyParamCaption}\item[{\hyperlink{classDataHolder}{Data\+Holder} \&\&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+Move construct an object 
+\begin{DoxyParams}{Parameters}
+{\em rhs} & other object \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classDataHolder_a73bdc9101084dd53b22fdb40c877d10b}\label{classDataHolder_a73bdc9101084dd53b22fdb40c877d10b}} 
+\index{Data\+Holder@{Data\+Holder}!begin@{begin}}
+\index{begin@{begin}!Data\+Holder@{Data\+Holder}}
+\subsubsection{\texorpdfstring{begin()}{begin()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \hyperlink{classDataHolder_adecdb7b6c101d8ce9815c2ee2a4596b2}{Data\+Holder\+::iterator} Data\+Holder\+::begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets an iterator. \begin{DoxyReturn}{Returns}
+iterator to first element. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDataHolder_a05afb99b3d1ea784b415bae839e1c4c5}\label{classDataHolder_a05afb99b3d1ea784b415bae839e1c4c5}} 
+\index{Data\+Holder@{Data\+Holder}!begin@{begin}}
+\index{begin@{begin}!Data\+Holder@{Data\+Holder}}
+\subsubsection{\texorpdfstring{begin()}{begin()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \hyperlink{classDataHolder_a6284772630d15867fe5549a2903944cd}{Data\+Holder\+::const\+\_\+iterator} Data\+Holder\+::begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Gets a const\+\_\+iterator. \begin{DoxyReturn}{Returns}
+const\+\_\+iterator to first element. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDataHolder_a082001b8e93cf0aa1500677e4156b618}\label{classDataHolder_a082001b8e93cf0aa1500677e4156b618}} 
+\index{Data\+Holder@{Data\+Holder}!end@{end}}
+\index{end@{end}!Data\+Holder@{Data\+Holder}}
+\subsubsection{\texorpdfstring{end()}{end()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \hyperlink{classDataHolder_adecdb7b6c101d8ce9815c2ee2a4596b2}{Data\+Holder\+::iterator} Data\+Holder\+::end (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets an iterator. \begin{DoxyReturn}{Returns}
+iterator to one past the end element. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDataHolder_a57f9f124e39a09c87bdc789fa376cb56}\label{classDataHolder_a57f9f124e39a09c87bdc789fa376cb56}} 
+\index{Data\+Holder@{Data\+Holder}!end@{end}}
+\index{end@{end}!Data\+Holder@{Data\+Holder}}
+\subsubsection{\texorpdfstring{end()}{end()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \hyperlink{classDataHolder_a6284772630d15867fe5549a2903944cd}{Data\+Holder\+::const\+\_\+iterator} Data\+Holder\+::end (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Gets a const\+\_\+iterator. \begin{DoxyReturn}{Returns}
+const\+\_\+iterator to one past the end element. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDataHolder_a3034e2aa41d6dfefcf4e60cc76bc555b}\label{classDataHolder_a3034e2aa41d6dfefcf4e60cc76bc555b}} 
+\index{Data\+Holder@{Data\+Holder}!operator=@{operator=}}
+\index{operator=@{operator=}!Data\+Holder@{Data\+Holder}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \hyperlink{classDataHolder}{Data\+Holder}\& Data\+Holder\+::operator= (\begin{DoxyParamCaption}\item[{const \hyperlink{classDataHolder}{Data\+Holder} \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+Copy assigns an object 
+\begin{DoxyParams}{Parameters}
+{\em rhs} & other object \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classDataHolder_a16dcf3489a359c8f9c172f5178c6776f}\label{classDataHolder_a16dcf3489a359c8f9c172f5178c6776f}} 
+\index{Data\+Holder@{Data\+Holder}!operator=@{operator=}}
+\index{operator=@{operator=}!Data\+Holder@{Data\+Holder}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \hyperlink{classDataHolder}{Data\+Holder}\& Data\+Holder\+::operator= (\begin{DoxyParamCaption}\item[{\hyperlink{classDataHolder}{Data\+Holder} \&\&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+Move assigns an object 
+\begin{DoxyParams}{Parameters}
+{\em rhs} & other object \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classDataHolder_a0f981cce0bcb94e5ad04cd86a520d5bb}\label{classDataHolder_a0f981cce0bcb94e5ad04cd86a520d5bb}} 
+\index{Data\+Holder@{Data\+Holder}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Data\+Holder@{Data\+Holder}}
+\subsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily std\+::ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \hyperlink{classDataHolder}{Data\+Holder} \&}]{obj }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+Outputs data to stream. 
+\begin{DoxyParams}{Parameters}
+{\em os} & Output stream. \\
+\hline
+{\em obj} & \hyperlink{classDataHolder}{Data\+Holder} to output. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The output stream {\bfseries os} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDataHolder_ab300a1908af5ffa17e2106ce4d996fb6}\label{classDataHolder_ab300a1908af5ffa17e2106ce4d996fb6}} 
+\index{Data\+Holder@{Data\+Holder}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!Data\+Holder@{Data\+Holder}}
+\subsubsection{\texorpdfstring{operator$>$$>$}{operator>>}}
+{\footnotesize\ttfamily std\+::istream\& operator$>$$>$ (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{is,  }\item[{\hyperlink{classDataHolder}{Data\+Holder} \&}]{obj }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+Inputs data from stream. 
+\begin{DoxyParams}{Parameters}
+{\em is} & Input stream. \\
+\hline
+{\em obj} & \hyperlink{classDataHolder}{Data\+Holder} object that will read value from stream. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The input stream {\bfseries is} 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/griffith/projects/input\+\_\+analyser/src/dataholder.\+h\item 
+/home/griffith/projects/input\+\_\+analyser/src/dataholder.\+cpp\end{DoxyCompactItemize}

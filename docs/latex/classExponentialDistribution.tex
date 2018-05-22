@@ -1,0 +1,115 @@
+\hypertarget{classExponentialDistribution}{}\section{Exponential\+Distribution Class Reference}
+\label{classExponentialDistribution}\index{Exponential\+Distribution@{Exponential\+Distribution}}
+
+
+{\ttfamily \#include $<$exponentialdistribution.\+h$>$}
+
+
+
+Inheritance diagram for Exponential\+Distribution\+:
+% FIG 0
+
+
+Collaboration diagram for Exponential\+Distribution\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classExponentialDistribution_a94130671faa94ac834caa08799c9048a}{Exponential\+Distribution} (float lambda)
+\item 
+virtual float \hyperlink{classExponentialDistribution_aab3b68ba1f724307b74108ac96f92357}{generate\+\_\+value} () const
+\item 
+virtual float \hyperlink{classExponentialDistribution_a3299605c567141253eb32891f19ccef8}{frequency\+\_\+for} (float value) const
+\item 
+virtual std\+::string \hyperlink{classExponentialDistribution_a98ac6f2df798ae19bc371a2f071e21bb}{get\+\_\+distribution\+\_\+name} () const
+\item 
+virtual std\+::string \hyperlink{classExponentialDistribution_aa6f3a3208a0ec5f4b7f5fa8a36938c89}{get\+\_\+parameters\+\_\+str} () const
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000001}{Todo}]write docs \end{DoxyRefDesc}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classExponentialDistribution_a94130671faa94ac834caa08799c9048a}\label{classExponentialDistribution_a94130671faa94ac834caa08799c9048a}} 
+\index{Exponential\+Distribution@{Exponential\+Distribution}!Exponential\+Distribution@{Exponential\+Distribution}}
+\index{Exponential\+Distribution@{Exponential\+Distribution}!Exponential\+Distribution@{Exponential\+Distribution}}
+\subsubsection{\texorpdfstring{Exponential\+Distribution()}{ExponentialDistribution()}}
+{\footnotesize\ttfamily Exponential\+Distribution\+::\+Exponential\+Distribution (\begin{DoxyParamCaption}\item[{float}]{lambda }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructs an object 
+\begin{DoxyParams}{Parameters}
+{\em lambda} & The lambda value of the exponential distribution. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+{\bfseries lambda} $>$ 0 
+\end{DoxyPrecond}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classExponentialDistribution_a3299605c567141253eb32891f19ccef8}\label{classExponentialDistribution_a3299605c567141253eb32891f19ccef8}} 
+\index{Exponential\+Distribution@{Exponential\+Distribution}!frequency\+\_\+for@{frequency\+\_\+for}}
+\index{frequency\+\_\+for@{frequency\+\_\+for}!Exponential\+Distribution@{Exponential\+Distribution}}
+\subsubsection{\texorpdfstring{frequency\+\_\+for()}{frequency\_for()}}
+{\footnotesize\ttfamily float Exponential\+Distribution\+::frequency\+\_\+for (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Calculates the probability distribution. 
+\begin{DoxyParams}{Parameters}
+{\em value} & The value to calculate the probability. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The probability of value. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classDistribution_a0778c93fb686dd1abe2830e1c7e564a6}{Distribution}.
+
+\mbox{\Hypertarget{classExponentialDistribution_aab3b68ba1f724307b74108ac96f92357}\label{classExponentialDistribution_aab3b68ba1f724307b74108ac96f92357}} 
+\index{Exponential\+Distribution@{Exponential\+Distribution}!generate\+\_\+value@{generate\+\_\+value}}
+\index{generate\+\_\+value@{generate\+\_\+value}!Exponential\+Distribution@{Exponential\+Distribution}}
+\subsubsection{\texorpdfstring{generate\+\_\+value()}{generate\_value()}}
+{\footnotesize\ttfamily float Exponential\+Distribution\+::generate\+\_\+value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Generates a random value following an exponential distribution. \begin{DoxyReturn}{Returns}
+Exponential distributed random value. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classDistribution_aa1ea89994ac123f003b8b8f5fe6fad40}{Distribution}.
+
+\mbox{\Hypertarget{classExponentialDistribution_a98ac6f2df798ae19bc371a2f071e21bb}\label{classExponentialDistribution_a98ac6f2df798ae19bc371a2f071e21bb}} 
+\index{Exponential\+Distribution@{Exponential\+Distribution}!get\+\_\+distribution\+\_\+name@{get\+\_\+distribution\+\_\+name}}
+\index{get\+\_\+distribution\+\_\+name@{get\+\_\+distribution\+\_\+name}!Exponential\+Distribution@{Exponential\+Distribution}}
+\subsubsection{\texorpdfstring{get\+\_\+distribution\+\_\+name()}{get\_distribution\_name()}}
+{\footnotesize\ttfamily virtual std\+::string Exponential\+Distribution\+::get\+\_\+distribution\+\_\+name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+The name of the distribution. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classDistribution_a478a0c7b72d3ad266a2b6f1b9ed20fe9}{Distribution}.
+
+\mbox{\Hypertarget{classExponentialDistribution_aa6f3a3208a0ec5f4b7f5fa8a36938c89}\label{classExponentialDistribution_aa6f3a3208a0ec5f4b7f5fa8a36938c89}} 
+\index{Exponential\+Distribution@{Exponential\+Distribution}!get\+\_\+parameters\+\_\+str@{get\+\_\+parameters\+\_\+str}}
+\index{get\+\_\+parameters\+\_\+str@{get\+\_\+parameters\+\_\+str}!Exponential\+Distribution@{Exponential\+Distribution}}
+\subsubsection{\texorpdfstring{get\+\_\+parameters\+\_\+str()}{get\_parameters\_str()}}
+{\footnotesize\ttfamily virtual std\+::string Exponential\+Distribution\+::get\+\_\+parameters\+\_\+str (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+A string with the values used as parameters for the distribution. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classDistribution_a716b7df9facb6bb016f46ac130297f9c}{Distribution}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/griffith/projects/input\+\_\+analyser/src/distributions/exponentialdistribution.\+h\item 
+/home/griffith/projects/input\+\_\+analyser/src/distributions/exponentialdistribution.\+cpp\end{DoxyCompactItemize}

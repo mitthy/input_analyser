@@ -34,7 +34,7 @@ public:
      * Constructor for Monte Carlo histogram.
      * @param begin iterator to first element of data.
      * @param end iterator to element one past the end of data.
-     * @pre <strong class="paramname">begin</strong> should be lesser than <strong class="paramname">end</strong>.
+     * @pre <strong class="paramname">begin</strong> < <strong class="paramname">end</strong>.
      */
     template<typename Iterator>
     MonteCarlo(Iterator begin, Iterator end);

@@ -56,7 +56,7 @@ public:
      * Constructs an object with data from begin to end.
      * @param begin Iterator to first element of range.
      * @param end Iterator to one past the last element of the range.
-     * @pre <strong class="paramname">begin</strong> should be lesser or equal than <strong class="paramname">end</strong>.
+     * @pre <strong class="paramname">begin</strong> <= <strong class="paramname">end</strong>.
      */
     template<typename Iterator>
     DataHolder(Iterator begin, Iterator end);

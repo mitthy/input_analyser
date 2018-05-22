@@ -1,0 +1,115 @@
+\hypertarget{classUniformDistribution}{}\section{Uniform\+Distribution Class Reference}
+\label{classUniformDistribution}\index{Uniform\+Distribution@{Uniform\+Distribution}}
+
+
+{\ttfamily \#include $<$uniformdistribution.\+h$>$}
+
+
+
+Inheritance diagram for Uniform\+Distribution\+:
+% FIG 0
+
+
+Collaboration diagram for Uniform\+Distribution\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classUniformDistribution_ab9fbcd64819f53f1bb56a0f49562f529}{Uniform\+Distribution} (float min, float max)
+\item 
+virtual float \hyperlink{classUniformDistribution_ab2bfddd4540b6f88d1d366c9d1bbb5e6}{generate\+\_\+value} () const
+\item 
+virtual float \hyperlink{classUniformDistribution_a3e96960abeab2f77b22c3a2b9c80695b}{frequency\+\_\+for} (float value) const
+\item 
+virtual std\+::string \hyperlink{classUniformDistribution_a41a9a47839d15e67d5e2432f983ed382}{get\+\_\+distribution\+\_\+name} () const
+\item 
+virtual std\+::string \hyperlink{classUniformDistribution_a9e276cfa4ff3021a0e4b1b4edd8a1c67}{get\+\_\+parameters\+\_\+str} () const
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class that represents an uniform distribution. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classUniformDistribution_ab9fbcd64819f53f1bb56a0f49562f529}\label{classUniformDistribution_ab9fbcd64819f53f1bb56a0f49562f529}} 
+\index{Uniform\+Distribution@{Uniform\+Distribution}!Uniform\+Distribution@{Uniform\+Distribution}}
+\index{Uniform\+Distribution@{Uniform\+Distribution}!Uniform\+Distribution@{Uniform\+Distribution}}
+\subsubsection{\texorpdfstring{Uniform\+Distribution()}{UniformDistribution()}}
+{\footnotesize\ttfamily Uniform\+Distribution\+::\+Uniform\+Distribution (\begin{DoxyParamCaption}\item[{float}]{min,  }\item[{float}]{max }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructs an object. 
+\begin{DoxyParams}{Parameters}
+{\em min} & The minimum (a) value of an uniform distribution. \\
+\hline
+{\em max} & the maximum (b) value of an uniform distribution. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+{\bfseries min} $<$ {\bfseries max}. 
+\end{DoxyPrecond}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classUniformDistribution_a3e96960abeab2f77b22c3a2b9c80695b}\label{classUniformDistribution_a3e96960abeab2f77b22c3a2b9c80695b}} 
+\index{Uniform\+Distribution@{Uniform\+Distribution}!frequency\+\_\+for@{frequency\+\_\+for}}
+\index{frequency\+\_\+for@{frequency\+\_\+for}!Uniform\+Distribution@{Uniform\+Distribution}}
+\subsubsection{\texorpdfstring{frequency\+\_\+for()}{frequency\_for()}}
+{\footnotesize\ttfamily float Uniform\+Distribution\+::frequency\+\_\+for (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Calculates the probability distribution. 
+\begin{DoxyParams}{Parameters}
+{\em value} & The value to calculate the probability. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The probability of value. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classDistribution_a0778c93fb686dd1abe2830e1c7e564a6}{Distribution}.
+
+\mbox{\Hypertarget{classUniformDistribution_ab2bfddd4540b6f88d1d366c9d1bbb5e6}\label{classUniformDistribution_ab2bfddd4540b6f88d1d366c9d1bbb5e6}} 
+\index{Uniform\+Distribution@{Uniform\+Distribution}!generate\+\_\+value@{generate\+\_\+value}}
+\index{generate\+\_\+value@{generate\+\_\+value}!Uniform\+Distribution@{Uniform\+Distribution}}
+\subsubsection{\texorpdfstring{generate\+\_\+value()}{generate\_value()}}
+{\footnotesize\ttfamily float Uniform\+Distribution\+::generate\+\_\+value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Generates a random value following an uniform distribution. \begin{DoxyReturn}{Returns}
+Uniform distributed random value in the range (min, max). 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classDistribution_aa1ea89994ac123f003b8b8f5fe6fad40}{Distribution}.
+
+\mbox{\Hypertarget{classUniformDistribution_a41a9a47839d15e67d5e2432f983ed382}\label{classUniformDistribution_a41a9a47839d15e67d5e2432f983ed382}} 
+\index{Uniform\+Distribution@{Uniform\+Distribution}!get\+\_\+distribution\+\_\+name@{get\+\_\+distribution\+\_\+name}}
+\index{get\+\_\+distribution\+\_\+name@{get\+\_\+distribution\+\_\+name}!Uniform\+Distribution@{Uniform\+Distribution}}
+\subsubsection{\texorpdfstring{get\+\_\+distribution\+\_\+name()}{get\_distribution\_name()}}
+{\footnotesize\ttfamily virtual std\+::string Uniform\+Distribution\+::get\+\_\+distribution\+\_\+name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+The name of the distribution. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classDistribution_a478a0c7b72d3ad266a2b6f1b9ed20fe9}{Distribution}.
+
+\mbox{\Hypertarget{classUniformDistribution_a9e276cfa4ff3021a0e4b1b4edd8a1c67}\label{classUniformDistribution_a9e276cfa4ff3021a0e4b1b4edd8a1c67}} 
+\index{Uniform\+Distribution@{Uniform\+Distribution}!get\+\_\+parameters\+\_\+str@{get\+\_\+parameters\+\_\+str}}
+\index{get\+\_\+parameters\+\_\+str@{get\+\_\+parameters\+\_\+str}!Uniform\+Distribution@{Uniform\+Distribution}}
+\subsubsection{\texorpdfstring{get\+\_\+parameters\+\_\+str()}{get\_parameters\_str()}}
+{\footnotesize\ttfamily virtual std\+::string Uniform\+Distribution\+::get\+\_\+parameters\+\_\+str (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+A string with the values used as parameters for the distribution. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classDistribution_a716b7df9facb6bb016f46ac130297f9c}{Distribution}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/griffith/projects/input\+\_\+analyser/src/distributions/uniformdistribution.\+h\item 
+/home/griffith/projects/input\+\_\+analyser/src/distributions/uniformdistribution.\+cpp\end{DoxyCompactItemize}

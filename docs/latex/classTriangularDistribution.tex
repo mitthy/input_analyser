@@ -1,0 +1,119 @@
+\hypertarget{classTriangularDistribution}{}\section{Triangular\+Distribution Class Reference}
+\label{classTriangularDistribution}\index{Triangular\+Distribution@{Triangular\+Distribution}}
+
+
+{\ttfamily \#include $<$triangulardistribution.\+h$>$}
+
+
+
+Inheritance diagram for Triangular\+Distribution\+:
+% FIG 0
+
+
+Collaboration diagram for Triangular\+Distribution\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classTriangularDistribution_a40478f0856ecf66c9b42addf3372394a}{Triangular\+Distribution} (float min, float max, float mode)
+\item 
+virtual float \hyperlink{classTriangularDistribution_a76d6a4477676d8f4d85513b887b4f2b3}{generate\+\_\+value} () const
+\item 
+virtual float \hyperlink{classTriangularDistribution_a9a87e1d66d544ce0460dd457a6740dce}{frequency\+\_\+for} (float value) const
+\item 
+virtual std\+::string \hyperlink{classTriangularDistribution_ae9ceb04d07ea5f9dd9390ec62a7d0849}{get\+\_\+distribution\+\_\+name} () const
+\item 
+virtual std\+::string \hyperlink{classTriangularDistribution_af54199e88d5c537fe621ae177b86a9d6}{get\+\_\+parameters\+\_\+str} () const
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class that represents a triangular distribution. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classTriangularDistribution_a40478f0856ecf66c9b42addf3372394a}\label{classTriangularDistribution_a40478f0856ecf66c9b42addf3372394a}} 
+\index{Triangular\+Distribution@{Triangular\+Distribution}!Triangular\+Distribution@{Triangular\+Distribution}}
+\index{Triangular\+Distribution@{Triangular\+Distribution}!Triangular\+Distribution@{Triangular\+Distribution}}
+\subsubsection{\texorpdfstring{Triangular\+Distribution()}{TriangularDistribution()}}
+{\footnotesize\ttfamily Triangular\+Distribution\+::\+Triangular\+Distribution (\begin{DoxyParamCaption}\item[{float}]{min,  }\item[{float}]{max,  }\item[{float}]{mode }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructs an object. 
+\begin{DoxyParams}{Parameters}
+{\em min} & The minimum (a) value of a triangular distribution. \\
+\hline
+{\em mode} & The mode(c) of a triangular distribution. \\
+\hline
+{\em max} & the maximum (b) value of a triangular distribution. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+{\bfseries min} $<$= {\bfseries mode} $<$= {\bfseries max}. 
+
+{\bfseries min} $<$ {\bfseries max}. 
+\end{DoxyPrecond}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classTriangularDistribution_a9a87e1d66d544ce0460dd457a6740dce}\label{classTriangularDistribution_a9a87e1d66d544ce0460dd457a6740dce}} 
+\index{Triangular\+Distribution@{Triangular\+Distribution}!frequency\+\_\+for@{frequency\+\_\+for}}
+\index{frequency\+\_\+for@{frequency\+\_\+for}!Triangular\+Distribution@{Triangular\+Distribution}}
+\subsubsection{\texorpdfstring{frequency\+\_\+for()}{frequency\_for()}}
+{\footnotesize\ttfamily float Triangular\+Distribution\+::frequency\+\_\+for (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Calculates the probability distribution. 
+\begin{DoxyParams}{Parameters}
+{\em value} & The value to calculate the probability. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The probability of value. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classDistribution_a0778c93fb686dd1abe2830e1c7e564a6}{Distribution}.
+
+\mbox{\Hypertarget{classTriangularDistribution_a76d6a4477676d8f4d85513b887b4f2b3}\label{classTriangularDistribution_a76d6a4477676d8f4d85513b887b4f2b3}} 
+\index{Triangular\+Distribution@{Triangular\+Distribution}!generate\+\_\+value@{generate\+\_\+value}}
+\index{generate\+\_\+value@{generate\+\_\+value}!Triangular\+Distribution@{Triangular\+Distribution}}
+\subsubsection{\texorpdfstring{generate\+\_\+value()}{generate\_value()}}
+{\footnotesize\ttfamily float Triangular\+Distribution\+::generate\+\_\+value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Generates a random value following a triangular distribution. \begin{DoxyReturn}{Returns}
+Triangular distributed random value. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classDistribution_aa1ea89994ac123f003b8b8f5fe6fad40}{Distribution}.
+
+\mbox{\Hypertarget{classTriangularDistribution_ae9ceb04d07ea5f9dd9390ec62a7d0849}\label{classTriangularDistribution_ae9ceb04d07ea5f9dd9390ec62a7d0849}} 
+\index{Triangular\+Distribution@{Triangular\+Distribution}!get\+\_\+distribution\+\_\+name@{get\+\_\+distribution\+\_\+name}}
+\index{get\+\_\+distribution\+\_\+name@{get\+\_\+distribution\+\_\+name}!Triangular\+Distribution@{Triangular\+Distribution}}
+\subsubsection{\texorpdfstring{get\+\_\+distribution\+\_\+name()}{get\_distribution\_name()}}
+{\footnotesize\ttfamily virtual std\+::string Triangular\+Distribution\+::get\+\_\+distribution\+\_\+name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+The name of the distribution. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classDistribution_a478a0c7b72d3ad266a2b6f1b9ed20fe9}{Distribution}.
+
+\mbox{\Hypertarget{classTriangularDistribution_af54199e88d5c537fe621ae177b86a9d6}\label{classTriangularDistribution_af54199e88d5c537fe621ae177b86a9d6}} 
+\index{Triangular\+Distribution@{Triangular\+Distribution}!get\+\_\+parameters\+\_\+str@{get\+\_\+parameters\+\_\+str}}
+\index{get\+\_\+parameters\+\_\+str@{get\+\_\+parameters\+\_\+str}!Triangular\+Distribution@{Triangular\+Distribution}}
+\subsubsection{\texorpdfstring{get\+\_\+parameters\+\_\+str()}{get\_parameters\_str()}}
+{\footnotesize\ttfamily virtual std\+::string Triangular\+Distribution\+::get\+\_\+parameters\+\_\+str (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+A string with the values used as parameters for the distribution. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classDistribution_a716b7df9facb6bb016f46ac130297f9c}{Distribution}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/griffith/projects/input\+\_\+analyser/src/distributions/triangulardistribution.\+h\item 
+/home/griffith/projects/input\+\_\+analyser/src/distributions/triangulardistribution.\+cpp\end{DoxyCompactItemize}

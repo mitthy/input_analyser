@@ -1,0 +1,112 @@
+\hypertarget{classNormalDistribution}{}\section{Normal\+Distribution Class Reference}
+\label{classNormalDistribution}\index{Normal\+Distribution@{Normal\+Distribution}}
+
+
+{\ttfamily \#include $<$normaldistribution.\+h$>$}
+
+
+
+Inheritance diagram for Normal\+Distribution\+:
+% FIG 0
+
+
+Collaboration diagram for Normal\+Distribution\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classNormalDistribution_a329f8413620c0bfbe2fca4e3ef958de5}{Normal\+Distribution} (float mean, float standard\+\_\+deviation)
+\item 
+virtual float \hyperlink{classNormalDistribution_a121b2abfc13fc376512aa4f7e2fb1bb4}{generate\+\_\+value} () const
+\item 
+virtual float \hyperlink{classNormalDistribution_a9e53ead03edb6441713d84eaa73976dd}{frequency\+\_\+for} (float value) const
+\item 
+virtual std\+::string \hyperlink{classNormalDistribution_a13afb9f11a9d643ff1af5de2ca066005}{get\+\_\+distribution\+\_\+name} () const
+\item 
+virtual std\+::string \hyperlink{classNormalDistribution_acedea04da0d96d01ed5c7fde83a56e1c}{get\+\_\+parameters\+\_\+str} () const
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class that represents a normal distribution. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classNormalDistribution_a329f8413620c0bfbe2fca4e3ef958de5}\label{classNormalDistribution_a329f8413620c0bfbe2fca4e3ef958de5}} 
+\index{Normal\+Distribution@{Normal\+Distribution}!Normal\+Distribution@{Normal\+Distribution}}
+\index{Normal\+Distribution@{Normal\+Distribution}!Normal\+Distribution@{Normal\+Distribution}}
+\subsubsection{\texorpdfstring{Normal\+Distribution()}{NormalDistribution()}}
+{\footnotesize\ttfamily Normal\+Distribution\+::\+Normal\+Distribution (\begin{DoxyParamCaption}\item[{float}]{mean,  }\item[{float}]{standard\+\_\+deviation }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructs an object 
+\begin{DoxyParams}{Parameters}
+{\em mean} & The mean of the normal distribution. \\
+\hline
+{\em standard\+\_\+deviation} & The standard deviation of the normal distribution. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classNormalDistribution_a9e53ead03edb6441713d84eaa73976dd}\label{classNormalDistribution_a9e53ead03edb6441713d84eaa73976dd}} 
+\index{Normal\+Distribution@{Normal\+Distribution}!frequency\+\_\+for@{frequency\+\_\+for}}
+\index{frequency\+\_\+for@{frequency\+\_\+for}!Normal\+Distribution@{Normal\+Distribution}}
+\subsubsection{\texorpdfstring{frequency\+\_\+for()}{frequency\_for()}}
+{\footnotesize\ttfamily float Normal\+Distribution\+::frequency\+\_\+for (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Calculates the probability distribution. 
+\begin{DoxyParams}{Parameters}
+{\em value} & The value to calculate the probability. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The probability of value. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classDistribution_a0778c93fb686dd1abe2830e1c7e564a6}{Distribution}.
+
+\mbox{\Hypertarget{classNormalDistribution_a121b2abfc13fc376512aa4f7e2fb1bb4}\label{classNormalDistribution_a121b2abfc13fc376512aa4f7e2fb1bb4}} 
+\index{Normal\+Distribution@{Normal\+Distribution}!generate\+\_\+value@{generate\+\_\+value}}
+\index{generate\+\_\+value@{generate\+\_\+value}!Normal\+Distribution@{Normal\+Distribution}}
+\subsubsection{\texorpdfstring{generate\+\_\+value()}{generate\_value()}}
+{\footnotesize\ttfamily float Normal\+Distribution\+::generate\+\_\+value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Generates a random value following a normal distribution. \begin{DoxyReturn}{Returns}
+Normal distributed random value. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classDistribution_aa1ea89994ac123f003b8b8f5fe6fad40}{Distribution}.
+
+\mbox{\Hypertarget{classNormalDistribution_a13afb9f11a9d643ff1af5de2ca066005}\label{classNormalDistribution_a13afb9f11a9d643ff1af5de2ca066005}} 
+\index{Normal\+Distribution@{Normal\+Distribution}!get\+\_\+distribution\+\_\+name@{get\+\_\+distribution\+\_\+name}}
+\index{get\+\_\+distribution\+\_\+name@{get\+\_\+distribution\+\_\+name}!Normal\+Distribution@{Normal\+Distribution}}
+\subsubsection{\texorpdfstring{get\+\_\+distribution\+\_\+name()}{get\_distribution\_name()}}
+{\footnotesize\ttfamily virtual std\+::string Normal\+Distribution\+::get\+\_\+distribution\+\_\+name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+The name of the distribution. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classDistribution_a478a0c7b72d3ad266a2b6f1b9ed20fe9}{Distribution}.
+
+\mbox{\Hypertarget{classNormalDistribution_acedea04da0d96d01ed5c7fde83a56e1c}\label{classNormalDistribution_acedea04da0d96d01ed5c7fde83a56e1c}} 
+\index{Normal\+Distribution@{Normal\+Distribution}!get\+\_\+parameters\+\_\+str@{get\+\_\+parameters\+\_\+str}}
+\index{get\+\_\+parameters\+\_\+str@{get\+\_\+parameters\+\_\+str}!Normal\+Distribution@{Normal\+Distribution}}
+\subsubsection{\texorpdfstring{get\+\_\+parameters\+\_\+str()}{get\_parameters\_str()}}
+{\footnotesize\ttfamily virtual std\+::string Normal\+Distribution\+::get\+\_\+parameters\+\_\+str (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+A string with the values used as parameters for the distribution. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classDistribution_a716b7df9facb6bb016f46ac130297f9c}{Distribution}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/griffith/projects/input\+\_\+analyser/src/distributions/normaldistribution.\+h\item 
+/home/griffith/projects/input\+\_\+analyser/src/distributions/normaldistribution.\+cpp\end{DoxyCompactItemize}

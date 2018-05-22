@@ -1,0 +1,112 @@
+\hypertarget{classLogNormalDistribution}{}\section{Log\+Normal\+Distribution Class Reference}
+\label{classLogNormalDistribution}\index{Log\+Normal\+Distribution@{Log\+Normal\+Distribution}}
+
+
+{\ttfamily \#include $<$lognormaldistribution.\+h$>$}
+
+
+
+Inheritance diagram for Log\+Normal\+Distribution\+:
+% FIG 0
+
+
+Collaboration diagram for Log\+Normal\+Distribution\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classLogNormalDistribution_a002e474d56d9a3d7204642fcf8bb9a46}{Log\+Normal\+Distribution} (float mean, float standard\+\_\+deviation)
+\item 
+virtual float \hyperlink{classLogNormalDistribution_a02ed860dc4f556df25e9274cd106937c}{generate\+\_\+value} () const
+\item 
+virtual float \hyperlink{classLogNormalDistribution_ab60a8974eaed392159b794994ed20999}{frequency\+\_\+for} (float value) const
+\item 
+virtual std\+::string \hyperlink{classLogNormalDistribution_a05e474accd65f523749011fbc8b42b65}{get\+\_\+distribution\+\_\+name} () const
+\item 
+virtual std\+::string \hyperlink{classLogNormalDistribution_a5dfd7c43d883d868dab5d62e55a7e610}{get\+\_\+parameters\+\_\+str} () const
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class that represents a lognormal distribution. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classLogNormalDistribution_a002e474d56d9a3d7204642fcf8bb9a46}\label{classLogNormalDistribution_a002e474d56d9a3d7204642fcf8bb9a46}} 
+\index{Log\+Normal\+Distribution@{Log\+Normal\+Distribution}!Log\+Normal\+Distribution@{Log\+Normal\+Distribution}}
+\index{Log\+Normal\+Distribution@{Log\+Normal\+Distribution}!Log\+Normal\+Distribution@{Log\+Normal\+Distribution}}
+\subsubsection{\texorpdfstring{Log\+Normal\+Distribution()}{LogNormalDistribution()}}
+{\footnotesize\ttfamily Log\+Normal\+Distribution\+::\+Log\+Normal\+Distribution (\begin{DoxyParamCaption}\item[{float}]{mean,  }\item[{float}]{standard\+\_\+deviation }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructs an object 
+\begin{DoxyParams}{Parameters}
+{\em mean} & The mean of the lognormal distribution. \\
+\hline
+{\em standard\+\_\+deviation} & The standard deviation of the lognormal distribution. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classLogNormalDistribution_ab60a8974eaed392159b794994ed20999}\label{classLogNormalDistribution_ab60a8974eaed392159b794994ed20999}} 
+\index{Log\+Normal\+Distribution@{Log\+Normal\+Distribution}!frequency\+\_\+for@{frequency\+\_\+for}}
+\index{frequency\+\_\+for@{frequency\+\_\+for}!Log\+Normal\+Distribution@{Log\+Normal\+Distribution}}
+\subsubsection{\texorpdfstring{frequency\+\_\+for()}{frequency\_for()}}
+{\footnotesize\ttfamily float Log\+Normal\+Distribution\+::frequency\+\_\+for (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Calculates the probability distribution. 
+\begin{DoxyParams}{Parameters}
+{\em value} & The value to calculate the probability. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The probability of value. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classDistribution_a0778c93fb686dd1abe2830e1c7e564a6}{Distribution}.
+
+\mbox{\Hypertarget{classLogNormalDistribution_a02ed860dc4f556df25e9274cd106937c}\label{classLogNormalDistribution_a02ed860dc4f556df25e9274cd106937c}} 
+\index{Log\+Normal\+Distribution@{Log\+Normal\+Distribution}!generate\+\_\+value@{generate\+\_\+value}}
+\index{generate\+\_\+value@{generate\+\_\+value}!Log\+Normal\+Distribution@{Log\+Normal\+Distribution}}
+\subsubsection{\texorpdfstring{generate\+\_\+value()}{generate\_value()}}
+{\footnotesize\ttfamily float Log\+Normal\+Distribution\+::generate\+\_\+value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Generates a random value following a lognormal distribution. \begin{DoxyReturn}{Returns}
+Lognormal distributed random value. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classDistribution_aa1ea89994ac123f003b8b8f5fe6fad40}{Distribution}.
+
+\mbox{\Hypertarget{classLogNormalDistribution_a05e474accd65f523749011fbc8b42b65}\label{classLogNormalDistribution_a05e474accd65f523749011fbc8b42b65}} 
+\index{Log\+Normal\+Distribution@{Log\+Normal\+Distribution}!get\+\_\+distribution\+\_\+name@{get\+\_\+distribution\+\_\+name}}
+\index{get\+\_\+distribution\+\_\+name@{get\+\_\+distribution\+\_\+name}!Log\+Normal\+Distribution@{Log\+Normal\+Distribution}}
+\subsubsection{\texorpdfstring{get\+\_\+distribution\+\_\+name()}{get\_distribution\_name()}}
+{\footnotesize\ttfamily virtual std\+::string Log\+Normal\+Distribution\+::get\+\_\+distribution\+\_\+name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+The name of the distribution. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classDistribution_a478a0c7b72d3ad266a2b6f1b9ed20fe9}{Distribution}.
+
+\mbox{\Hypertarget{classLogNormalDistribution_a5dfd7c43d883d868dab5d62e55a7e610}\label{classLogNormalDistribution_a5dfd7c43d883d868dab5d62e55a7e610}} 
+\index{Log\+Normal\+Distribution@{Log\+Normal\+Distribution}!get\+\_\+parameters\+\_\+str@{get\+\_\+parameters\+\_\+str}}
+\index{get\+\_\+parameters\+\_\+str@{get\+\_\+parameters\+\_\+str}!Log\+Normal\+Distribution@{Log\+Normal\+Distribution}}
+\subsubsection{\texorpdfstring{get\+\_\+parameters\+\_\+str()}{get\_parameters\_str()}}
+{\footnotesize\ttfamily virtual std\+::string Log\+Normal\+Distribution\+::get\+\_\+parameters\+\_\+str (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+A string with the values used as parameters for the distribution. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classDistribution_a716b7df9facb6bb016f46ac130297f9c}{Distribution}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/griffith/projects/input\+\_\+analyser/src/distributions/lognormaldistribution.\+h\item 
+/home/griffith/projects/input\+\_\+analyser/src/distributions/lognormaldistribution.\+cpp\end{DoxyCompactItemize}
