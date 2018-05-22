@@ -21,17 +21,43 @@
 #include "distribution.h"
 
 /**
- * @todo write docs
+ * Class that represents a poisson distribution.
  */
 class PoissonDistribution: public Distribution {
 public:
-    PoissonDistribution(float avg_occur): _lambda(avg_occur) {}
+    
+    /**
+     * Constructs an object.
+     * @param lambda The lambda of the poisson distribution.
+     * @pre <strong class="paramname">lambda</strong> > 0
+     */
+    PoissonDistribution(float lambda): _lambda(lambda) {}
+    
     virtual ~PoissonDistribution() = default;
+    
+    /**
+     * Generates a random value following a poisson distribution.
+     * @return Poisson distributed random value.
+     */
     virtual float generate_value() const;
+    
+    /**
+     * Calculates the probability distribution.
+     * @param value The value to calculate the probability.
+     * @return The probability of value.
+     */
     virtual float frequency_for(float value) const;
+    
+    /**
+     * @return The name of the distribution.
+     */
     virtual std::string get_distribution_name() const {
         return "poisson";
     }
+    
+    /**
+     * @return A string with the values used as parameters for the distribution.
+     */
     virtual std::string get_parameters_str() const {
         return "lambda = " + std::to_string(_lambda);
     }

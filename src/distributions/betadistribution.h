@@ -21,13 +21,29 @@
 #include "distribution.h"
 
 /**
- * @todo write docs
+ * Class that represents a beta distribution. It is not yet implemented.
  */
 class BetaDistribution: public Distribution {
 public:
-    BetaDistribution(float alfa, float beta);
+    /**
+     * Constructs an object.
+     * @param alpha The alpha value of a beta distribution.
+     * @param beta The beta value of a beta distribution.
+     */
+    BetaDistribution(float alpha, float beta);
     virtual ~BetaDistribution() = default;
+    
+    /**
+     * Generates a random value following a beta distribution.
+     * @return Beta distributed random value.
+     */
     virtual float generate_value() const;
+    
+    /**
+     * Calculates the probability distribution.
+     * @param value The value to calculate the probability.
+     * @return The probability of value.
+     */
     virtual float frequency_for(float value) const;
 };
 

@@ -21,17 +21,43 @@
 #include "distribution.h"
 
 /**
- * @todo write docs
+ * Class that represents a normal distribution.
  */
 class NormalDistribution: public Distribution {
 public:
+    
+    /**
+     * Constructs an object
+     * @param mean The mean of the normal distribution.
+     * @param standard_deviation The standard deviation of the normal distribution.
+     */
     NormalDistribution(float mean, float standard_deviation): _mean(mean), _standard_deviation(standard_deviation) {}
+    
     virtual ~NormalDistribution() = default;
+    
+    /**
+     * Generates a random value following a normal distribution.
+     * @return Normal distributed random value.
+     */
     virtual float generate_value() const;
+    
+    /**
+     * Calculates the probability distribution.
+     * @param value The value to calculate the probability.
+     * @return The probability of value.
+     */
     virtual float frequency_for(float value) const;
+    
+    /**
+     * @return The name of the distribution.
+     */
     virtual std::string get_distribution_name() const {
         return "normal";
     }
+    
+    /**
+     * @return A string with the values used as parameters for the distribution.
+     */
     virtual std::string get_parameters_str() const {
         return "mean = " + std::to_string(_mean) + "; standard deviation = " + std::to_string(_standard_deviation);
     }

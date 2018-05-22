@@ -24,6 +24,10 @@
 #include <utility>
 #include <string>
 
+/**
+ * Enum listing the distribution types.
+ * We don't list beta here since it is not yet implemented.
+ */
 enum class DistributionType {
     TRIANGULAR,
     NORMAL,
@@ -33,23 +37,55 @@ enum class DistributionType {
     POISSON
 };
 
-//Abstract class that represents a probability distribution.
+/**
+ * Abstract class that represents a probability distribution.
+ */
 class Distribution {
 public:
     Distribution() = default;
     virtual ~Distribution() = default;
+    
+    /**
+     * Calculates a random value following a certain distribution. Subclasses should implement this method.
+     * @return A random value.
+     */
     virtual float generate_value() const = 0;
+    
+    /**
+     * Calculates the probability distribution. Subclasses should implement this method.
+     * @param value The value to calculate the probability.
+     * @return The probability of value.
+     */
     virtual float frequency_for(float value) const = 0;
+    
+    /**
+     * Method that returns the name of the distribution. Subclasses can choose to not implement this in which case it is simply undefined.
+     * @return The name of the distribution.
+     */
     virtual std::string get_distribution_name() const {
         return "undefined";
     }
+    
+    /**
+     * Method that returns the parameters of the distribution. Subclasses can choose to not implement this in which case it is simply undefined.
+     * @return A string with the values used as parameters for the distribution.
+     */
     virtual std::string get_parameters_str() const {
         return "undefined";
     }
 };
 
+/**
+ * Chi Squared test for a certain distribution given a monte carlo histogram.
+ */
 float chi_squared_test(const MonteCarlo& hist, const Distribution& dist);
 
+/**
+ * Creates distribution with the best Chi Squared score for the histogram among the desired types. If no types are supplied, it picks the best among all types
+ * @param hist The Monte Carlo histogram.
+ * @param dsr_types The types of distributions the user desires. If empty, it assumes the user wants to check all types.
+ * @return The distribution with the best Chi Squared score.
+ */
 std::pair<std::unique_ptr<Distribution>, float> create_distribution(const MonteCarlo& hist, std::set<DistributionType>& dsr_types);
 
 #endif

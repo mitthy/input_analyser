@@ -21,17 +21,45 @@
 #include "distribution.h"
 
 /**
- * @todo write docs
+ * Class that represents a triangular distribution.
  */
 class TriangularDistribution: public Distribution {
 public:
+    
+    /**
+     * Constructs an object.
+     * @param min The minimum (a) value of a triangular distribution.
+     * @param mode The mode(c) of a triangular distribution.
+     * @param max the maximum (b) value of a triangular distribution.
+     * @pre <strong class="paramname">min</strong> <= <strong class="paramname">mode</strong> <= <strong class="paramname">max</strong>.
+     * @pre <strong class="paramname">min</strong> < <strong class="paramname">max</strong>.
+     */
     TriangularDistribution(float min, float max, float mode): _min(min), _max(max), _mode(mode){}
     virtual ~TriangularDistribution() = default;
+    
+    /**
+     * Generates a random value following a triangular distribution.
+     * @return Triangular distributed random value.
+     */
     virtual float generate_value() const;
+    
+    /**
+     * Calculates the probability distribution.
+     * @param value The value to calculate the probability.
+     * @return The probability of value.
+     */
     virtual float frequency_for(float value) const;
+    
+    /**
+     * @return The name of the distribution.
+     */
     virtual std::string get_distribution_name() const {
         return "triangular";
     }
+    
+    /**
+     * @return A string with the values used as parameters for the distribution.
+     */
     virtual std::string get_parameters_str() const {
         return "a = " + std::to_string(_min) + "; b = " + std::to_string(_max) + "; c = " + std::to_string(_mode);
     }

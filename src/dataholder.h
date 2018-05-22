@@ -97,7 +97,7 @@ public:
      * Outputs data to stream.
      * @param os Output stream.
      * @param obj DataHolder to output.
-     * @return The output stream <strong class="paramname">os
+     * @return The output stream <strong class="paramname">os</strong>
      */
     friend std::ostream& operator<<(std::ostream& os, const DataHolder& obj);
     
@@ -105,7 +105,7 @@ public:
      * Inputs data from stream.
      * @param is Input stream.
      * @param obj DataHolder object that will read value from stream.
-     * @return The input stream <strong class="paramname">is
+     * @return The input stream <strong class="paramname">is</strong>
      */
     friend std::istream& operator>>(std::istream& is, DataHolder& obj);
     

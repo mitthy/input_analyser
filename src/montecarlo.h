@@ -114,7 +114,7 @@ public:
         * C++ stream operator for printing the class.
         * @param os The output stream.
         * @param monte_class The class to be printed.
-        * @return The output stream <strong class="paramname">os
+        * @return The output stream <strong class="paramname">os</strong>
         */
         friend std::ostream& operator<<(std::ostream& os, const monte_carlo_class& monte_class) {
             os << "Class value " << monte_class.value << "; Initial probability " << monte_class.acum_probability << "; Number of data ";
@@ -189,7 +189,7 @@ public:
         * C++ stream operator for printing the class.
         * @param os The output stream.
         * @param printer The printer itself.
-        * @return The output stream <strong class="paramname">os
+        * @return The output stream <strong class="paramname">os</strong>
         */
         friend std::ostream& operator<<(std::ostream& os, const monte_carlo_class_printer& printer); 
     private:

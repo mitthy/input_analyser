@@ -25,13 +25,38 @@
  */
 class ExponentialDistribution: public Distribution {
 public:
-    ExponentialDistribution(float mean): _lambda(mean) {}
+    
+    /**
+     * Constructs an object
+     * @param lambda The lambda value of the exponential distribution.
+     * @pre <strong class="paramname">lambda</strong> > 0
+     */
+    ExponentialDistribution(float lambda): _lambda(lambda) {}
     virtual ~ExponentialDistribution() = default;
+    
+    /**
+     * Generates a random value following an exponential distribution.
+     * @return Exponential distributed random value.
+     */
     virtual float generate_value() const;
+    
+    /**
+     * Calculates the probability distribution.
+     * @param value The value to calculate the probability.
+     * @return The probability of value.
+     */
     virtual float frequency_for(float value) const;
+    
+    /**
+     * @return The name of the distribution.
+     */
     virtual std::string get_distribution_name() const {
         return "exponential";
     }
+    
+    /**
+     * @return A string with the values used as parameters for the distribution.
+     */
     virtual std::string get_parameters_str() const {
         return "lambda = " + std::to_string(_lambda);
     }

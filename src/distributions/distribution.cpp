@@ -36,6 +36,7 @@ unique_ptr<T> make_unique(Args&&... args) {
 }
 
 pair<unique_ptr<Distribution>, float> create_distribution(const MonteCarlo& monte_carlo_histogram, set<DistributionType>& desired_type) {
+    //If no type was supplied, we assume all.
     if(desired_type.empty()) {
         desired_type.insert(DistributionType::TRIANGULAR);
         desired_type.insert(DistributionType::NORMAL);
@@ -46,6 +47,7 @@ pair<unique_ptr<Distribution>, float> create_distribution(const MonteCarlo& mont
     }
     unique_ptr<Distribution> best_distribution = nullptr;
     float best_fit = numeric_limits<float>::quiet_NaN();
+    //We initialize all those values as NaN so we don't have to recalculate them for each type.
     float mean = numeric_limits<float>::quiet_NaN();
     float variance = numeric_limits<float>::quiet_NaN();
     float standard_deviation = numeric_limits<float>::quiet_NaN();
@@ -53,6 +55,10 @@ pair<unique_ptr<Distribution>, float> create_distribution(const MonteCarlo& mont
     float max = numeric_limits<float>::quiet_NaN();
     for(auto& type: desired_type) {
         unique_ptr<Distribution> dist_to_test(nullptr);
+        //Based on the current distribution, we estimate its parameters and perform the Chi Squared test.
+        //If it is better than the current best, we just swap the current best with the current distribution and update the best score.
+        //Also, each type we check on the monte carlo calculated values we check if it is NaN. If it is, we just initialize it.
+        //This prevents multiple unecessary calculations.
         switch(type) {
             case(DistributionType::TRIANGULAR): {
                 if(isnan(min)) {
@@ -138,9 +144,12 @@ pair<unique_ptr<Distribution>, float> create_distribution(const MonteCarlo& mont
     return make_pair(move(best_distribution), best_fit);
 }
 
+
 float chi_squared_test(const MonteCarlo& hist, const Distribution& dist) {
     auto sz = hist.data_size();
     float sum = 0;
+    //We check the data count for the current distribution and compare it with the data count for the histogram.
+    //We know that the data count for the distribution is equal to the integral of the probability function from the lower limit to the upper limit * the total amount of data, so we just compute it for every class and apply the Chi Squared test formula.
     for(auto& klass : hist) {
         if(klass.class_count) {
             auto fx = [&dist](float x) {

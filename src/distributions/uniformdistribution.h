@@ -19,19 +19,47 @@
 #ifndef UNIFORMDISTRIBUTION_H
 #define UNIFORMDISTRIBUTION_H
 #include "distribution.h"
+#include <string>
 
 /**
- * @todo write docs
+ * Class that represents an uniform distribution.
  */
 class UniformDistribution: public Distribution {
 public:
+    
+    /**
+     * Constructs an object.
+     * @param min The minimum (a) value of an uniform distribution.
+     * @param max the maximum (b) value of an uniform distribution.
+     * @pre <strong class="paramname">min</strong> < <strong class="paramname">max</strong>.
+     */
     UniformDistribution(float min, float max): _min(min), _max(max) {}
+    
     virtual ~UniformDistribution() = default;
+    
+    /**
+     * Generates a random value following an uniform distribution.
+     * @return Uniform distributed random value in the range (min, max).
+     */
     virtual float generate_value() const;
+    
+    /**
+     * Calculates the probability distribution.
+     * @param value The value to calculate the probability.
+     * @return The probability of value.
+     */
     virtual float frequency_for(float value) const;
+    
+    /**
+     * @return The name of the distribution.
+     */
     virtual std::string get_distribution_name() const {
         return "uniform";
     }
+    
+    /**
+     * @return A string with the values used as parameters for the distribution.
+     */
     virtual std::string get_parameters_str() const {
         return "a = " + std::to_string(_min) + "; b = " + std::to_string(_max);
     }
