@@ -135,7 +135,7 @@ pair<unique_ptr<Distribution>, float> create_distribution(const MonteCarlo& mont
             best_distribution.swap(dist_to_test);
         }
     }
-    return pair<unique_ptr<Distribution>, float>(move(best_distribution), best_fit);
+    return make_pair(move(best_distribution), best_fit);
 }
 
 float chi_squared_test(const MonteCarlo& hist, const Distribution& dist) {

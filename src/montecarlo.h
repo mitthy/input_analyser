@@ -24,34 +24,98 @@
 #include <iostream>
 
 /**
- * @todo write docs
+ * Class representing a Monte Carlo method and its generated histogram.
  */
 class MonteCarlo {
 public:
     //Constructors
+    
+    /**
+     * Constructor for Monte Carlo histogram.
+     * @param begin iterator to first element of data.
+     * @param end iterator to element one past the end of data.
+     * @pre <strong class="paramname">begin</strong> should be lesser than <strong class="paramname">end</strong>.
+     */
     template<typename Iterator>
     MonteCarlo(Iterator begin, Iterator end);
     
+    /**
+     * Function that uses the Monte Carlo histogram as a random number generator.
+     * @return A random number based on the frequency distribution of the supplied data.
+     */
     float generate_value() const;
     
+    /**
+     * Function that calculates the mean of the Monte Carlo histogram.
+     * @return The mean of the aggruped data.
+     */
     float histogram_mean() const;
     
+    /**
+     * Function that calculates the variance of the Monte Carlo histogram.
+     * @return The variance of the aggruped data.
+     */
     float histogram_variance() const;
     
+    /**
+     * Function that calculates the standard deviation of the Monte Carlo histogram.
+     * @return The standard deviation of the aggruped data.
+     */
     float histogram_standard_deviation() const;
     
+    /**
+     * Function that calculates the minimum value of the Monte Carlo histogram.
+     * @return The minimum class value of the aggruped data.
+     */
     float histogram_min_value() const;
     
+    /**
+     * Function that calculates the maximum value of the Monte Carlo histogram.
+     * @return The maximum class value of the aggruped data.
+     */
     float histogram_max_value() const;
     
+    /**
+     * Function that calculates the mode of the Monte Carlo histogram.
+     * @return The class with the most data of the aggruped data.
+     */
     float histogram_mode() const;
     
+    /**
+    * Internal struct that contains data for each Monte Carlo histogram class
+    */
     struct monte_carlo_class {
+        /**
+        * Value that represents the class. This is usually the mid point.
+        */
         float value;
+        
+        /**
+        * Value that represents the accumulated probability. This value is equal to acum_probability[cur_class - 1] + prob[cur_class].
+        */
         float acum_probability;
+        
+        /**
+        * The number of elements in the class.
+        */
         std::size_t class_count;
+        
+        /**
+        * The lower bound of the class.
+        */
         float lower_bound;
+        
+        /**
+        * The upper bound of the class.
+        */
         float upper_bound;
+        
+        /**
+        * C++ stream operator for printing the class.
+        * @param os The output stream.
+        * @param monte_class The class to be printed.
+        * @return The output stream <strong class="paramname">os
+        */
         friend std::ostream& operator<<(std::ostream& os, const monte_carlo_class& monte_class) {
             os << "Class value " << monte_class.value << "; Initial probability " << monte_class.acum_probability << "; Number of data ";
             os << monte_class.class_count;
@@ -59,26 +123,52 @@ public:
         }
     };
     
+    /**
+    * Typedef to iterator.
+    */
     typedef std::vector<monte_carlo_class>::iterator iterator;
     
+    /**
+    * Typedef to const_iterator.
+    */
     typedef std::vector<monte_carlo_class>::const_iterator const_iterator;
     
+    /**
+    * Gets iterator to Monte Carlo class.
+    * @return iterator to first Monte Carlo class.
+    */
     iterator begin() {
         return _organized_data.begin();
     }
     
+    /**
+    * Gets iterator to Monte Carlo class.
+    * @return iterator to one past the end Monte Carlo class.
+    */
     iterator end() {
         return _organized_data.end();
     }
     
+    /**
+    * Gets const_iterator to Monte Carlo class.
+    * @return const_iterator to first Monte Carlo class.
+    */
     const_iterator begin() const {
         return _organized_data.begin();
     }
     
+    /**
+    * Gets const_iterator to Monte Carlo class.
+    * @return const_iterator to one past the end Monte Carlo class.
+    */
     const_iterator end() const {
         return _organized_data.end();
     }
     
+    /**
+    * Size of all the data in the histogram.
+    * @return amount of data supplied to construct the histogram.
+    */
     std::size_t data_size() const {
         return _data_count;
     }
@@ -89,27 +179,47 @@ private:
     
     std::size_t _data_count;
 public:
+    
+    /**
+    * Internal struct that can be used to print all the Monte Carlo classes.
+    */
     struct monte_carlo_class_printer {
         friend class MonteCarlo;
+        /**
+        * C++ stream operator for printing the class.
+        * @param os The output stream.
+        * @param printer The printer itself.
+        * @return The output stream <strong class="paramname">os
+        */
         friend std::ostream& operator<<(std::ostream& os, const monte_carlo_class_printer& printer); 
     private:
         monte_carlo_class_printer() = default;
         std::vector<monte_carlo_class>* classes;
     };
     
+    /**
+    * Returns a printer to print the classes on the screen.
+    * @return An object of type monte_carlo_class_printer.
+    */
     monte_carlo_class_printer print_classes();
 };
 
+
+//Since it is a templated method, we implement it in the header.
 template<typename Iterator>
 MonteCarlo::MonteCarlo(Iterator begin, Iterator end): _data_count(std::distance(begin, end)) {
+    //If the difference between the max element and the minimum element is lesser than this value, we don't split the data into classes.
     const float EPSLON = 1e-4;
     auto min_max = std::minmax_element(begin, end);
     float min = *min_max.first, max = *min_max.second;
+    //We split the input data into classes. For now, it just gets the minimum between the amount of data / 10 + 1 and 15.
     int number_of_classes = max - min < EPSLON ? 1 : std::min((_data_count / 10) + 1, (size_t)15);
     float step = 0;
+    //The step that we take between each classes.
     if(number_of_classes > 1) {
         step = (max - min) / (number_of_classes - 1);
     }
+    //Calculates the bound for each class.
     float lower_bound = step ? min - step / 2 : min;
     float upper_bound = step ? min + step / 2 : max;
     struct monte_carlo_frenquecy {
@@ -117,6 +227,7 @@ MonteCarlo::MonteCarlo(Iterator begin, Iterator end): _data_count(std::distance(
         float lower_bound;
         float upper_bound;
     };
+    //Insert all the classes into a vector.
     std::vector<monte_carlo_frenquecy> frequency_count;
     for(int i = 0; i < number_of_classes; ++i) {
         monte_carlo_frenquecy freq;
@@ -126,6 +237,7 @@ MonteCarlo::MonteCarlo(Iterator begin, Iterator end): _data_count(std::distance(
         upper_bound += step;
         frequency_count.push_back(freq);
     }
+    //For each element, we do a binary search to find its position in the class vector and then we increment the amount of data of that class.
     while(begin != end) {
         std::size_t low = 0, high = frequency_count.size();
         float val = *begin++;
@@ -143,8 +255,7 @@ MonteCarlo::MonteCarlo(Iterator begin, Iterator end): _data_count(std::distance(
     float acum = 0;
     for(const monte_carlo_frenquecy& analysed : frequency_count) {
         float avg = analysed.lower_bound + (analysed.upper_bound - analysed.lower_bound) / 2;
-        float prob = acum;
-        monte_carlo_class new_class = {avg, prob, analysed.count, analysed.lower_bound, analysed.upper_bound};
+        monte_carlo_class new_class = {avg, acum, analysed.count, analysed.lower_bound, analysed.upper_bound};
         _organized_data.push_back(new_class);
         acum += analysed.count * 1.0 / _data_count;
     }
