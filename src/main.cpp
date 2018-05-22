@@ -237,8 +237,10 @@ void print_help() {
     cout << "--help or -h to print help." << endl;
     cout << "--input_file or -if filename: opens filename for processing, which should" << endl;
     cout << "contain a list of float values. If not supplied, the user can enter numbers by" << endl;
-    cout << "hand when the software starts." << endl;
-    cout << "--output_file or -of filename: opens filename to output results." << endl;
+    cout << "hand when the software starts. Please supply 2 different files for input and" << endl;
+    cout << "output." << endl;
+    cout << "--output_file or -of filename: opens filename to output results. Please supply" << endl;
+    cout << "2 different files for input and output." << endl;
     cout << "--generate_random or -gr number: generates number random values using the" << endl;
     cout << "best distribution found." << endl; 
     cout << "--print_classes or -pclasses if the user wants the classes calculated on the" << endl;
