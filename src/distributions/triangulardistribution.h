@@ -29,6 +29,12 @@ public:
     virtual ~TriangularDistribution() = default;
     virtual float generate_value() const;
     virtual float frequency_for(float value) const;
+    virtual std::string get_distribution_name() const {
+        return "triangular";
+    }
+    virtual std::string get_parameters_str() const {
+        return "a = " + std::to_string(_min) + "; b = " + std::to_string(_max) + "; c = " + std::to_string(_mode);
+    }
 private:
     float _min;
     float _max;

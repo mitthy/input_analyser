@@ -29,6 +29,12 @@ public:
     virtual ~ExponentialDistribution() = default;
     virtual float generate_value() const;
     virtual float frequency_for(float value) const;
+    virtual std::string get_distribution_name() const {
+        return "exponential";
+    }
+    virtual std::string get_parameters_str() const {
+        return "lambda = " + std::to_string(_lambda);
+    }
 private:
     float _lambda;
 };

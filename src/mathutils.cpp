@@ -16,9 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "distributions/poissondistribution.h"
-#include <cmath>
-#include <iostream>
+#include "mathutils.h"
 #include <random>
 #include <limits>
 
@@ -32,30 +30,21 @@ namespace {
     uniform_real_distribution<float> dist(nextafter(numeric_limits<float>::min(), 1.0f), 1);
 }
 
-float PoissonDistribution::generate_value() const {
-    float temp = pow(M_E, -_lambda);
-    int k = 0;
-    float p = 1;
-    do {
-        ++k;
-        float random = dist(mt);
-        p *= random;
-    } while(p > temp);
-    return k - 1;
-}
-
-float PoissonDistribution::frequency_for(float value) const {
-    int val = static_cast<long>(value);
-    if(val < 0) {
-        return 0;
+float box_muller_transform(float mean, float standard_deviation) {
+    //Implementation of a normal random number generator using the Box-Muller transform. 
+    //Link: https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform
+    static bool generate = true;
+    static float z0, z1;
+    //If generate is false, it means we calculated both z0 and z1 on a previous iteration, so we just use z1.
+    if(!generate) {
+        generate = true;
+        return z1 * standard_deviation + mean;
     }
-    float temp = pow(M_E, -_lambda) * (pow(_lambda, val));
-    while(val) {
-        temp /= 1.0f * val--;
-    }
-    return temp;
+    //It is guaranteed that dist(mt) will never be 0, since its limit is set to the minimum positive float point + 1.
+    float random1 = dist(mt);
+    float random2 = dist(mt);
+    z0 = sqrt(-2.0f * log(random1)) * cos(2 * M_PI * random2);
+    z1 = sqrt(-2.0f * log(random1)) * sin(2 * M_PI * random2);
+    generate = false;
+    return z0 * standard_deviation + mean;
 }
-
-
-
-

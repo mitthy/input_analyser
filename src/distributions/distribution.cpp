@@ -101,18 +101,21 @@ pair<unique_ptr<Distribution>, float> create_distribution(const MonteCarlo& mont
                 break;
             }
             case(DistributionType::LOGNORMAL): {
-                if(isnan(mean)) {
-                    mean = monte_carlo_histogram.histogram_mean();
-                }
-                if(isnan(standard_deviation)) {
-                    if(isnan(variance)) {
-                        standard_deviation = monte_carlo_histogram.histogram_standard_deviation();
-                    }
-                    else {
-                        standard_deviation = sqrt(variance);
+                float log_mean = 0;
+                float log_standard_dev = 0;
+                auto sz = monte_carlo_histogram.data_size();
+                for(auto& klass: monte_carlo_histogram) {
+                    if(klass.value > 0) {
+                        log_mean += log(klass.value) / sz * klass.class_count;
                     }
                 }
-                dist_to_test = make_unique<LogNormalDistribution>(mean, standard_deviation);
+                for(auto& klass : monte_carlo_histogram) {
+                    if(klass.value > 0) {
+                        float tmp = pow(log(klass.value) - log_mean, 2);
+                        log_standard_dev += tmp / std::max(1.0f, (float)(sz - 1)) *  klass.class_count;
+                    }
+                }
+                dist_to_test = make_unique<LogNormalDistribution>(log_mean, log_standard_dev);
                 break;
             }
             case(DistributionType::BETA): {
@@ -154,6 +157,12 @@ pair<unique_ptr<Distribution>, float> create_distribution(const MonteCarlo& mont
 }
 
 float chi_squared_test(const MonteCarlo& hist, const Distribution& dist) {
-    //TODO
-    return 0;
+    auto sz = hist.data_size();
+    float sum = 0;
+    for(auto& klass : hist) {
+        if(klass.class_count) {
+            sum += pow(dist.frequency_for(klass.value) * sz - klass.class_count, 2) / (1.0f * klass.class_count);
+        }
+    }
+    return sum;
 }

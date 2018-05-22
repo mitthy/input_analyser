@@ -46,8 +46,6 @@ public:
     
     float histogram_mode() const;
     
-private:
-    
     struct monte_carlo_class {
         float value;
         float acum_probability;
@@ -58,6 +56,32 @@ private:
             return os;
         }
     };
+    
+    typedef std::vector<monte_carlo_class>::iterator iterator;
+    
+    typedef std::vector<monte_carlo_class>::const_iterator const_iterator;
+    
+    iterator begin() {
+        return _organized_data.begin();
+    }
+    
+    iterator end() {
+        return _organized_data.end();
+    }
+    
+    const_iterator begin() const {
+        return _organized_data.begin();
+    }
+    
+    const_iterator end() const {
+        return _organized_data.end();
+    }
+    
+    std::size_t data_size() const {
+        return _data_count;
+    }
+    
+private:
     
     std::vector<monte_carlo_class> _organized_data;
     

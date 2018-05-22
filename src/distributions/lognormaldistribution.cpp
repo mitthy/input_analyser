@@ -17,18 +17,24 @@
  */
 
 #include "distributions/lognormaldistribution.h"
+#include <cmath>
+#include "mathutils.h"
 
-LogNormalDistribution::LogNormalDistribution(float avg, float standard_deviation) {
-    //TODO
-}
+using namespace std;
 
 float LogNormalDistribution::generate_value() const {
-    //TODO
-    return 0;
+    return pow(M_E, box_muller_transform(_mean, _standard_deviation));
 }
 
 float LogNormalDistribution::frequency_for(float value) const {
-    return 0;
+    if(value <= 0) {
+        return 0;
+    }
+    value = log(value);
+    float expo = -1 * pow((value - _mean), 2) /  (2 * pow(_standard_deviation, 2));
+    float pot = pow(M_E, expo);
+    const float sqr_2pi = 2.50662827463;
+    return 1 / (_standard_deviation * sqr_2pi) * pot;
 }
 
 
