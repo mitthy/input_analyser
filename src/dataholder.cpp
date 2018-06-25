@@ -27,10 +27,18 @@ ostream& operator<<(ostream& os, const DataHolder& dh) {
     return os;
 }
     
-//TODO Could be nice if we could read values into it even if there were some strings mixed into the stream.
 istream& operator>>(istream& is, DataHolder& dh) {
     input_data_t value = 0;
-    if(is >> value) {
+    
+    std::string parsed;
+    size_t next_position;
+    is >> parsed;
+    try {
+        value = stod(parsed, &next_position);
+        if(next_position != parsed.size()) {
+            is.setstate(ios::failbit);
+            return is;
+        }
         std::size_t n = dh._data.size();
         input_data_t new_size = static_cast<input_data_t>(n + 1);
         dh._current_mean = dh._current_mean * (n / new_size) + value / new_size;
@@ -38,6 +46,11 @@ istream& operator>>(istream& is, DataHolder& dh) {
         dh._current_min = std::min(dh._current_min, value);
         dh._data.push_back(value);
         dh._compute_variance_and_standard_deviation();
+    }
+            
+    catch(exception& e) {
+        is.setstate(ios::failbit);
+        return is;
     }
     return is;
 }

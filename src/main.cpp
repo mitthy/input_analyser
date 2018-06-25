@@ -204,7 +204,13 @@ int main(int argc, char **argv) {
         }
     }
     istream& input = *stream_ptr;
-    while(input >> h);
+    while(input.peek() != EOF) {
+        input >> h;
+        if(input.fail()) {
+            input.clear();
+            input.ignore();
+        }
+    }
     if(h.begin() == h.end()) {
         cerr << "Can't process empty data. Please supply floating point values for processing." << endl;
         return EXIT_FAILURE;
@@ -294,10 +300,8 @@ void print_help(std::ostream& os) {
     os << "--help or -h to print help." << endl;
     os << "--input_file or -if filename: opens filename for processing, which should" << endl;
     os << "contain a list of float values. If not supplied, the user can enter numbers by" << endl;
-    os << "hand when the software starts. When done typing numbers, just press ^D or enter" << endl;
-    os << "an invalid value. Please supply 2 different files for input and output." << endl;
-    os << "--output_file or -of filename: opens filename to output results. Please supply" << endl;
-    os << "2 different files for input and output." << endl;
+    os << "hand when the software starts. When done typing numbers, just press ^D twice." << endl;
+    os << "--output_file or -of filename: opens filename to output results." << endl;
     os << "--generate_random or -gr number: generates number random values using the" << endl;
     os << "best distribution found." << endl; 
     os << "--class_count or -cc number: chooses number as the number of classes for monte" << endl;
