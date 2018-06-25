@@ -38,7 +38,7 @@
 
 using namespace std;
 
-void print_help();
+void print_help(std::ostream&);
 
 //Just argument parsing in this file and setting up the system.
 
@@ -46,7 +46,7 @@ int main(int argc, char **argv) {
     DataHolder h;
     istream* stream_ptr = &cin;
     ostream* ostream_ptr = &cout;
-    ofstream out_file;
+    std::string out_file_name;
     ifstream file;
     set<DistributionType> desired_distributions;
     bool print_var = false;
@@ -55,16 +55,16 @@ int main(int argc, char **argv) {
     bool print_mode = false;
     bool print_min = false;
     bool print_max = false;
-    bool print_classes = false;
     bool print_chi_square_result = false;
     bool print_frequency_difference = false;
     bool print_distribution = true;
+    bool print_histogram = false;
     unsigned int generate_output = 0;
     unsigned int class_count = 0;
     for(int i = 1; i < argc; ++i) {
         string cur_arg(argv[i]);
         if(cur_arg == "--help" || cur_arg == "-h") {
-            print_help();
+            print_help(std::cout);
             return EXIT_SUCCESS;
         }
         else if(cur_arg == "--input_file" || cur_arg == "-if") {
@@ -88,12 +88,7 @@ int main(int argc, char **argv) {
                 cerr << "Found: None." << endl;
                 return EXIT_FAILURE;
             }
-            out_file.open(argv[i]);
-            if(!out_file) {
-                cerr << "Error opening file " << argv[i] << "for write." << endl;
-                return EXIT_FAILURE;
-            }
-            ostream_ptr = &out_file;
+            out_file_name = argv[i];
         }
         else if(cur_arg == "--generate_random" || cur_arg == "-gr") {
             if((++i) == argc) {
@@ -161,9 +156,6 @@ int main(int argc, char **argv) {
         else if(cur_arg == "--print_max" || cur_arg == "-pmax") {
             print_max = true;
         }
-        else if(cur_arg == "--print_classes" || cur_arg == "-pclasses") {
-            print_classes = true;
-        }
         else if(cur_arg == "--print_chi_square" || cur_arg == "-pcs") {
             print_chi_square_result = true;
         }
@@ -191,51 +183,81 @@ int main(int argc, char **argv) {
         else if(cur_arg == "--poisson" || cur_arg == "-psn") {
             desired_distributions.insert(DistributionType::POISSON);
         }
+        else if(cur_arg == "--print_histogram" || cur_arg == "-ph") {
+            print_histogram = true;
+        }
+        else if(cur_arg == "--print_all" || cur_arg == "-pa") {
+            print_chi_square_result = true;
+            print_frequency_difference = true;
+            print_histogram = true;
+            print_max = true;
+            print_min = true;
+            print_mode = true;
+            print_std_deviation = true;
+            print_var = true;
+        }
         else {
             cerr << "Invalid argument " << cur_arg << "." << endl;
             cerr << "Printing help:" << endl;
-            print_help();
+            print_help(std::cerr);
             return EXIT_FAILURE;
         }
     }
-    ostream& output = *ostream_ptr;
     istream& input = *stream_ptr;
-    output.precision(numeric_limits<input_data_t>::max_digits10);
     while(input >> h);
     if(h.begin() == h.end()) {
         cerr << "Can't process empty data. Please supply floating point values for processing." << endl;
         return EXIT_FAILURE;
     }
-    auto amount_of_data = std::distance(h.begin(), h.end());
+    auto amount_of_data = distance(h.begin(), h.end());
     if(class_count > amount_of_data) {
         cerr << "Too many classes for amount of data. Classes: " << class_count << " Data: " << amount_of_data << endl;
         cerr << "Falling back to default." << endl;
         class_count = 0;
     }
-    DataHistogram monte_carlo(h.begin(), h.end(), class_count);
     unique_ptr<Distribution> distr_ptr;
     input_data_t chi_result;
-    tie(distr_ptr, chi_result) = create_distribution(monte_carlo, desired_distributions);
-    if(print_classes) {
+    tie(distr_ptr, chi_result) = create_distribution(h, desired_distributions, class_count);
+    DataHistogram monte_carlo = h.generate_histogram(class_count);
+    if(file.is_open()) {
+        file.close();
+    }
+    ofstream out_file;
+    if(!out_file_name.empty()) {
+        out_file.open(out_file_name);
+        if(!out_file) {
+            cerr << "Error opening " << out_file_name << "." << endl;
+            return EXIT_FAILURE;
+        }
+        ostream_ptr = &out_file;
+    }
+    ostream& output = *ostream_ptr;
+    output.precision(numeric_limits<input_data_t>::max_digits10);
+    if(print_histogram) {
         output << monte_carlo.print_classes() << endl;
+        output << "Histogram mean: " << monte_carlo.histogram_mean() << "." << endl;
+        output << "Histogram variance: " << monte_carlo.histogram_variance() << "." << endl;
+        output << "Histogram standard deviation: " << monte_carlo.histogram_standard_deviation() << "." << endl;
+        output << "Histogram min value: " << monte_carlo.histogram_min_value() << "." << endl;
+        output << "Histogram max value: " << monte_carlo.histogram_max_value() << "." << endl;
     }
     if(print_mean) {
-        output << "Monte Carlo calculated histogram mean: " << monte_carlo.histogram_mean() << "." << endl;
+        output << "Data mean " << h.mean() << "." << endl;
     }
     if(print_var) {
-        output << "Monte Carlo calculated histogram variance: " << monte_carlo.histogram_variance() << "." << endl;
+        output << "Data variance " << h.variance() << "." << endl;
     }
     if(print_std_deviation) {
-        output << "Monte Carlo calculated histogram standard deviation: " << monte_carlo.histogram_standard_deviation() << "." << endl;
+        output << "Data standard deviation " << h.standard_deviation() << "." << endl;
     }
     if(print_mode) {
-        output << "Monte Carlo calculated histogram mode: " << monte_carlo.histogram_mode() << "." << endl;
+        output << "Data mode: " << monte_carlo.histogram_mode() << "." << endl;
     }
     if(print_min) {
-        output << "Monte Carlo calculated histogram min value: " << monte_carlo.histogram_min_value() << "." << endl;
+        output << "Data min value " << h.min() << "." << endl;
     }
     if(print_max) {
-        output << "Monte Carlo calculated histogram max value: " << monte_carlo.histogram_max_value() << "." << endl;
+        output << "Data max value " << h.max() << "." << endl;
     }
     if(print_chi_square_result) {
         output << "Chi square test result for distribution " << distr_ptr->get_distribution_name() << ": " << chi_result << "." << endl;
@@ -265,51 +287,49 @@ int main(int argc, char **argv) {
     return EXIT_SUCCESS;
 }
 
-void print_help() {
-    cout << "Input analyser for statistical purposes." << endl;
-    cout << "================================================================================" << endl;
-    cout << "Usage:" << endl;
-    cout << "--help or -h to print help." << endl;
-    cout << "--input_file or -if filename: opens filename for processing, which should" << endl;
-    cout << "contain a list of float values. If not supplied, the user can enter numbers by" << endl;
-    cout << "hand when the software starts. When done typing numbers, just press ^D or enter" << endl;
-    cout << "an invalid value. Please supply 2 different files for input and output." << endl;
-    cout << "--output_file or -of filename: opens filename to output results. Please supply" << endl;
-    cout << "2 different files for input and output." << endl;
-    cout << "--generate_random or -gr number: generates number random values using the" << endl;
-    cout << "best distribution found." << endl; 
-    cout << "--class_count or -cc number: chooses number as the number of classes for monte" << endl;
-    cout << "carlo." << endl;
-    cout << "--print_classes or -pclasses if the user wants the classes calculated on the" << endl;
-    cout << "histogram to be printed." << endl;
-    cout << "--print_mean or -pmn if the user wants the mean calculated on the histogram to" << endl;
-    cout << "be printed." << endl;
-    cout << "--print_variance or --print_var or -pvr if the user wants the variance calculated"<< endl;
-    cout << "on the histogram to be printed." << endl;
-    cout << "--print_std_deviation or -pstdev if the user wants the standard deviation" << endl;
-    cout << "calculated on the histogram to be printed." << endl;
-    cout << "--print_mode or -pmd if the user wants the mode calculated on the histogram to" << endl;
-    cout << "be printed." << endl;
-    cout << "--print_min or -pmin if the user wants the minimum value on the histogram to" << endl; 
-    cout << "be printed." << endl;
-    cout << "--print_max or -pmax if the user wants the maximum value on the histogram to be" << endl; 
-    cout <<" printed." << endl;
-    cout << "--print_chi_square_result or -pcs to print best fit distribution chi squared" << endl;
-    cout << "test result." << endl;
-    cout << "--print_frequency_difference or -pfd to print the difference between the data" << endl;
-    cout << "frequency and the distribution frequency." << endl;
-    cout << "--no_print_dist or -npd to disable distribution printing." << endl;
-    cout << "================================================================================" << endl;
-    cout << "The user can supply a list of distributions that he wants to use. The program" << endl;
-    cout << "will then select the one which best fits the data. If no option is supplied, the" << endl; 
-    cout << "program will just select the best fit among all available distributions." << endl;
-    cout << "================================================================================" << endl;
-    cout << "To select the distributions, the user should supply these options:" << endl;
-    cout << "--normal or -nrm => Normal distribution." << endl;
-    cout << "--triangular or -trng => Triangular distribution." << endl;
-    cout << "--uniform or -uni => Uniform distribution." << endl;
-    cout << "--exponential or -exp => Exponential distribution." << endl;
-    cout << "--log_normal or -ln => Lognormal distribution." << endl;
-    cout << "--poisson or -psn => Poisson distribution." << endl;
-    cout << "================================================================================" << endl;
+void print_help(std::ostream& os) {
+    os << "Input analyser for statistical purposes." << endl;
+    os << "================================================================================" << endl;
+    os << "Usage:" << endl;
+    os << "--help or -h to print help." << endl;
+    os << "--input_file or -if filename: opens filename for processing, which should" << endl;
+    os << "contain a list of float values. If not supplied, the user can enter numbers by" << endl;
+    os << "hand when the software starts. When done typing numbers, just press ^D or enter" << endl;
+    os << "an invalid value. Please supply 2 different files for input and output." << endl;
+    os << "--output_file or -of filename: opens filename to output results. Please supply" << endl;
+    os << "2 different files for input and output." << endl;
+    os << "--generate_random or -gr number: generates number random values using the" << endl;
+    os << "best distribution found." << endl; 
+    os << "--class_count or -cc number: chooses number as the number of classes for monte" << endl;
+    os << "carlo." << endl;
+    os << "--print_histogram or -ph if the user wants the classes calculated on the" << endl;
+    os << "histogram to be printed." << endl;
+    os << "--print_mean or -pmn if the user wants the mean calculated on the histogram to" << endl;
+    os << "be printed." << endl;
+    os << "--print_variance or --print_var or -pvr if the user wants to print the variance." << endl;
+    os << "--print_std_deviation or -pstdev if the the user wants to print the standard" << endl; 
+    os << "deviation." << endl;
+    os << "--print_mode or -pmd if the user wants to print the mode." << endl;
+    os << "--print_min or -pmin if the user wants to print the minimum value." << endl;
+    os << "--print_max or -pmax if the user wants to print the maximum value." << endl; 
+    os << "--print_chi_square_result or -pcs to print best fit distribution chi squared" << endl;
+    os << "test result." << endl;
+    os << "--print_frequency_difference or -pfd to print the difference between the data" << endl;
+    os << "frequency and the distribution frequency." << endl;
+    os << "--print_all or -pa to print everything. Even if this option is set, it is still" << endl; 
+    os << "possible to override the print distribution value." << endl;
+    os << "--no_print_dist or -npd to disable distribution printing." << endl;
+    os << "================================================================================" << endl;
+    os << "The user can supply a list of distributions that he wants to use. The program" << endl;
+    os << "will then select the one which best fits the data. If no option is supplied, the" << endl; 
+    os << "program will just select the best fit among all available distributions." << endl;
+    os << "================================================================================" << endl;
+    os << "To select the distributions, the user should supply these options:" << endl;
+    os << "--normal or -nrm => Normal distribution." << endl;
+    os << "--triangular or -trng => Triangular distribution." << endl;
+    os << "--uniform or -uni => Uniform distribution." << endl;
+    os << "--exponential or -exp => Exponential distribution." << endl;
+    os << "--log_normal or -ln => Lognormal distribution." << endl;
+    os << "--poisson or -psn => Poisson distribution." << endl;
+    os << "================================================================================" << endl;
 }

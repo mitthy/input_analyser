@@ -31,7 +31,13 @@ ostream& operator<<(ostream& os, const DataHolder& dh) {
 istream& operator>>(istream& is, DataHolder& dh) {
     input_data_t value = 0;
     if(is >> value) {
+        std::size_t n = dh._data.size();
+        input_data_t new_size = static_cast<input_data_t>(n + 1);
+        dh._current_mean = dh._current_mean * (n / new_size) + value / new_size;
+        dh._current_max = std::max(dh._current_max, value);
+        dh._current_min = std::min(dh._current_min, value);
         dh._data.push_back(value);
+        dh._compute_variance_and_standard_deviation();
     }
     return is;
 }
@@ -52,36 +58,60 @@ typename DataHolder::const_iterator DataHolder::end() const {
     return _data.end();
 }
 
-DataHolder& operator<<(input_data_t data, DataHolder& ob) {
-    //TODO
+DataHolder& operator<<(DataHolder& ob, input_data_t dat) {
+    std::size_t n = ob._data.size();
+    input_data_t new_size = static_cast<input_data_t>(n + 1);
+    ob._current_mean = ob._current_mean * (n / new_size) + dat / new_size;
+    ob._data.push_back(dat);
+    ob._current_max = std::max(ob._current_max, dat);
+    ob._current_min = std::min(ob._current_min, dat);
+    ob._compute_variance_and_standard_deviation();
     return ob;
 }
 
 input_data_t DataHolder::mean() const {
-    
+    return _current_mean;
 }
     
     
 input_data_t DataHolder::variance() const {
-    
+    return _current_var;
 }
     
     
 input_data_t DataHolder::standard_deviation() const {
-    
+    return _current_standard_deviation;
 }
 
     
 input_data_t DataHolder::max() const {
-    
+    return _current_max;
 }
     
     
 input_data_t DataHolder::min() const {
-    
+    return _current_min;
 }
     
     
 DataHistogram DataHolder::generate_histogram(std::size_t number_classes) const {
+    return DataHistogram(_data.begin(), _data.end(), number_classes);
+}
+
+void DataHolder::_compute_variance_and_standard_deviation() {
+    if(!_data.size()) {
+        _current_standard_deviation = std::numeric_limits<input_data_t>::quiet_NaN();
+        _current_var = std::numeric_limits<input_data_t>::quiet_NaN();
+        return;
+    }
+    _current_var = 0;
+    if(_data.size() > 1) {
+        for(auto dat: _data) {
+            _current_var -= 2 / static_cast<input_data_t>(_data.size() - 1) * _current_mean * dat;
+            _current_var += (dat / static_cast<input_data_t>(_data.size() - 1) * dat);
+            _current_var += _current_mean / static_cast<input_data_t>(_data.size() - 1) * _current_mean;
+        }
+        _current_standard_deviation = std::sqrt(_current_var);
+    }
     
 }

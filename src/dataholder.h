@@ -51,7 +51,13 @@ public:
     /**
      * Construct an object with no data.
      */
-    DataHolder() = default;
+    DataHolder(): _data() {
+        _current_mean = 0;
+        _current_var = std::numeric_limits<input_data_t>::quiet_NaN();
+        _current_min = std::numeric_limits<input_data_t>::max();
+        _current_max = -std::numeric_limits<input_data_t>::max();
+        _current_standard_deviation = std::numeric_limits<input_data_t>::quiet_NaN();
+    }
     
     
     /**
@@ -105,11 +111,11 @@ public:
     
     /**
      * Inputs more data to this class.
-     * @param data The new deta to input.
      * @param ob The DataHolder obj that will receive the data.
+     * @param data The new deta to input.
      * This method modifies obj such that it will compute its statistical properties again.
      */
-    friend DataHolder& operator<<(input_data_t data, DataHolder& ob);
+    friend DataHolder& operator<<(DataHolder& ob, input_data_t data);
     
     /**
      * Inputs data from stream.
@@ -182,17 +188,58 @@ public:
      */
     DataHistogram generate_histogram(std::size_t number_classes = 0) const;
     
+    /**
+     * Returns the amount of supplied data.
+     * @return The sample size.
+     */
+    std::size_t data_size() const {
+        return _data.size();
+    }
+    
 private:
+    /**
+     * Computes the variance and the standard deviation for this data.
+     */
+    void _compute_variance_and_standard_deviation();
+    
     std::vector<input_data_t> _data;
     
-    struct helper_data {
-        //TODO
-    };
+    input_data_t _current_mean;
+    
+    input_data_t _current_var;
+    
+    input_data_t _current_min;
+    
+    input_data_t _current_max;
+    
+    input_data_t _current_standard_deviation;
+    
 };
 
 template<typename Iterator>
 DataHolder::DataHolder(Iterator begin, Iterator end) {
-    _data.insert(_data.begin(), begin, end);
+    std::size_t sz = std::distance(begin, end);
+    if(sz > 0) {
+        _data.insert(_data.begin(), begin, end);
+        _current_mean = 0;
+        _current_min = std::numeric_limits<input_data_t>::max();
+        _current_max = -std::numeric_limits<input_data_t>::max();
+        while(begin != end) {
+            _current_min = std::min(_current_min, *begin);
+            _current_max = std::max(_current_min, *begin);
+            _current_mean += (*begin) / static_cast<input_data_t>(sz);
+            ++begin;
+        }
+        _compute_variance_and_standard_deviation();
+
+    }
+    else {
+        _current_mean = 0;
+        _current_var = std::numeric_limits<input_data_t>::quiet_NaN();
+        _current_min = std::numeric_limits<input_data_t>::max();
+        _current_max = -std::numeric_limits<input_data_t>::max();
+        _current_standard_deviation = std::numeric_limits<input_data_t>::quiet_NaN();
+    }
 }
 
 #endif // DATAHOLDER_H

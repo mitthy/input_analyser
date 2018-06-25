@@ -35,7 +35,7 @@ unique_ptr<T> make_unique(Args&&... args) {
     return unique_ptr<T>(new T(std::forward<Args>(args)...));
 }
 
-pair<unique_ptr<Distribution>, input_data_t> create_distribution(const DataHistogram& monte_carlo_histogram, set<DistributionType>& desired_type) {
+pair<unique_ptr<Distribution>, input_data_t> create_distribution(const DataHolder& dat, set<DistributionType>& desired_type, std::size_t num_cl) {
     //If no type was supplied, we assume all.
     if(desired_type.empty()) {
         desired_type.insert(DistributionType::TRIANGULAR);
@@ -46,6 +46,7 @@ pair<unique_ptr<Distribution>, input_data_t> create_distribution(const DataHisto
         desired_type.insert(DistributionType::POISSON);
     }
     unique_ptr<Distribution> best_distribution = nullptr;
+    auto monte_carlo_histogram = dat.generate_histogram(num_cl);
     input_data_t best_fit = numeric_limits<input_data_t>::quiet_NaN();
     //We initialize all those values as NaN so we don't have to recalculate them for each type.
     input_data_t mean = numeric_limits<input_data_t>::quiet_NaN();
@@ -62,13 +63,13 @@ pair<unique_ptr<Distribution>, input_data_t> create_distribution(const DataHisto
         switch(type) {
             case(DistributionType::TRIANGULAR): {
                 if(isnan(min)) {
-                    min = monte_carlo_histogram.histogram_min_value();
+                    min = dat.min();
                 }
                 if(isnan(max)) {
-                    max = monte_carlo_histogram.histogram_max_value();
+                    max = dat.max();
                 }
                 if(isnan(mean)) {
-                    mean = monte_carlo_histogram.histogram_mean();
+                    mean = dat.mean();
                 }
                 input_data_t mode = mean - min - max + mean + mean;
                 dist_to_test = make_unique<TriangularDistribution>(min, max, mode);
@@ -76,11 +77,11 @@ pair<unique_ptr<Distribution>, input_data_t> create_distribution(const DataHisto
             }
             case(DistributionType::NORMAL): {
                 if(isnan(mean)) {
-                    mean = monte_carlo_histogram.histogram_mean();
+                    mean = dat.mean();
                 }
                 if(isnan(standard_deviation)) {
                     if(isnan(variance)) {
-                        standard_deviation = monte_carlo_histogram.histogram_standard_deviation();
+                        standard_deviation = dat.standard_deviation();
                     }
                     else {
                         standard_deviation = sqrt(variance);
@@ -91,17 +92,17 @@ pair<unique_ptr<Distribution>, input_data_t> create_distribution(const DataHisto
             }
             case(DistributionType::UNIFORM): {
                 if(isnan(min)) {
-                    min = monte_carlo_histogram.histogram_min_value();
+                    min = dat.min();
                 }
                 if(isnan(max)) {
-                    max = monte_carlo_histogram.histogram_max_value();
+                    max = dat.max();
                 }
                 dist_to_test = make_unique<UniformDistribution>(min, max);
                 break;
             }
             case(DistributionType::EXPONENTIAL): {
                 if(isnan(mean)) {
-                    mean = monte_carlo_histogram.histogram_mean();
+                    mean = dat.mean();
                 }
                 dist_to_test = make_unique<ExponentialDistribution>(1 / mean);
                 break;
@@ -109,16 +110,16 @@ pair<unique_ptr<Distribution>, input_data_t> create_distribution(const DataHisto
             case(DistributionType::LOGNORMAL): {
                 input_data_t log_mean = 0;
                 input_data_t log_standard_dev = 0;
-                auto sz = monte_carlo_histogram.data_size();
-                for(auto& klass: monte_carlo_histogram) {
-                    if(klass.value > 0) {
-                        log_mean += log(klass.value) / sz * klass.class_count;
+                auto sz = dat.data_size();
+                for(auto value: dat) {
+                    if(value > 0) {
+                        log_mean += log(value) / static_cast<input_data_t>(sz);
                     }
                 }
-                for(auto& klass : monte_carlo_histogram) {
-                    if(klass.value > 0) {
-                        input_data_t tmp = pow(log(klass.value) - log_mean, 2);
-                        log_standard_dev += tmp / std::max((input_data_t)1.0, (input_data_t)(sz - 1)) *  klass.class_count;
+                for(auto value : dat) {
+                    if(value > 0) {
+                        input_data_t tmp = pow(log(value) - log_mean, 2);
+                        log_standard_dev += tmp / std::max((input_data_t)1.0, (input_data_t)(sz - 1));
                     }
                 }
                 dist_to_test = make_unique<LogNormalDistribution>(log_mean, log_standard_dev);
@@ -126,7 +127,7 @@ pair<unique_ptr<Distribution>, input_data_t> create_distribution(const DataHisto
             }
             case(DistributionType::POISSON): {
                 if(isnan(mean)) {
-                    mean = monte_carlo_histogram.histogram_mean();
+                    mean = dat.mean();
                 }
                 dist_to_test = make_unique<PoissonDistribution>(mean);
                 break;
