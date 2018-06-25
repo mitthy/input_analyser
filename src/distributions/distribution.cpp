@@ -35,7 +35,7 @@ unique_ptr<T> make_unique(Args&&... args) {
     return unique_ptr<T>(new T(std::forward<Args>(args)...));
 }
 
-pair<unique_ptr<Distribution>, input_data_t> create_distribution(const MonteCarlo& monte_carlo_histogram, set<DistributionType>& desired_type) {
+pair<unique_ptr<Distribution>, input_data_t> create_distribution(const DataHistogram& monte_carlo_histogram, set<DistributionType>& desired_type) {
     //If no type was supplied, we assume all.
     if(desired_type.empty()) {
         desired_type.insert(DistributionType::TRIANGULAR);
@@ -145,7 +145,7 @@ pair<unique_ptr<Distribution>, input_data_t> create_distribution(const MonteCarl
 }
 
 
-input_data_t chi_squared_test(const MonteCarlo& hist, const Distribution& dist) {
+input_data_t chi_squared_test(const DataHistogram& hist, const Distribution& dist) {
     auto sz = hist.data_size();
     input_data_t sum = 0;
     //We check the data count for the current distribution and compare it with the data count for the histogram.

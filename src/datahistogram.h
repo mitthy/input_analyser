@@ -16,9 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MONTECARLO_H
-#define MONTECARLO_H
-#include "dataholder.h"
+#ifndef DATAHISTOGRAM_H
+#define DATAHISTOGRAM_H
 #include <vector>
 #include <algorithm>
 #include <iostream>
@@ -26,14 +25,14 @@
 #include <cmath>
 
 /**
- * Class representing a Monte Carlo method and its generated histogram.
+ * Class representing a histogram for statistical purposes.
  */
-class MonteCarlo {
+class DataHistogram {
 public:
     //Constructors
     
     /**
-     * Constructor for Monte Carlo histogram.
+     * Constructor for histogram.
      * @param begin iterator to first element of data.
      * @param end iterator to element one past the end of data.
      * @param classes desired number of classes.
@@ -41,52 +40,52 @@ public:
      * @pre <strong class="paramname">classes</strong> <= <strong class="paramname">end</strong> - <strong class="paramname">begin</strong>.
      */
     template<typename Iterator>
-    MonteCarlo(Iterator begin, Iterator end, std::size_t classes = 0);
+    DataHistogram(Iterator begin, Iterator end, std::size_t classes = 0);
     
     /**
-     * Function that uses the Monte Carlo histogram as a random number generator.
+     * Function that uses the histogram as a random number generator.
      * @return A random number based on the frequency distribution of the supplied data.
      */
     input_data_t generate_value() const;
     
     /**
-     * Function that calculates the mean of the Monte Carlo histogram.
+     * Function that calculates the mean of the histogram.
      * @return The mean of the aggruped data or NaN if there is no data.
      */
     input_data_t histogram_mean() const;
     
     /**
-     * Function that calculates the variance of the Monte Carlo histogram.
+     * Function that calculates the variance of the histogram.
      * @return The variance of the aggruped data, 0 if there is only 1 class or NaN if there is no data.
      */
     input_data_t histogram_variance() const;
     
     /**
-     * Function that calculates the standard deviation of the Monte Carlo histogram.
+     * Function that calculates the standard deviation of the histogram.
      * @return The standard deviation of the aggruped data, 0 if there is only 1 class or NaN if there is no data.
      */
     input_data_t histogram_standard_deviation() const;
     
     /**
-     * Function that calculates the minimum value of the Monte Carlo histogram.
+     * Function that calculates the minimum value of the histogram.
      * @return The minimum class value of the aggruped data or NaN if there is no data.
      */
     input_data_t histogram_min_value() const;
     
     /**
-     * Function that calculates the maximum value of the Monte Carlo histogram.
+     * Function that calculates the maximum value of the histogram.
      * @return The maximum class value of the aggruped data or NaN if there is no data.
      */
     input_data_t histogram_max_value() const;
     
     /**
-     * Function that calculates the mode of the Monte Carlo histogram.
+     * Function that calculates the mode of the histogram.
      * @return The class with the most data of the aggruped data or NaN if there is no data.
      */
     input_data_t histogram_mode() const;
     
     /**
-    * Internal struct that contains data for each Monte Carlo histogram class
+    * Internal struct that contains data for each histogram class
     */
     struct monte_carlo_class {
         /**
@@ -188,7 +187,7 @@ public:
     * Internal struct that can be used to print all the Monte Carlo classes.
     */
     struct monte_carlo_class_printer {
-        friend class MonteCarlo;
+        friend class DataHistogram;
         /**
         * C++ stream operator for printing the class.
         * @param os The output stream.
@@ -211,7 +210,7 @@ public:
 
 //Since it is a templated method, we implement it in the header.
 template<typename Iterator>
-MonteCarlo::MonteCarlo(Iterator begin, Iterator end, std::size_t classes): _data_count(std::distance(begin, end)) {
+DataHistogram::DataHistogram(Iterator begin, Iterator end, std::size_t classes): _data_count(std::distance(begin, end)) {
     //If the difference between the max element and the minimum element is lesser than this value, we don't split the data into classes.
     input_data_t EPSLON = 0;
     input_data_t sqrt_sz = std::sqrt(_data_count);
@@ -268,4 +267,4 @@ MonteCarlo::MonteCarlo(Iterator begin, Iterator end, std::size_t classes): _data
     }
 }
 
-#endif // MONTECARLO_H
+#endif // DATAHISTOGRAM_H

@@ -19,7 +19,7 @@
 #ifndef DISTRIBUTION_H
 #define DISTRIBUTION_H
 #include <memory>
-#include "montecarlo.h"
+#include "datahistogram.h"
 #include <set>
 #include <utility>
 #include <string>
@@ -79,7 +79,7 @@ public:
 /**
  * Chi Squared test for a certain distribution given a monte carlo histogram.
  */
-input_data_t chi_squared_test(const MonteCarlo& hist, const Distribution& dist);
+input_data_t chi_squared_test(const DataHistogram& hist, const Distribution& dist);
 
 /**
  * Creates distribution with the best Chi Squared score for the histogram among the desired types. If no types are supplied, it picks the best among all types
@@ -87,6 +87,6 @@ input_data_t chi_squared_test(const MonteCarlo& hist, const Distribution& dist);
  * @param dsr_types The types of distributions the user desires. If empty, it assumes the user wants to check all types.
  * @return The distribution with the best Chi Squared score.
  */
-std::pair<std::unique_ptr<Distribution>, input_data_t> create_distribution(const MonteCarlo& hist, std::set<DistributionType>& dsr_types);
+std::pair<std::unique_ptr<Distribution>, input_data_t> create_distribution(const DataHistogram& hist, std::set<DistributionType>& dsr_types);
 
 #endif

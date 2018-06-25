@@ -22,6 +22,7 @@
 #include <vector>
 #include <iostream>
 #include "inputtypes.h"
+#include "datahistogram.h"
 
 /**
  * Class that we use to grab data from istream. It can also be used to output data to an ostream.
@@ -103,6 +104,14 @@ public:
     friend std::ostream& operator<<(std::ostream& os, const DataHolder& obj);
     
     /**
+     * Inputs more data to this class.
+     * @param data The new deta to input.
+     * @param ob The DataHolder obj that will receive the data.
+     * This method modifies obj such that it will compute its statistical properties again.
+     */
+    friend DataHolder& operator<<(input_data_t data, DataHolder& ob);
+    
+    /**
      * Inputs data from stream.
      * @param is Input stream.
      * @param obj DataHolder object that will read value from stream.
@@ -136,8 +145,49 @@ public:
      */
     const_iterator end() const;
     
+    /**
+     * Gets the mean of the data.
+     * @return The mean of the data collected by this object or NaN in case it can't compute it.
+     */
+    input_data_t mean() const;
+    
+    /**
+     * Gets the variance of the data.
+     * @return The variance of the data collected by this object or NaN in case it can't compute it.
+     */
+    input_data_t variance() const;
+    
+    /**
+     * Gets the standard deviation of the data.
+     * @return The standard deviation of the data collected by this object or NaN in case it can't compute it.
+     */
+    input_data_t standard_deviation() const;
+    
+    /**
+     * Gets the maximum value.
+     * @return The maximum data value or NaN if there is no value.
+     */
+    input_data_t max() const;
+    
+    /**
+     * Gets the minimum value.
+     * @return The minimum data value or NaN if there is no value.
+     */
+    input_data_t min() const;
+    
+    /**
+     * Generates a histogram of the data.
+     * @param number_classes The desired number of classes.
+     * @return Histogram of the data.
+     */
+    DataHistogram generate_histogram(std::size_t number_classes = 0) const;
+    
 private:
     std::vector<input_data_t> _data;
+    
+    struct helper_data {
+        //TODO
+    };
 };
 
 template<typename Iterator>

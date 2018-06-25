@@ -23,6 +23,7 @@
 #include <algorithm>
 #include <iostream>
 #include "inputtypes.h"
+#include <cmath>
 
 /**
  * Applies Box Muller Transform algorithm to calculate a normal distribution.
@@ -32,73 +33,6 @@
  */
 input_data_t box_muller_transform(input_data_t mean, input_data_t standard_deviation);
 
-namespace {
-    
-    //Since this function is templated, we got to implement it in the header.
-    //We hide it in an anonymous namespace because we don't want to export it.
-    
-    /**
-    * Function that calculates the integral in the interval [first, last] given a function fx.
-    * @param first First number of the interval.
-    * @param last Last number of the interval.
-    * @param is_floating used for static dispatch.
-    * @return The intergral of the function fx.
-    */
-    template<typename Function, typename NumberType>
-    input_data_t integral(NumberType first, NumberType last, Function fx, const std::true_type&) {
-        NumberType max = std::max(first, last);
-        NumberType min = std::min(first, last);
-        NumberType step = static_cast<NumberType>(0.05);
-        NumberType _first = first, _second = first + step;
-        input_data_t sum = 0;
-        int iterations = (max - _second) / step;
-        //Uses the sum of areas of trapezia to calculate the integral of fx.
-        //(y0 + y1)/2 * (x1 - x0) + (y1 + y2)/2 * (x2 - x1)...
-        //Since (x(n) - x(n-1)) delta x is always equal to step, we don't need to calculate it.
-        #pragma omp parallel for reduction (+:sum)
-        for(int i = 0; i < iterations; ++i) {
-            //This is necessary for OpenMP support.
-            NumberType x_first = _first + (i * step);
-            NumberType x_second = _second + (i * step);
-            NumberType y_first = fx(x_first), y_second = fx(x_second);
-            sum += static_cast<input_data_t>(y_first + y_second) / 2.0f * step;
-        }
-        return sum;
-    }
-    
-    //Since this function is templated, we got to implement it in the header.
-    
-    /**
-    * Function that calculates the integral in the interval [first, last] given a function fx.
-    * @param first First number of the interval.
-    * @param last Last number of the interval.
-    * @param is_floating used for static dispatch.
-    * @return The intergral of the function fx in discrete steps.
-    */
-    template<typename Function, typename NumberType>
-    input_data_t integral(NumberType first, NumberType last, Function fx, const std::false_type&) {
-        NumberType max = std::max(first, last);
-        NumberType min = std::min(first, last);
-        NumberType step = static_cast<NumberType>(1);
-        NumberType _first = first, _second = _first + step;
-        int iterations = (max - _second);
-        input_data_t sum = 0;
-        //Uses the sum of areas of trapezia to calculate the integral of fx.
-        //(y0 + y1)/2 * (x1 - x0) + (y1 + y2)/2 * (x2 - x1)...
-        //Since (x(n) - x(n-1)) delta x is always equal to step, we don't need to calculate it.
-        #pragma omp parallel for reduction (+:sum)
-        for(int i = 0; i < iterations; ++i) {
-            //This is necessary for OpenMP support.
-            NumberType x_first = _first + i;
-            NumberType x_second = _second + i;
-            NumberType y_first = fx(_first), y_second = fx(_second);
-            sum += static_cast<input_data_t>(y_first + y_second) / 2.0f;
-            _first += step;
-            _second += step;
-        }
-        return sum;
-    }
-}
 
 //Since this function is templated, we got to implement it in the header.
 
@@ -106,12 +40,34 @@ namespace {
  * Function that calculates the integral in the interval [first, last] given a function fx.
  * @param first First number of the interval.
  * @param last Last number of the interval.
+ * @param fx The function that we'd like to integrate.
  * @return The integral of the function fx. If NumberType is a floating point number, it calculates in small steps. Else, it calculates on discrete steps.
  */
-template<typename Function, typename NumberType>
-input_data_t integral(NumberType first, NumberType last, Function fx) {
-    //We just static dispatch to the above function.
-    return integral(first, last, fx, typename std::is_floating_point<NumberType>::type());
+template<typename Function>
+input_data_t integral(input_data_t first, input_data_t last, Function fx) {
+    //If the interval is really small, we just compute and return the first.
+    if(std::abs(first - last) <= std::nextafter(std::numeric_limits<input_data_t>::min() * 3, (input_data_t)1.0)) {
+        return fx(first);
+    }
+    input_data_t max = std::max(first, last);
+    input_data_t step = std::min(std::abs(first - last) / static_cast<input_data_t>(100), 0.05);
+    const input_data_t EPSLON = std::nextafter(std::numeric_limits<input_data_t>::min() * 10, (input_data_t)1.0);
+    step = step < EPSLON ? EPSLON : step;
+    input_data_t _first = first, _second = first + step;
+    input_data_t sum = 0;
+    int iterations = (max - _second) / step;
+    //Uses the sum of areas of trapezia to calculate the integral of fx.
+    //(y0 + y1)/2 * (x1 - x0) + (y1 + y2)/2 * (x2 - x1)...
+    //Since (x(n) - x(n-1)) delta x is always equal to step, we don't need to calculate it.
+    #pragma omp parallel for reduction (+:sum)
+    for(int i = 0; i < iterations; ++i) {
+        //This is necessary for OpenMP support.
+        input_data_t x_first = _first + (i * step);
+        input_data_t x_second = _second + (i * step);
+        input_data_t y_first = fx(x_first), y_second = fx(x_second);
+        sum += static_cast<input_data_t>(y_first + y_second) / 2.0f * step;
+    }
+    return sum;
 }
 
 #endif

@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "montecarlo.h"
+#include "datahistogram.h"
 #include <random>
 #include <algorithm>
 #include <limits>
@@ -31,7 +31,7 @@ namespace {
     uniform_real_distribution<input_data_t> dist(0, std::nextafter(static_cast<input_data_t>(1.0), static_cast<input_data_t>(2.0)));
 }
 
-input_data_t MonteCarlo::generate_value() const {
+input_data_t DataHistogram::generate_value() const {
     if(_organized_data.empty()) {
         return numeric_limits<input_data_t>::quiet_NaN();
     }
@@ -53,7 +53,7 @@ input_data_t MonteCarlo::generate_value() const {
 }
 
 
-input_data_t MonteCarlo::histogram_mean() const {
+input_data_t DataHistogram::histogram_mean() const {
     if(_organized_data.empty()) {
         return numeric_limits<input_data_t>::quiet_NaN();
     }
@@ -65,7 +65,7 @@ input_data_t MonteCarlo::histogram_mean() const {
     return sum;
 }
 
-input_data_t MonteCarlo::histogram_variance() const {
+input_data_t DataHistogram::histogram_variance() const {
     if(_organized_data.empty()) {
         return numeric_limits<input_data_t>::quiet_NaN();
     }
@@ -82,7 +82,7 @@ input_data_t MonteCarlo::histogram_variance() const {
     return sum;
 }
 
-input_data_t MonteCarlo::histogram_standard_deviation() const {
+input_data_t DataHistogram::histogram_standard_deviation() const {
     if(_organized_data.empty()) {
         return numeric_limits<input_data_t>::quiet_NaN();
     }
@@ -91,21 +91,21 @@ input_data_t MonteCarlo::histogram_standard_deviation() const {
 }
 
 
-input_data_t MonteCarlo::histogram_min_value() const {
+input_data_t DataHistogram::histogram_min_value() const {
     if(_organized_data.empty()) {
         return numeric_limits<input_data_t>::quiet_NaN();
     }
     return _organized_data.front().value;
 }
 
-input_data_t MonteCarlo::histogram_max_value() const {
+input_data_t DataHistogram::histogram_max_value() const {
     if(_organized_data.empty()) {
         return numeric_limits<input_data_t>::quiet_NaN();
     } 
     return _organized_data.back().value;
 }
 
-input_data_t MonteCarlo::histogram_mode() const {
+input_data_t DataHistogram::histogram_mode() const {
     input_data_t return_value = numeric_limits<input_data_t>::quiet_NaN();
     auto compare_function = [](const monte_carlo_class& left, const monte_carlo_class& right) {
         return left.class_count < right.class_count;
@@ -117,13 +117,13 @@ input_data_t MonteCarlo::histogram_mode() const {
     return return_value;
 }
 
-MonteCarlo::monte_carlo_class_printer MonteCarlo::print_classes() {
-    MonteCarlo::monte_carlo_class_printer printer;
+DataHistogram::monte_carlo_class_printer DataHistogram::print_classes() {
+    DataHistogram::monte_carlo_class_printer printer;
     printer.classes = &(this->_organized_data);
     return printer;
 }
 
-ostream& operator<<(ostream& os, const MonteCarlo::monte_carlo_class_printer& printer) {
+ostream& operator<<(ostream& os, const DataHistogram::monte_carlo_class_printer& printer) {
     if(printer.classes->empty()) {
         return os;
     }

@@ -51,3 +51,37 @@ typename DataHolder::const_iterator DataHolder::begin() const {
 typename DataHolder::const_iterator DataHolder::end() const {
     return _data.end();
 }
+
+DataHolder& operator<<(input_data_t data, DataHolder& ob) {
+    //TODO
+    return ob;
+}
+
+input_data_t DataHolder::mean() const {
+    
+}
+    
+    
+input_data_t DataHolder::variance() const {
+    
+}
+    
+    
+input_data_t DataHolder::standard_deviation() const {
+    
+}
+
+    
+input_data_t DataHolder::max() const {
+    
+}
+    
+    
+input_data_t DataHolder::min() const {
+    
+}
+    
+    
+DataHistogram DataHolder::generate_histogram(std::size_t number_classes) const {
+    
+}

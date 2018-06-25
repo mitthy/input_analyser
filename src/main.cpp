@@ -19,7 +19,7 @@
 #include <iostream>
 #include <fstream>
 #include "dataholder.h"
-#include "montecarlo.h"
+#include "datahistogram.h"
 #include <string>
 #include "distributions/distribution.h"
 #include <set>
@@ -212,7 +212,7 @@ int main(int argc, char **argv) {
         cerr << "Falling back to default." << endl;
         class_count = 0;
     }
-    MonteCarlo monte_carlo(h.begin(), h.end(), class_count);
+    DataHistogram monte_carlo(h.begin(), h.end(), class_count);
     unique_ptr<Distribution> distr_ptr;
     input_data_t chi_result;
     tie(distr_ptr, chi_result) = create_distribution(monte_carlo, desired_distributions);
